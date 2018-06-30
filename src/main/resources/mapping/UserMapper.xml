@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rce.ssm.dao.UserDao">
+
+    <resultMap id="UserBaseMap" type="com.rce.ssm.model.User">
+        <id column="UserId" jdbcType="INTEGER" property="userid" />
+        <result column="LoginName" jdbcType="VARCHAR" property="loginname" />
+        <result column="LoginPwd" jdbcType="VARCHAR" property="loginpwd" />
+        <result column="UserName" jdbcType="VARCHAR" property="username" />
+        <result column="UserSex" jdbcType="INTEGER" property="usersex" />
+        <result column="UserEmail" jdbcType="VARCHAR" property="useremail" />
+        <result column="UserPhone" jdbcType="CHAR" property="userphone" />
+        <result column="UserStatus" jdbcType="INTEGER" property="userstatus" />
+        <result column="UserFlag" jdbcType="INTEGER" property="userflag" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="LastIP" jdbcType="VARCHAR" property="lastip" />
+        <result column="LastTime" jdbcType="TIMESTAMP" property="lasttime" />
+        <result column="PayPwd" jdbcType="VARCHAR" property="paypwd" />
+        <result column="Cookieid" jdbcType="VARCHAR" property="cookieid" />
+        <result column="code" jdbcType="VARCHAR" property="code" />
+    </resultMap>
+
+    <select id="selectAllUser" resultMap="UserBaseMap">
+        SELECT * FROM users
+    </select>
+
+    <select id="selectUserByEmail" parameterType="java.lang.String" resultMap="UserBaseMap">
+        SELECT * FROM users
+        WHERE UserEmail = #{email}
+    </select>
+
+    <insert id="insert" parameterType="com.rce.ssm.model.User">
+    insert into users (UserId, LoginName, LoginPwd,
+      UserName, UserSex, UserEmail,
+      UserPhone, UserStatus, UserFlag,
+      CreateTime, LastIP, LastTime,
+      PayPwd, Cookieid, code
+      )
+    values (#{userid,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{loginpwd,jdbcType=VARCHAR},
+      #{username,jdbcType=VARCHAR}, #{usersex,jdbcType=INTEGER}, #{useremail,jdbcType=VARCHAR},
+      #{userphone,jdbcType=CHAR}, #{userstatus,jdbcType=INTEGER}, #{userflag,jdbcType=INTEGER},
+      #{createtime,jdbcType=TIMESTAMP}, #{lastip,jdbcType=VARCHAR}, #{lasttime,jdbcType=TIMESTAMP},
+      #{paypwd,jdbcType=VARCHAR}, #{cookieid,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.rce.ssm.model.User">
+        insert into users
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                UserId,
+            </if>
+            <if test="loginname != null">
+                LoginName,
+            </if>
+            <if test="loginpwd != null">
+                LoginPwd,
+            </if>
+            <if test="username != null">
+                UserName,
+            </if>
+            <if test="usersex != null">
+                UserSex,
+            </if>
+            <if test="useremail != null">
+                UserEmail,
+            </if>
+            <if test="userphone != null">
+                UserPhone,
+            </if>
+            <if test="userstatus != null">
+                UserStatus,
+            </if>
+            <if test="userflag != null">
+                UserFlag,
+            </if>
+            <if test="createtime != null">
+                CreateTime,
+            </if>
+            <if test="lastip != null">
+                LastIP,
+            </if>
+            <if test="lasttime != null">
+                LastTime,
+            </if>
+            <if test="paypwd != null">
+                PayPwd,
+            </if>
+            <if test="cookieid != null">
+                Cookieid,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="loginname != null">
+                #{loginname,jdbcType=VARCHAR},
+            </if>
+            <if test="loginpwd != null">
+                #{loginpwd,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="usersex != null">
+                #{usersex,jdbcType=INTEGER},
+            </if>
+            <if test="useremail != null">
+                #{useremail,jdbcType=VARCHAR},
+            </if>
+            <if test="userphone != null">
+                #{userphone,jdbcType=CHAR},
+            </if>
+            <if test="userstatus != null">
+                #{userstatus,jdbcType=INTEGER},
+            </if>
+            <if test="userflag != null">
+                #{userflag,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastip != null">
+                #{lastip,jdbcType=VARCHAR},
+            </if>
+            <if test="lasttime != null">
+                #{lasttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="paypwd != null">
+                #{paypwd,jdbcType=VARCHAR},
+            </if>
+            <if test="cookieid != null">
+                #{cookieid,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="active" parameterType="java.lang.String" >
+    UPDATE users SET UserStatus =1 WHERE code=#{code,jdbcType=VARCHAR}
+  </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.rce.ssm.model.User">
+        update users
+        <set>
+            <if test="loginname != null">
+                LoginName = #{loginname,jdbcType=VARCHAR},
+            </if>
+            <if test="loginpwd != null">
+                LoginPwd = #{loginpwd,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                UserName = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="usersex != null">
+                UserSex = #{usersex,jdbcType=INTEGER},
+            </if>
+            <if test="useremail != null">
+                UserEmail = #{useremail,jdbcType=VARCHAR},
+            </if>
+            <if test="userphone != null">
+                UserPhone = #{userphone,jdbcType=CHAR},
+            </if>
+            <if test="userstatus != null">
+                UserStatus = #{userstatus,jdbcType=INTEGER},
+            </if>
+            <if test="userflag != null">
+                UserFlag = #{userflag,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                CreateTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastip != null">
+                LastIP = #{lastip,jdbcType=VARCHAR},
+            </if>
+            <if test="lasttime != null">
+                LastTime = #{lasttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="paypwd != null">
+                PayPwd = #{paypwd,jdbcType=VARCHAR},
+            </if>
+            <if test="cookieid != null">
+                Cookieid = #{cookieid,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where UserId = #{userid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.rce.ssm.model.User">
+    update users
+    set LoginName = #{loginname,jdbcType=VARCHAR},
+      LoginPwd = #{loginpwd,jdbcType=VARCHAR},
+      UserName = #{username,jdbcType=VARCHAR},
+      UserSex = #{usersex,jdbcType=INTEGER},
+      UserEmail = #{useremail,jdbcType=VARCHAR},
+      UserPhone = #{userphone,jdbcType=CHAR},
+      UserStatus = #{userstatus,jdbcType=INTEGER},
+      UserFlag = #{userflag,jdbcType=INTEGER},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      LastIP = #{lastip,jdbcType=VARCHAR},
+      LastTime = #{lasttime,jdbcType=TIMESTAMP},
+      PayPwd = #{paypwd,jdbcType=VARCHAR},
+      Cookieid = #{cookieid,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR}
+    where UserId = #{userid,jdbcType=INTEGER}
+  </update>
+
+    <select id="find" parameterType="com.rce.ssm.model.User" resultMap="UserBaseMap">
+        SELECT UserId, LoginName, LoginPwd,
+        UserName, UserSex, UserEmail,
+        UserPhone, UserStatus, UserFlag,
+        CreateTime, LastIP, LastTime,
+        PayPwd, Cookieid, code
+        FROM users
+        WHERE 1=1
+        <if test="userid != null" >
+            and  UserId = #{userid,jdbcType=INTEGER}
+        </if>
+        <if test="loginname != null">
+            and LoginName = #{loginname,jdbcType=VARCHAR}
+        </if>
+        <if test="useremail != null">
+            and UserEmail = #{useremail,jdbcType=VARCHAR}
+        </if>
+        <if test="cookieid != null" >
+            and  Cookieid = #{cookieid,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="findbycode" resultMap="UserBaseMap" parameterType="com.rce.ssm.model.User" >
+        SELECT UserId, LoginName, LoginPwd,
+        UserName, UserSex, UserEmail,
+        UserPhone, UserStatus, UserFlag,
+        CreateTime, LastIP, LastTime,
+        PayPwd, Cookieid, code
+        FROM users
+        where 1=1
+        <if test="code != null" >
+            and code = #{code,jdbcType=VARCHAR}
+        </if>
+        <!-- <if test="pwd != null" >
+            and pwd = #{pwd,jdbcType=VARCHAR}
+        </if> -->
+    </select>
+
+</mapper>

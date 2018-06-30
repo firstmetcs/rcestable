@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rce.ssm.dao.OrderDao">
+  <resultMap id="BaseResultMap" type="com.rce.ssm.model.Order">
+    <id column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="orderNo" jdbcType="VARCHAR" property="orderno" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="addressId" jdbcType="INTEGER" property="addressid" />
+    <result column="orderStatus" jdbcType="INTEGER" property="orderstatus" />
+    <result column="totalMoney" jdbcType="DECIMAL" property="totalmoney" />
+    <result column="deliverMoney" jdbcType="DECIMAL" property="delivermoney" />
+    <result column="payType" jdbcType="INTEGER" property="paytype" />
+    <result column="isPay" jdbcType="INTEGER" property="ispay" />
+    <result column="deliverType" jdbcType="INTEGER" property="delivertype" />
+    <result column="deliveryTime" jdbcType="INTEGER" property="deliverytime" />
+    <result column="invoiceClient" jdbcType="VARCHAR" property="invoiceclient" />
+    <result column="orderRemarks" jdbcType="VARCHAR" property="orderremarks" />
+    <result column="isAppraises" jdbcType="INTEGER" property="isappraises" />
+    <result column="creatTime" jdbcType="TIMESTAMP" property="creattime" />
+    <result column="isRefund" jdbcType="INTEGER" property="isrefund" />
+    <result column="refundRemark" jdbcType="VARCHAR" property="refundremark" />
+    <result column="backMoney" jdbcType="DECIMAL" property="backmoney" />
+    <result column="needPay" jdbcType="DECIMAL" property="needpay" />
+    <result column="tradeNo" jdbcType="VARCHAR" property="tradeno" />
+    <result column="settlementId" jdbcType="INTEGER" property="settlementid" />
+    <result column="realTotalMoney" jdbcType="DECIMAL" property="realtotalmoney" />
+    <result column="receiveTime" jdbcType="TIMESTAMP" property="receivetime" />
+    <result column="expressCompany" jdbcType="VARCHAR" property="expresscompany" />
+    <result column="expressCode" jdbcType="VARCHAR" property="expresscode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    orderId, orderNo, userId, addressId, orderStatus, totalMoney, deliverMoney, payType, 
+    isPay, deliverType, deliveryTime, invoiceClient, orderRemarks, isAppraises, creatTime, 
+    isRefund, refundRemark, backMoney, needPay, tradeNo, settlementId, realTotalMoney, 
+    receiveTime, expressCompany, expressCode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_table
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_table
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rce.ssm.model.Order">
+    insert into order_table (orderId, orderNo, userId, 
+      addressId, orderStatus, totalMoney, 
+      deliverMoney, payType, isPay, 
+      deliverType, deliveryTime, invoiceClient, 
+      orderRemarks, isAppraises, creatTime, 
+      isRefund, refundRemark, backMoney, 
+      needPay, tradeNo, settlementId, 
+      realTotalMoney, receiveTime, expressCompany, 
+      expressCode)
+    values (#{orderid,jdbcType=INTEGER}, #{orderno,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{addressid,jdbcType=INTEGER}, #{orderstatus,jdbcType=INTEGER}, #{totalmoney,jdbcType=DECIMAL}, 
+      #{delivermoney,jdbcType=DECIMAL}, #{paytype,jdbcType=INTEGER}, #{ispay,jdbcType=INTEGER}, 
+      #{delivertype,jdbcType=INTEGER}, #{deliverytime,jdbcType=INTEGER}, #{invoiceclient,jdbcType=VARCHAR}, 
+      #{orderremarks,jdbcType=VARCHAR}, #{isappraises,jdbcType=INTEGER}, #{creattime,jdbcType=TIMESTAMP}, 
+      #{isrefund,jdbcType=INTEGER}, #{refundremark,jdbcType=VARCHAR}, #{backmoney,jdbcType=DECIMAL}, 
+      #{needpay,jdbcType=DECIMAL}, #{tradeno,jdbcType=VARCHAR}, #{settlementid,jdbcType=INTEGER}, 
+      #{realtotalmoney,jdbcType=DECIMAL}, #{receivetime,jdbcType=TIMESTAMP}, #{expresscompany,jdbcType=VARCHAR}, 
+      #{expresscode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rce.ssm.model.Order">
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="orderid">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into order_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="orderno != null">
+        orderNo,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="addressid != null">
+        addressId,
+      </if>
+      <if test="orderstatus != null">
+        orderStatus,
+      </if>
+      <if test="totalmoney != null">
+        totalMoney,
+      </if>
+      <if test="delivermoney != null">
+        deliverMoney,
+      </if>
+      <if test="paytype != null">
+        payType,
+      </if>
+      <if test="ispay != null">
+        isPay,
+      </if>
+      <if test="delivertype != null">
+        deliverType,
+      </if>
+      <if test="deliverytime != null">
+        deliveryTime,
+      </if>
+      <if test="invoiceclient != null">
+        invoiceClient,
+      </if>
+      <if test="orderremarks != null">
+        orderRemarks,
+      </if>
+      <if test="isappraises != null">
+        isAppraises,
+      </if>
+      <if test="creattime != null">
+        creatTime,
+      </if>
+      <if test="isrefund != null">
+        isRefund,
+      </if>
+      <if test="refundremark != null">
+        refundRemark,
+      </if>
+      <if test="backmoney != null">
+        backMoney,
+      </if>
+      <if test="needpay != null">
+        needPay,
+      </if>
+      <if test="tradeno != null">
+        tradeNo,
+      </if>
+      <if test="settlementid != null">
+        settlementId,
+      </if>
+      <if test="realtotalmoney != null">
+        realTotalMoney,
+      </if>
+      <if test="receivetime != null">
+        receiveTime,
+      </if>
+      <if test="expresscompany != null">
+        expressCompany,
+      </if>
+      <if test="expresscode != null">
+        expressCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null">
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="addressid != null">
+        #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="orderstatus != null">
+        #{orderstatus,jdbcType=INTEGER},
+      </if>
+      <if test="totalmoney != null">
+        #{totalmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="delivermoney != null">
+        #{delivermoney,jdbcType=DECIMAL},
+      </if>
+      <if test="paytype != null">
+        #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="ispay != null">
+        #{ispay,jdbcType=INTEGER},
+      </if>
+      <if test="delivertype != null">
+        #{delivertype,jdbcType=INTEGER},
+      </if>
+      <if test="deliverytime != null">
+        #{deliverytime,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceclient != null">
+        #{invoiceclient,jdbcType=VARCHAR},
+      </if>
+      <if test="orderremarks != null">
+        #{orderremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="isappraises != null">
+        #{isappraises,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null">
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isrefund != null">
+        #{isrefund,jdbcType=INTEGER},
+      </if>
+      <if test="refundremark != null">
+        #{refundremark,jdbcType=VARCHAR},
+      </if>
+      <if test="backmoney != null">
+        #{backmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="needpay != null">
+        #{needpay,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeno != null">
+        #{tradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementid != null">
+        #{settlementid,jdbcType=INTEGER},
+      </if>
+      <if test="realtotalmoney != null">
+        #{realtotalmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="receivetime != null">
+        #{receivetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expresscompany != null">
+        #{expresscompany,jdbcType=VARCHAR},
+      </if>
+      <if test="expresscode != null">
+        #{expresscode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rce.ssm.model.Order">
+    update order_table
+    <set>
+      <if test="orderno != null">
+        orderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="addressid != null">
+        addressId = #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="orderstatus != null">
+        orderStatus = #{orderstatus,jdbcType=INTEGER},
+      </if>
+      <if test="totalmoney != null">
+        totalMoney = #{totalmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="delivermoney != null">
+        deliverMoney = #{delivermoney,jdbcType=DECIMAL},
+      </if>
+      <if test="paytype != null">
+        payType = #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="ispay != null">
+        isPay = #{ispay,jdbcType=INTEGER},
+      </if>
+      <if test="delivertype != null">
+        deliverType = #{delivertype,jdbcType=INTEGER},
+      </if>
+      <if test="deliverytime != null">
+        deliveryTime = #{deliverytime,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceclient != null">
+        invoiceClient = #{invoiceclient,jdbcType=VARCHAR},
+      </if>
+      <if test="orderremarks != null">
+        orderRemarks = #{orderremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="isappraises != null">
+        isAppraises = #{isappraises,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null">
+        creatTime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isrefund != null">
+        isRefund = #{isrefund,jdbcType=INTEGER},
+      </if>
+      <if test="refundremark != null">
+        refundRemark = #{refundremark,jdbcType=VARCHAR},
+      </if>
+      <if test="backmoney != null">
+        backMoney = #{backmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="needpay != null">
+        needPay = #{needpay,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeno != null">
+        tradeNo = #{tradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementid != null">
+        settlementId = #{settlementid,jdbcType=INTEGER},
+      </if>
+      <if test="realtotalmoney != null">
+        realTotalMoney = #{realtotalmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="receivetime != null">
+        receiveTime = #{receivetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expresscompany != null">
+        expressCompany = #{expresscompany,jdbcType=VARCHAR},
+      </if>
+      <if test="expresscode != null">
+        expressCode = #{expresscode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rce.ssm.model.Order">
+    update order_table
+    set orderNo = #{orderno,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      addressId = #{addressid,jdbcType=INTEGER},
+      orderStatus = #{orderstatus,jdbcType=INTEGER},
+      totalMoney = #{totalmoney,jdbcType=DECIMAL},
+      deliverMoney = #{delivermoney,jdbcType=DECIMAL},
+      payType = #{paytype,jdbcType=INTEGER},
+      isPay = #{ispay,jdbcType=INTEGER},
+      deliverType = #{delivertype,jdbcType=INTEGER},
+      deliveryTime = #{deliverytime,jdbcType=INTEGER},
+      invoiceClient = #{invoiceclient,jdbcType=VARCHAR},
+      orderRemarks = #{orderremarks,jdbcType=VARCHAR},
+      isAppraises = #{isappraises,jdbcType=INTEGER},
+      creatTime = #{creattime,jdbcType=TIMESTAMP},
+      isRefund = #{isrefund,jdbcType=INTEGER},
+      refundRemark = #{refundremark,jdbcType=VARCHAR},
+      backMoney = #{backmoney,jdbcType=DECIMAL},
+      needPay = #{needpay,jdbcType=DECIMAL},
+      tradeNo = #{tradeno,jdbcType=VARCHAR},
+      settlementId = #{settlementid,jdbcType=INTEGER},
+      realTotalMoney = #{realtotalmoney,jdbcType=DECIMAL},
+      receiveTime = #{receivetime,jdbcType=TIMESTAMP},
+      expressCompany = #{expresscompany,jdbcType=VARCHAR},
+      expressCode = #{expresscode,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>

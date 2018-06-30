@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rce.ssm.dao.LoginRecordDao">
+  <resultMap id="BaseResultMap" type="com.rce.ssm.model.LoginRecord">
+    <id column="loginId" jdbcType="INTEGER" property="loginid" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="loginTime" jdbcType="TIMESTAMP" property="logintime" />
+    <result column="loginIp" jdbcType="VARCHAR" property="loginip" />
+    <result column="loginSrc" jdbcType="INTEGER" property="loginsrc" />
+    <result column="loginRemark" jdbcType="VARCHAR" property="loginremark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    loginId, userId, loginTime, loginIp, loginSrc, loginRemark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_login
+    where loginId = #{loginid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_login
+    where loginId = #{loginid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rce.ssm.model.LoginRecord">
+    insert into user_login (loginId, userId, loginTime, 
+      loginIp, loginSrc, loginRemark
+      )
+    values (#{loginid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{logintime,jdbcType=TIMESTAMP}, 
+      #{loginip,jdbcType=VARCHAR}, #{loginsrc,jdbcType=INTEGER}, #{loginremark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rce.ssm.model.LoginRecord">
+    insert into user_login
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginid != null">
+        loginId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="logintime != null">
+        loginTime,
+      </if>
+      <if test="loginip != null">
+        loginIp,
+      </if>
+      <if test="loginsrc != null">
+        loginSrc,
+      </if>
+      <if test="loginremark != null">
+        loginRemark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginid != null">
+        #{loginid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="logintime != null">
+        #{logintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginip != null">
+        #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="loginsrc != null">
+        #{loginsrc,jdbcType=INTEGER},
+      </if>
+      <if test="loginremark != null">
+        #{loginremark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rce.ssm.model.LoginRecord">
+    update user_login
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="logintime != null">
+        loginTime = #{logintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginip != null">
+        loginIp = #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="loginsrc != null">
+        loginSrc = #{loginsrc,jdbcType=INTEGER},
+      </if>
+      <if test="loginremark != null">
+        loginRemark = #{loginremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where loginId = #{loginid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rce.ssm.model.LoginRecord">
+    update user_login
+    set userId = #{userid,jdbcType=INTEGER},
+      loginTime = #{logintime,jdbcType=TIMESTAMP},
+      loginIp = #{loginip,jdbcType=VARCHAR},
+      loginSrc = #{loginsrc,jdbcType=INTEGER},
+      loginRemark = #{loginremark,jdbcType=VARCHAR}
+    where loginId = #{loginid,jdbcType=INTEGER}
+  </update>
+</mapper>

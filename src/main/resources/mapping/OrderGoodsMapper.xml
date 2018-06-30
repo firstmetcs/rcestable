@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rce.ssm.dao.OrderGoodsDao">
+  <resultMap id="BaseResultMap" type="com.rce.ssm.model.OrderGoods">
+    <id column="godOrderId" jdbcType="INTEGER" property="godorderid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="goodsId" jdbcType="INTEGER" property="goodsid" />
+    <result column="goodsNums" jdbcType="INTEGER" property="goodsnums" />
+    <result column="goodsPrice" jdbcType="DECIMAL" property="goodsprice" />
+    <result column="goodsAttrId" jdbcType="INTEGER" property="goodsattrid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    godOrderId, orderId, goodsId, goodsNums, goodsPrice, goodsAttrId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_goods
+    where godOrderId = #{godorderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_goods
+    where godOrderId = #{godorderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rce.ssm.model.OrderGoods">
+    insert into order_goods (godOrderId, orderId, goodsId, 
+      goodsNums, goodsPrice, goodsAttrId
+      )
+    values (#{godorderid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{goodsid,jdbcType=INTEGER}, 
+      #{goodsnums,jdbcType=INTEGER}, #{goodsprice,jdbcType=DECIMAL}, #{goodsattrid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rce.ssm.model.OrderGoods">
+    insert into order_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="godorderid != null">
+        godOrderId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="goodsid != null">
+        goodsId,
+      </if>
+      <if test="goodsnums != null">
+        goodsNums,
+      </if>
+      <if test="goodsprice != null">
+        goodsPrice,
+      </if>
+      <if test="goodsattrid != null">
+        goodsAttrId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="godorderid != null">
+        #{godorderid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsid != null">
+        #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsnums != null">
+        #{goodsnums,jdbcType=INTEGER},
+      </if>
+      <if test="goodsprice != null">
+        #{goodsprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsattrid != null">
+        #{goodsattrid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rce.ssm.model.OrderGoods">
+    update order_goods
+    <set>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsid != null">
+        goodsId = #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsnums != null">
+        goodsNums = #{goodsnums,jdbcType=INTEGER},
+      </if>
+      <if test="goodsprice != null">
+        goodsPrice = #{goodsprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsattrid != null">
+        goodsAttrId = #{goodsattrid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where godOrderId = #{godorderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rce.ssm.model.OrderGoods">
+    update order_goods
+    set orderId = #{orderid,jdbcType=INTEGER},
+      goodsId = #{goodsid,jdbcType=INTEGER},
+      goodsNums = #{goodsnums,jdbcType=INTEGER},
+      goodsPrice = #{goodsprice,jdbcType=DECIMAL},
+      goodsAttrId = #{goodsattrid,jdbcType=INTEGER}
+    where godOrderId = #{godorderid,jdbcType=INTEGER}
+  </update>
+</mapper>

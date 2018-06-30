@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rce.ssm.dao.AddressDao">
+  <resultMap id="BaseResultMap" type="com.rce.ssm.model.Address">
+    <id column="addressId" jdbcType="INTEGER" property="addressid" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="userPhone" jdbcType="VARCHAR" property="userphone" />
+    <result column="userTel" jdbcType="VARCHAR" property="usertel" />
+    <result column="provinceId" jdbcType="INTEGER" property="provinceid" />
+    <result column="cityId" jdbcType="INTEGER" property="cityid" />
+    <result column="areaId" jdbcType="INTEGER" property="areaid" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="postCode" jdbcType="CHAR" property="postcode" />
+    <result column="isDefault" jdbcType="INTEGER" property="isdefault" />
+    <result column="addressFlag" jdbcType="INTEGER" property="addressflag" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    addressId, userId, userName, userPhone, userTel, provinceId, cityId, areaId, address, 
+    postCode, isDefault, addressFlag, createTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_address
+    where addressId = #{addressid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_address
+    where addressId = #{addressid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rce.ssm.model.Address">
+    insert into user_address (addressId, userId, userName, 
+      userPhone, userTel, provinceId, 
+      cityId, areaId, address, 
+      postCode, isDefault, addressFlag, 
+      createTime)
+    values (#{addressid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{userphone,jdbcType=VARCHAR}, #{usertel,jdbcType=VARCHAR}, #{provinceid,jdbcType=INTEGER}, 
+      #{cityid,jdbcType=INTEGER}, #{areaid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{postcode,jdbcType=CHAR}, #{isdefault,jdbcType=INTEGER}, #{addressflag,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rce.ssm.model.Address">
+    insert into user_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addressid != null">
+        addressId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="userphone != null">
+        userPhone,
+      </if>
+      <if test="usertel != null">
+        userTel,
+      </if>
+      <if test="provinceid != null">
+        provinceId,
+      </if>
+      <if test="cityid != null">
+        cityId,
+      </if>
+      <if test="areaid != null">
+        areaId,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="postcode != null">
+        postCode,
+      </if>
+      <if test="isdefault != null">
+        isDefault,
+      </if>
+      <if test="addressflag != null">
+        addressFlag,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addressid != null">
+        #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null">
+        #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="usertel != null">
+        #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceid != null">
+        #{provinceid,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null">
+        #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="areaid != null">
+        #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        #{postcode,jdbcType=CHAR},
+      </if>
+      <if test="isdefault != null">
+        #{isdefault,jdbcType=INTEGER},
+      </if>
+      <if test="addressflag != null">
+        #{addressflag,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rce.ssm.model.Address">
+    update user_address
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null">
+        userPhone = #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="usertel != null">
+        userTel = #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceid != null">
+        provinceId = #{provinceid,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null">
+        cityId = #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="areaid != null">
+        areaId = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        postCode = #{postcode,jdbcType=CHAR},
+      </if>
+      <if test="isdefault != null">
+        isDefault = #{isdefault,jdbcType=INTEGER},
+      </if>
+      <if test="addressflag != null">
+        addressFlag = #{addressflag,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where addressId = #{addressid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rce.ssm.model.Address">
+    update user_address
+    set userId = #{userid,jdbcType=INTEGER},
+      userName = #{username,jdbcType=VARCHAR},
+      userPhone = #{userphone,jdbcType=VARCHAR},
+      userTel = #{usertel,jdbcType=VARCHAR},
+      provinceId = #{provinceid,jdbcType=INTEGER},
+      cityId = #{cityid,jdbcType=INTEGER},
+      areaId = #{areaid,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      postCode = #{postcode,jdbcType=CHAR},
+      isDefault = #{isdefault,jdbcType=INTEGER},
+      addressFlag = #{addressflag,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where addressId = #{addressid,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    t1.addressid,t1.userId,t1.userName,t1.userPhone,t1.userTel,t1.provinceId,t1.cityId,t1.areaId,t1.address,t1.postCode,t1.isDefault,t1.addressFlag,t1.createTime,
+    t2.name as province,t3.name as city,t4.name as area
+    from user_address t1
+    left join city t2 on t1.provinceId=t2.id
+    left join city t3 on t1.cityId=t3.id
+    left join city t4 on t1.areaId=t4.id
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+
+</mapper>

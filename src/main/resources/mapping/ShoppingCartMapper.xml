@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rce.ssm.dao.ShoppingCartDao">
+  <resultMap id="BaseResultMap" type="com.rce.ssm.model.ShoppingCart">
+    <id column="shoppingCartId" jdbcType="INTEGER" property="shoppingcartid" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="isCheck" jdbcType="INTEGER" property="ischeck" />
+    <result column="goodsAttrId" jdbcType="INTEGER" property="goodsattrid" />
+    <result column="goodsId" jdbcType="INTEGER" property="goodsid" />
+    <result column="goodsCount" jdbcType="INTEGER" property="goodscount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    shoppingCartId, userId, isCheck, goodsAttrId, goodsId, goodsCount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shopping_cart
+    where shoppingCartId = #{shoppingcartid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shopping_cart
+    where shoppingCartId = #{shoppingcartid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rce.ssm.model.ShoppingCart">
+    insert into shopping_cart (shoppingCartId, userId, isCheck, 
+      goodsAttrId, goodsId, goodsCount
+      )
+    values (#{shoppingcartid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{ischeck,jdbcType=INTEGER}, 
+      #{goodsattrid,jdbcType=INTEGER}, #{goodsid,jdbcType=INTEGER}, #{goodscount,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rce.ssm.model.ShoppingCart">
+    insert into shopping_cart
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shoppingcartid != null">
+        shoppingCartId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="ischeck != null">
+        isCheck,
+      </if>
+      <if test="goodsattrid != null">
+        goodsAttrId,
+      </if>
+      <if test="goodsid != null">
+        goodsId,
+      </if>
+      <if test="goodscount != null">
+        goodsCount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shoppingcartid != null">
+        #{shoppingcartid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="ischeck != null">
+        #{ischeck,jdbcType=INTEGER},
+      </if>
+      <if test="goodsattrid != null">
+        #{goodsattrid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsid != null">
+        #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="goodscount != null">
+        #{goodscount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rce.ssm.model.ShoppingCart">
+    update shopping_cart
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="ischeck != null">
+        isCheck = #{ischeck,jdbcType=INTEGER},
+      </if>
+      <if test="goodsattrid != null">
+        goodsAttrId = #{goodsattrid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsid != null">
+        goodsId = #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="goodscount != null">
+        goodsCount = #{goodscount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where shoppingCartId = #{shoppingcartid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rce.ssm.model.ShoppingCart">
+    update shopping_cart
+    set userId = #{userid,jdbcType=INTEGER},
+      isCheck = #{ischeck,jdbcType=INTEGER},
+      goodsAttrId = #{goodsattrid,jdbcType=INTEGER},
+      goodsId = #{goodsid,jdbcType=INTEGER},
+      goodsCount = #{goodscount,jdbcType=INTEGER}
+    where shoppingCartId = #{shoppingcartid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultType="com.rce.ssm.model.ShoppingCart">
+    select
+    t1.shoppingCartId, t1.userId, t1.isCheck, t1.goodsAttrId, t1.goodsId, t1.goodsCount,
+    t2.goodsName as goodsname, t3.goodsVersion as goodsversion, t3.goodsColor as goodscolor,
+    t3.goodsPrice as goodsprice, t3.goodsStock as goodsstock, (t1.goodsCount*t3.goodsPrice) as termprice
+    from shopping_cart t1
+    left join goods t2 on t1.goodsId=t2.goodsId
+    left join goods_attribute t3 on t1.goodsAttrId=t3.goodsAttrId
+    where t1.userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <select id="getTotalPrice" parameterType="java.lang.Integer" resultType="java.math.BigDecimal">
+    select sum(t1.goodsCount*t2.goodsPrice)
+    from shopping_cart t1
+    left join goods_attribute t2
+    on t1.goodsAttrId=t2.goodsAttrId
+    where t1.isCheck = #{1,jdbcType=INTEGER}
+    and t1.userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByUserId" parameterType="java.lang.Integer">
+    delete from shopping_cart
+    where isCheck=1
+    and userId = #{userid,jdbcType=INTEGER}
+  </delete>
+</mapper>
