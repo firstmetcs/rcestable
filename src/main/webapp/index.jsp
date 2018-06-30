@@ -11,6 +11,7 @@
 <h2>Hello World!</h2>
 ${indexuser.getCookieid()}<br>
 ${indexuser.cookieid}<br>
+<br>
 <a href="/rcestore/user/index">个人信息</a><br>
 <a href="/rcestore/city/selectAdd">添加收货地址</a><br>
 <a href="/rcestore/address/showAddress">查看收货地址</a><br>
