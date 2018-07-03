@@ -2,6 +2,7 @@ package com.rce.ssm.service;
 
 import com.rce.ssm.model.City;
 import com.rce.ssm.model.User;
+import com.rce.ssm.utils.AddressFromAli;
 
 import java.util.List;
 
@@ -25,4 +26,6 @@ public interface CityService {
     List<City> selectByPid(Integer pid);
 
     List<City> selectProvince();
+
+    City selectByIp(AddressFromAli addressFromAli);
 }

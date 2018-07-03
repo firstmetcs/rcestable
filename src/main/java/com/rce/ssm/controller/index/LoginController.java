@@ -1,13 +1,12 @@
 package com.rce.ssm.controller.index;
 
-import com.rce.ssm.model.LoginRecord;
-import com.rce.ssm.model.ShoppingCart;
-import com.rce.ssm.model.User;
-import com.rce.ssm.service.LoginRecordService;
-import com.rce.ssm.service.ShoppingCartService;
-import com.rce.ssm.service.UserService;
+import com.alibaba.fastjson.JSON;
+import com.rce.ssm.model.*;
+import com.rce.ssm.service.*;
 import com.rce.ssm.tool.PublicStatic;
 import com.rce.ssm.tool.Tool;
+import com.rce.ssm.utils.AddressUtilData;
+import com.rce.ssm.utils.AddressUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +19,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +35,11 @@ public class LoginController {
     LoginRecordService loginRecordService;
     @Resource
     private ShoppingCartService shoppingCartService;
+    @Resource
+    private CityService cityService;
+    @Resource
+    private LoginAreaService loginAreaService;
+
 
     private static Logger log = Logger.getLogger(LoginController.class);
 
@@ -128,5 +133,45 @@ public class LoginController {
         map.put("flag", flag);
         map.put("msg", msg);
         return map;
+    }
+
+    @RequestMapping("success")
+    public String success(HttpServletRequest request, HttpServletResponse response, User user, String pathlocation) {
+        log.info("登录");
+
+        User usersession = (User) request.getSession().getAttribute(PublicStatic.UNSAFEUSER);
+
+        AddressUtilData add = null;
+        try {
+            add = JSON.parseObject(AddressUtils.getAddresses("ip=" + Tool.getIp(request), "utf-8"), AddressUtilData.class);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        City city = cityService.selectByIp(add.getData());
+
+        if (city != null) {
+
+            LoginArea loginArea = new LoginArea();
+            loginArea.setUserid(usersession.getUserid());
+            loginArea.setCityid(city.getId());
+
+            loginAreaService.insertSelective(loginArea);
+        } else {
+            System.out.println("cant find");
+        }
+
+        request.getSession().setAttribute(PublicStatic.USER, usersession);
+
+        List<ShoppingCart> shoppingCarts = shoppingCartService.selectByUserId(usersession.getUserid());
+        request.getSession().setAttribute(PublicStatic.SHOPPINGCARTS, shoppingCarts);
+        BigDecimal total = shoppingCartService.getTotalPrice(usersession.getUserid());
+        request.getSession().setAttribute("total", total == null ? "0" : String.valueOf(total));
+
+        if (pathlocation == null || "".equals(pathlocation)) {
+            pathlocation = request.getContextPath() + "/user/index";
+        }
+
+        return "redirect: " + pathlocation;
     }
 }

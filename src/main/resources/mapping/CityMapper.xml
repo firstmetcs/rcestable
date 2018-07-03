@@ -82,4 +82,15 @@
     from city
     where pid is null
   </select>
+
+  <select id="selectByIp" parameterType="com.rce.ssm.utils.AddressFromAli" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from city
+    where name like "%"#{city}"%"
+    and pid=(
+    select id from city
+    where name like "%"#{region}"%"
+    )
+  </select>
 </mapper>

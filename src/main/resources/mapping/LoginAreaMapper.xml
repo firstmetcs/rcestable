@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rce.ssm.dao.LoginAreaDao">
+  <resultMap id="BaseResultMap" type="com.rce.ssm.model.LoginArea">
+    <id column="loginAreaId" jdbcType="INTEGER" property="loginareaid" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="cityId" jdbcType="INTEGER" property="cityid" />
+    <result column="areaId" jdbcType="INTEGER" property="areaid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    loginAreaId, userId, cityId, areaId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from login_area
+    where loginAreaId = #{loginareaid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from login_area
+    where loginAreaId = #{loginareaid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rce.ssm.model.LoginArea">
+    insert into login_area (loginAreaId, userId, cityId, 
+      areaId)
+    values (#{loginareaid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{cityid,jdbcType=INTEGER}, 
+      #{areaid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rce.ssm.model.LoginArea">
+    insert into login_area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginareaid != null">
+        loginAreaId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="cityid != null">
+        cityId,
+      </if>
+      <if test="areaid != null">
+        areaId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginareaid != null">
+        #{loginareaid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null">
+        #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="areaid != null">
+        #{areaid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rce.ssm.model.LoginArea">
+    update login_area
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null">
+        cityId = #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="areaid != null">
+        areaId = #{areaid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where loginAreaId = #{loginareaid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rce.ssm.model.LoginArea">
+    update login_area
+    set userId = #{userid,jdbcType=INTEGER},
+      cityId = #{cityid,jdbcType=INTEGER},
+      areaId = #{areaid,jdbcType=INTEGER}
+    where loginAreaId = #{loginareaid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByAddress" parameterType="com.rce.ssm.utils.AddressFromAli" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from login_area
+    where userId = #{userId,jdbcType=INTEGER}
+    and cityId=(
+    select id from city
+    where name like "%"#{city}"%"
+    and pid=(
+    select id from city
+    where name like "%"#{region}"%"
+    )
+    )
+  </select>
+</mapper>

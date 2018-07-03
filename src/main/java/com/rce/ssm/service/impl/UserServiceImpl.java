@@ -1,15 +1,21 @@
 package com.rce.ssm.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.rce.ssm.dao.LoginAreaDao;
 import com.rce.ssm.dao.UserDao;
+import com.rce.ssm.model.LoginArea;
 import com.rce.ssm.model.User;
 import com.rce.ssm.service.UserService;
 import com.rce.ssm.tool.PublicStatic;
 import com.rce.ssm.tool.Tool;
+import com.rce.ssm.utils.AddressUtilData;
+import com.rce.ssm.utils.AddressUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -22,6 +28,8 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private UserDao userDao;
+    @Resource
+    private LoginAreaDao loginAreaDao;
 
     public List<User> selectUserByEmail(String email) {
         return userDao.selectUserByEmail(email);
@@ -63,12 +71,30 @@ public class UserServiceImpl implements UserService {
             if (list.get(0).getLoginpwd().equals(pwd)) {
                 flag = list.get(0).getUserstatus().toString();
                 if ("1".equals(flag)) {
+                    AddressUtilData add = null;
+                    try {
+                        add = JSON.parseObject(AddressUtils.getAddresses("ip=" + Tool.getIp(request), "utf-8"), AddressUtilData.class);
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                     User usersession = list.get(0);
-                    usersession.setLasttime(Tool.getDate());
-                    usersession.setLastip(Tool.getIp(request));
-                    usersession.setCookieid(Tool.getUUID());
-                    userDao.updateByPrimaryKeySelective(usersession);
-                    request.getSession().setAttribute(PublicStatic.USER, usersession);
+
+                    add.getData().setUserId(usersession.getUserid());
+
+                    System.out.println(add.getData());
+
+                    List<LoginArea> loginAreas = loginAreaDao.selectByAddress(add.getData());
+
+                    if (loginAreas.size() > 0) {
+                        usersession.setLasttime(Tool.getDate());
+                        usersession.setLastip(Tool.getIp(request));
+                        usersession.setCookieid(Tool.getUUID());
+                        userDao.updateByPrimaryKeySelective(usersession);
+                        request.getSession().setAttribute(PublicStatic.USER, usersession);
+                    } else {
+                        request.getSession().setAttribute(PublicStatic.UNSAFEUSER, usersession);
+                        flag = "66";
+                    }
                 }
             } else {
                 flag = "88";

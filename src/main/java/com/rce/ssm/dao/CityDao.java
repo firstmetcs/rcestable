@@ -1,6 +1,7 @@
 package com.rce.ssm.dao;
 
 import com.rce.ssm.model.City;
+import com.rce.ssm.utils.AddressFromAli;
 
 import java.util.List;
 
@@ -20,4 +21,7 @@ public interface CityDao {
     List<City> selectByPid(Integer pid);
 
     List<City> selectProvince();
+
+    City selectByIp(AddressFromAli addressFromAli);
+
 }

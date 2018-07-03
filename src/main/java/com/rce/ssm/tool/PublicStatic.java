@@ -3,6 +3,8 @@ package com.rce.ssm.tool;
 public class PublicStatic {
     //前台用户
     public static final String USER="indexuser";
+    //登录检测不通过用户
+    public static final String UNSAFEUSER = "unsafeuser";
     //判断是否第一次访问登陆
     public static final String LOGIN_FLAG="LOGIN_FLAG";
     //后台用户
@@ -19,5 +21,7 @@ public class PublicStatic {
     public static final String HTML="html";
     //购物车
     public static final String SHOPPINGCARTS="shoppingCarts";
+    //验证码
+    public static final String VERIFYCODE = "verifyCode";
 
 }

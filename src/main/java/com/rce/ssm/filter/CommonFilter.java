@@ -30,9 +30,9 @@ public class CommonFilter implements Filter {
         String targetURL = currentURL.substring(ctxPath.length());
         HttpSession session = request.getSession(false);
 
-        System.out.println("targetURL:" + targetURL + "\nctxPath:" + ctxPath + "\ncurrentURL:" + currentURL+"\nQuary"+path);
+        System.out.println("targetURL:" + targetURL + "\nctxPath:" + ctxPath + "\ncurrentURL:" + currentURL + "\nQuary" + path);
 
-        if (targetURL.indexOf("login") > 0 || targetURL.equals("/") || targetURL.indexOf("register") > 0 || targetURL.indexOf("forget") > 0) {
+        if (targetURL.indexOf("login") > 0 || targetURL.equals("/") || targetURL.indexOf("register") > 0 || targetURL.indexOf("forget") > 0 || targetURL.indexOf("verify") > 0) {
             filterChain.doFilter(request, response);
         } else {
             User user = (User) request.getSession().getAttribute(PublicStatic.USER);

@@ -4,6 +4,7 @@ import com.rce.ssm.dao.CityDao;
 import com.rce.ssm.model.City;
 import com.rce.ssm.service.CityService;
 import com.rce.ssm.service.UserService;
+import com.rce.ssm.utils.AddressFromAli;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,5 +52,9 @@ public class CityServiceImpl implements CityService {
 
     public List<City> selectProvince(){
         return cityDao.selectProvince();
+    }
+
+    public City selectByIp(AddressFromAli addressFromAli) {
+        return cityDao.selectByIp(addressFromAli);
     }
 }
