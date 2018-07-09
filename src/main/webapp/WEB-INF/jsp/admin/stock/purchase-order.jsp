@@ -16,6 +16,7 @@
     <script type="text/javascript" src="/rcestore/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/rcestore/js/xadmin.js"></script>
 </head>
+
 <script>
      function addPurchaseList() {
          var tr=$("#purchaseList").parent();
@@ -27,10 +28,11 @@
              }
      })*/
     function producer(obj){
-        if(obj.val()=="小米"){
-            $("#goodsName").empty();
-            $("#goodsName").append("<option value='${goodsAllList.get(1).get(1).get("goodsName")}'>${goodsAllList.get(1).get(1).get('goodsName')}</option>");
-        }
+       /* if(obj.val()=="小米"){*/
+
+            $("#totalAccount").text("lalalal");
+
+       // }
     }
 </script>
 
@@ -63,7 +65,7 @@
                             供应商：
                         </label>
                         <div class="layui-input-inline">
-                            <select id="producer" onclick="producer(this)">
+                            <select id="producer" onchange="producer(this)">
                                 <option value="">供应商</option>
                                 <option value="小米">小米</option>
                                 <option value="vivo">vivo</option>
@@ -130,7 +132,7 @@
                             合计金额：
                         </label>
                         <div class="layui-input-inline">
-                            <input type="text" placeholder="合计金额" autocomplete="off" class="layui-input">
+                            <input type="text" id="totalAccount" placeholder="合计金额" autocomplete="off" class="layui-input">
                         </div>
                     </div>
 	<div class="layui-input-inline" style="float:right">

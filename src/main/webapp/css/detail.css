@@ -1,0 +1,311 @@
+body{
+	overflow-x: hidden;
+}
+
+.imgLayout{
+	position: relative;
+	width: 100%;
+}
+#span1{
+	position: absolute;
+	font-size: 30px;
+	width: 26%;
+	top: 35%;
+}
+
+#span2{
+	position: absolute;
+	font-size: 100px;
+	width: 50%;
+	top: 40%;
+}
+
+#span3{
+	position: absolute;
+	font-size: 30px;
+	width: 26%;
+	bottom: 35%;
+}
+
+#gaishuimg{
+	width: 100%;
+	height: 100%;
+}
+
+.span4{
+	font-size: 20px;
+}
+
+#tb table{
+	height: 200px; 
+	width: 100%; 
+	margin:0 auto; 
+	text-align: center;
+}
+
+#tb table tr td{
+	border:solid #E2E2E2;
+	border-width:0px 1px 1px 0px;
+}
+
+#span5{
+	position: absolute;
+	font-size: 30px;
+	color: #E6E5E5;
+	top: 7%;
+	left: 14%;
+}
+#span6{
+	position: absolute;
+	font-size: 100px;
+	color: #E6E5E5;
+	width: 50%;
+	top: 10%;
+	left: 4%;
+}
+#span7{
+	position: absolute;
+	font-size: 15px;
+	color: #E6E5E5;
+	top: 25%;
+	left: 14%;
+}
+#span8{
+	position: absolute;
+	font-size: 15px;
+	color: #E6E5E5;
+	top: 28%;
+	left: 14%;
+}
+
+.playGame{
+	font-size: 35px;
+	color: #838282;
+}
+
+#tb2 tr td{
+	width: 300px;
+	letter-spacing: 3px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	color: #4C4C4C;
+}
+
+#span9{
+	position: absolute;
+	font-size: 29px;
+	color: #E6E5E5;
+	top: 25%;
+	right: 37%;
+}
+
+#span10{
+	position: absolute;
+	font-size: 80px;
+	letter-spacing: 5px;
+	color: #E6E5E5;
+	width: 80%;
+	top: 28%;
+	right: -11%;
+}
+
+#span11{
+	position: absolute;
+	font-size: 18px;
+	color: #E6E5E5;
+	top: 40%;
+	left: 51.5%;
+}
+
+#span12{
+	position: absolute;
+	font-size: 10px;
+	color: #E6E5E5;
+	top: 50%;
+	left: 51.5%;
+}
+
+#span13{
+	position: absolute;
+	font-size: 30px;
+	color: #4C4C4C;
+	top: 30%;
+	left: 12%;
+}
+
+#span14{
+	position: absolute;
+	font-size: 30px;
+	color: #4C4C4C;
+	top: 35%;
+	left: 12%;
+}
+
+#span15{
+	position: absolute;
+	font-size: 14px;
+	color: #4C4C4C;
+	top: 45%;
+	left: 12%;
+}
+
+#span16{
+	position: absolute;
+	font-size: 14px;
+	color: #4C4C4C;
+	top: 47%;
+	left: 12%;
+}
+
+#span17{
+	position: absolute;
+	font-size: 30px;
+	color: #4C4C4C;
+	top: 25%;
+	right: 12%;
+}
+
+#span18{
+	position: absolute;
+	font-size: 85px;
+	letter-spacing: 8px;
+	color: #4C4C4C;
+	top: 30%;
+	right: 12%;
+}
+
+#span19{
+	position: absolute;
+	font-size: 20px;
+	color: #4C4C4C;
+	top: 45%;
+	right: 12%;
+}
+
+#span20{
+	position: absolute;
+	font-size: 20px;
+	color: #4C4C4C;
+	top: 50%;
+	right: 12%;
+}
+
+#span21{
+	position: absolute;
+	font-size: 25px;
+	color: #4C4C4C;
+	top: 35%;
+	left: 12%;
+}
+
+#span22{
+	position: absolute;
+	font-size: 60px;
+	letter-spacing: 8px;
+	color: #4C4C4C;
+	top: 40%;
+	left: 12%;
+}
+
+#span23{
+	position: absolute;
+	font-size: 18px;
+	color: #4C4C4C;
+	top: 55%;
+	left: 12%;
+}
+
+#span24{
+	position: absolute;
+	font-size: 30px;
+	color: #E6E5E5;
+	top: 40%;
+	left: 12%;
+}
+
+#span25{
+	position: absolute;
+	font-size: 80px;
+	letter-spacing: 8px;
+	color: #E6E5E5;
+	top: 45%;
+	left: 12%;
+}
+
+#span26{
+	position: absolute;
+	font-size: 23px;
+	color: #E6E5E5;
+	top: 60%;
+	left: 12%;
+}
+
+#span27{
+	position: absolute;
+	font-size: 50px;
+	color: #E6E5E5;
+	top: 45%;
+	left: 14%;
+}
+
+.paramName{
+	width: 20%;
+	font-size: 25px;
+	text-align: left;
+}
+
+.content1{
+	margin-top: 35px;
+	text-align: left;
+	font-size: 40px;
+}
+
+.content2{
+	margin-top: 40px;
+	text-align: left;
+	font-size: 17px;
+}
+
+.content3{
+	margin-top: 12px;
+	text-align: left;
+	font-size: 17px;
+}
+
+.content4{
+	margin-top: 7px;
+	text-align: left;
+	font-size: 20px;
+}
+
+.camera{
+	margin-top: 50px;
+}
+
+.title{
+	font-size: 20px;
+}
+
+.bottom-content{
+	margin-bottom: 40px;
+}
+
+.sensor1{
+	margin-top: 40px;
+}
+
+.content5 td div ul li{
+	font-size: 17px;
+	width: 22%;
+	display: inline-block;
+}
+
+#table-param tr td{
+	border-bottom: 1px solid #DCDCDC;
+}
+
+table caption{
+	font-size: 30px;
+	text-align:center;
+}
