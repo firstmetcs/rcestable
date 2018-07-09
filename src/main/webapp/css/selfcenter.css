@@ -1,0 +1,74 @@
+.self-center{
+	width: 100%;
+	height: 100%;
+	background-color: #f2f2f2;
+	padding: 40px 0;
+	padding-top: 0;
+}
+.content{
+	background-color: #ffffff;
+	padding: 60px 50px;
+}
+.left-nav li{
+	margin: 20px 0;
+	text-decoration: none;
+}
+.booklist a,span{
+	line-height: 20px;
+	font-size: 16px;
+}
+h1{
+	display: inline-block;
+}
+.nonelist{
+	display: none;
+	line-height: 80px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 18px;
+	color: #b2b2b2;
+}
+.bookid{
+	margin-left: 20px;
+}
+.listdetail img{
+	width: 100%;
+	height: 100%;
+}
+.small-pic{
+	border-style: outset;
+	border-width: thin;
+}
+.good-des{
+	margin-left: 10px;
+}
+.description{
+	font-size: 14px;
+}
+.good-num{
+	margin-left: 20px;
+	height: 60px;
+	line-height: 60px;
+	vertical-align: middle;
+}
+.message-img{
+	width: 100px;
+	height: 100px;
+}
+.lay-coupon-box{
+	margin: 0 4%;
+}
+.lay-coupon{
+	color: #008b8b;
+	width: 100%;
+	height: 150px;
+	background-color: #66cccc;
+	opacity: 0.8;
+	text-align: center;
+}
+.coupon-value{
+	margin-top: 15px;
+}
+.coupon-disabled{
+	opacity: 0.4;
+}

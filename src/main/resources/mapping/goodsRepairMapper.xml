@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rce.ssm.dao.GoodsRepairMapper">
+    <resultMap type="com.rce.ssm.model.goods.GoodsRepair" id="goodsRepairMap">
+        <result column="goodsRepairId" property="goodsRepairId"/>
+        <result column="userId" property="userId"/>
+        <result column="orderId" property="orderId"/>
+        <result column="goodsAttrId" property="goodsAttrId"/>
+        <result column="postscript" property="postscript"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+
+    <insert id="addGoodsRepair" parameterType="com.rce.ssm.model.goods.GoodsRepair">
+
+       insert  into goods_repair (userId,goodsAttrId,orderId,postscript,status) values (#{userId},#{goodsAttrId},#{orderId},#{postscript},#{status})
+
+   </insert>
+
+    <select id="getGoodsRepair" resultMap="goodsRepairMap">
+         select *  from goods_repair
+      </select>
+
+    <update id="updateStatus" >
+        update goods_repair  set status=#{1} where goodsRepairId=#{0}
+    </update>
+
+</mapper>

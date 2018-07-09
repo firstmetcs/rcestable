@@ -1,0 +1,87 @@
+.top-nav{
+	height: 40px;
+	background-color: #393D49;
+}
+.top-nav .top-nav-nav-left{
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: 0;
+	background: none; 
+}
+.top-nav .top-nav-nav-right{
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0;
+	background: none; 
+}
+.top-nav .layui-nav{
+	padding: 0;
+
+}
+.top-nav .layui-nav .layui-nav-item{
+	font-size: 12px;
+	line-height: 40px;
+	margin: 0 10px;
+}
+.top-nav .top-nav-nav-right .layui-nav-item{
+	margin: 0 1px;	
+}
+.logo-top-nav{
+	padding: 20px;
+}
+.logo-nav{
+	position: absolute;
+	left: 280px;
+	top: 0;
+}
+.logo-nav .layui-logo-nav .layui-nav-item{
+	display: inline-block;
+	line-height: 60px;
+	vertical-align: middle;
+	font-size: 16px;
+	padding: 0 10px;
+}
+.logo-nav-search{
+	position: absolute;
+	right: 0;
+	top: 0;
+	line-height: 60px;
+	vertical-align: middle;
+}
+.logo{
+	line-height: 60px;
+	vertical-align: middle;
+}
+.layui-nav-child{
+	position: absolute;
+	top: 36px;
+	z-index: 10;
+}
+.usercart{
+	left: -200px;
+	width: 300px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	vertical-align: middle;
+}
+.logo-nav-recommend{
+	height: 240px;
+	width: 100%;
+	background-color: #FFFFFF;
+	position: absolute;
+	top: 120px;
+	box-shadow: 5px 5px 5px #888888;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-top-color: #e2e2e2;
+}
+.logo-nav-recommend img{
+	width: 80%;
+	height: 70%;
+}
+.logo-nav-recommend .layui-col-md2{
+	text-align: center;
+}

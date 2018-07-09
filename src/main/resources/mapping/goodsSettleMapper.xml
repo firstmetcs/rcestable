@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rce.ssm.dao.GoodsSettleMapper">
+    <resultMap type="com.rce.ssm.model.goods.GoodsSettle" id="goodsSettleMap">
+        <result column="settleId" property="settleId"/>
+        <result column="goodsId" property="goodsId"/>
+        <result column="settleNum" property="settleNum"/>
+        <result column="settleMoney" property="settleMoney"/>
+        <result column="settleTime" property="settleTime"/>
+        <result column="goodsType" property="goodsType"/>
+        <result column="goodsName" property="goodsName"/>
+    </resultMap>
+
+    <select id="settleByGoodsType" resultType="Map">
+
+       select  goodsType,sum(settleNum) from goods_settle  where date(settleTime) between #{0} and #{1}   group by goodsType
+
+</select>
+
+    <!--<select id="getGoodsStock" resultMap="goodsStockMap">
+         select *  from goods_stock
+    </select>-->
+
+</mapper>

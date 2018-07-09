@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rce.ssm.dao.GoodsMapper">
+    <resultMap type="com.rce.ssm.model.goods.Goods" id="goodsMap">
+        <result column="goodsId" property="goodsId"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsImg" property="goodsImg"/>
+        <result column="goodsSaleCount" property="goodsSaleCount"/>
+        <result column="goodsIsBook" property="goodsIsBook"/>
+        <result column="goodsBookQuantity" property="goodsBookQuantity"/>
+        <result column="goodsIsSale" property="goodsIsSale"/>
+        <result column="goodsIsHot" property="goodsIsHot"/>
+        <result column="goodsIsNew" property="goodsIsNew"/>
+        <result column="goodsIsRecommend" property="goodsIsRecommend"/>
+        <result column="goodsStatus" property="goodsStatus"/>
+        <result column="goodsSaleTime" property="goodsSaleTime"/>
+        <result column="goodsEvaluationId" property="goodsEvaluationId"/>
+        <result column="goodsSaleDesc" property="goodsSaleDesc"/>
+        <result column="goodsAttrDesc" property="goodsAttrDesc"/>
+        <result column="goodsTotalDesc" property="goodsTotalDesc"/>
+        <result column="goodsScreenDesc" property="goodsScreenDesc"/>
+        <result column="goodsBatteryDesc" property="goodsBatteryDesc"/>
+        <result column="goodsPreCameraDesc" property="goodsPreCameraDesc"/>
+        <result column="goodsCameraDesc" property="goodsCameraDesc"/>
+        <result column="goodsCPUDesc" property="goodsCPUDesc"/>
+        <result column="goodsSystemDesc" property="goodsSystemDesc"/>
+        <result column="goodsType" property="goodsType"/>
+    </resultMap>
+
+    <!-- <insert id="insert" parameterType="com.rce.ssm.model.goods.Goods">
+         insert into goods (goodsName,goodsImg,goodsStock,goodsSaleCount,goodsIsBook,goodsBookQuantity,goodsWarnStock,goodsIsSale,goodsIsHot,
+         goodsIsNew,goodsIsRecommend,goodsStatus,goodsSaleTime,goodsEvaluationId,goodsSaleDesc,goodsAttrDesc)
+            values (#{goodsName},#{goodsImg},#{goodsStock},#{goodsSaleCount},#{goodsIsBook},#{goodsBookQuantity},
+            #{goodsWarnStock},#{goodsIsSale},#{goodsIsHot},#{goodsIsNew},#{goodsIsRecommend},#{goodsStatus},#{goodsSaleTime},
+            #{goodsEvaluationId},#{goodsSaleDesc},#{goodsAttrDesc})
+     </insert>-->
+
+    <insert id="insert" parameterType="com.rce.ssm.model.goods.Goods">
+        insert into goods (goodsId,goodsName,goodsImg,goodsIsNew,goodsIsSale,goodsStatus,goodsSaleDesc,goodsAttrDesc,goodsSaleTime,goodsType,
+        goodsTotalDesc,goodsScreenDesc,goodsBatteryDesc,goodsPreCameraDesc,goodsCameraDesc,goodsCPUDesc,goodsSystemDesc)
+           values (#{goodsId},#{goodsName},#{goodsImg},#{goodsIsNew},#{goodsIsSale},#{goodsStatus},#{goodsSaleDesc},#{goodsAttrDesc},#{goodsSaleTime},
+           #{goodsType},#{goodsTotalDesc},#{goodsScreenDesc},#{goodsBatteryDesc},#{goodsPreCameraDesc},#{goodsCameraDesc},#{goodsCPUDesc},#{goodsSystemDesc})
+    </insert>
+
+    <select id="findById" resultMap="goodsMap" parameterType="int">
+        select goodsId,goodsName,goodsImg,goodsSaleCount,goodsIsBook,goodsBookQuantity,goodsIsSale,goodsIsHot,
+        goodsIsNew,goodsIsRecommend,goodsStatus,goodsSaleTime,goodsEvaluationId,goodsSaleDesc,goodsAttrDesc,goodsScreenDesc,
+        goodsTotalDesc,goodsBatteryDesc,goodsPreCameraDesc,goodsCameraDesc,goodsCPUDesc,goodsSystemDesc,goodsType from goods
+           where goodsId=#{goodsId}
+    </select>
+
+    <select id="findByName" resultMap="goodsMap" parameterType="String">
+        select goodsId,goodsImg,goodsSaleCount,goodsIsBook,goodsBookQuantity,goodsIsSale,goodsIsHot,
+        goodsIsNew,goodsIsRecommend,goodsStatus,goodsSaleTime,goodsEvaluationId,goodsSaleDesc,goodsAttrDesc from goods
+           where goodName=#{goodName}
+    </select>
+
+    <select id="findAll" resultMap="goodsMap">
+        select goodsId,goodsName,goodsImg,goodsSaleCount,goodsIsBook,goodsBookQuantity,goodsIsSale,goodsIsHot,
+        goodsIsNew,goodsIsRecommend,goodsStatus,goodsSaleTime,goodsEvaluationId,goodsSaleDesc,goodsAttrDesc,goodsType from goods
+    </select>
+
+    <select id="findDescById" resultMap="goodsMap" parameterType="int">
+        select goodsImg,goodsName,goodsAttrDesc,goodsSaleDesc,goodsTotalDesc,goodsScreenDesc,goodsBatteryDesc,goodsPreCameraDesc,goodsCameraDesc,goodsCPUDesc,
+         goodsSystemDesc from goods  where goodsId=#{goodsId}
+    </select>
+
+    <select id="findMaxGoodId" resultType="int">
+        select max(goodsId) from goods
+    </select>
+
+    <update id="update" parameterType="com.rce.ssm.model.goods.Goods">
+        update goods
+        <trim prefix="set" suffixOverrides=",">
+            <if test="goodsName!=null">goodsName=#{goodsName},</if>
+            <if test="goodsType!=null">goodsType=#{goodsType},</if>
+            <if test="goodsSystemDesc!=null">goodsSystemDesc=#{goodsSystemDesc},</if>
+            <if test="goodsCPUDesc!=null">goodsCPUDesc=#{goodsCPUDesc},</if>
+            <if test="goodsCameraDesc!=null">goodsCameraDesc=#{goodsCameraDesc},</if>
+            <if test="goodsPreCameraDesc!=null">goodsPreCameraDesc=#{goodsPreCameraDesc},</if>
+            <if test="goodsBatteryDesc!=null">goodsBatteryDesc=#{goodsBatteryDesc},</if>
+            <if test="goodsScreenDesc!=null">goodsScreenDesc=#{goodsScreenDesc},</if>
+            <if test="goodsTotalDesc!=null">goodsTotalDesc=#{goodsTotalDesc},</if>
+            <if test="goodsSaleDesc!=null">goodsSaleDesc=#{goodsSaleDesc},</if>
+            <if test="goodsAttrDesc!=null">goodsAttrDesc=#{goodsAttrDesc},</if>
+        </trim>
+        where goodsId=#{goodsId}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete  from goods where goodsId=#{goodsId}
+    </delete>
+
+    <select id="findByType" resultType="Map">
+         select goodsType from goods
+    </select>
+
+    <select id="findType" resultType="String">
+         select distinct goodsType from goods
+    </select>
+
+    <select id="findGoodsByType" resultType="Map" parameterType="String">
+         select goodsId,goodsName,goodsType,goodsSaleTime from goods where goodsType=#{goodsType} order by goodsSaleTime DESC
+    </select>
+
+    <select id="findGoodsByTime" resultType="Map">
+         select goodsId,goodsName,goodsSaleTime from goods  order by goodsSaleTime DESC
+    </select>
+
+    <select id="getGoodsId" resultType="int">
+        select goodsId from goods
+    </select>
+
+</mapper>

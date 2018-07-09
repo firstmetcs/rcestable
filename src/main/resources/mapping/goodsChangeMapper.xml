@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rce.ssm.dao.GoodsChangeMapper">
+    <resultMap type="com.rce.ssm.model.goods.GoodsChange" id="goodsChangeMap">
+        <result column="goodsChangeId" property="goodsChangeId"/>
+        <result column="userId" property="userId"/>
+        <result column="orderId" property="orderId"/>
+        <result column="goodsAttrId" property="goodsAttrId"/>
+        <result column="postscript" property="postscript"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+
+    <insert id="addGoodsChange" parameterType="com.rce.ssm.model.goods.GoodsChange">
+
+       insert  into goods_change (userId,goodsAttrId,orderId,postscript,status) values (#{userId},#{goodsAttrId},#{orderId},#{postscript},#{status})
+
+   </insert>
+
+    <select id="getGoodsChange" resultMap="goodsChangeMap">
+         select *  from goods_change
+      </select>
+
+        <update id="updateStatus" >
+            update goods_change  set status=#{1} where goodsChangeId=#{0}
+        </update>
+
+
+</mapper>

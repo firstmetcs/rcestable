@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rce.ssm.dao.GoodsStockMapper">
+    <resultMap type="com.rce.ssm.model.goods.GoodsStock" id="goodsStockMap">
+        <result column="goodsStockId" property="goodsStockId"/>
+        <result column="goodsType" property="goodsType"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsRom" property="goodsRom"/>
+        <result column="goodsRam" property="goodsRam"/>
+        <result column="goodsColor" property="goodsColor"/>
+        <result column="goodsSize" property="goodsSize"/>
+        <result column="stockNum" property="stockNum"/>
+        <result column="stockTime" property="stockTime"/>
+    </resultMap>
+
+    <insert id="addGoodsStock" parameterType="com.rce.ssm.model.goods.GoodsStock">
+
+       insert  into goods_stock (goodsType,goodsName,goodsRom,goodsRam,goodsColor,goodsSize,stockNum,stockTime) values (#{goodsType},#{goodsName},#{goodsRom},#{goodsRam},#{goodsColor},#{goodsSize},#{stockNum},#{stockTime})
+
+    </insert>
+
+    <select id="getGoodsStock" resultMap="goodsStockMap">
+         select *  from goods_stock
+    </select>
+
+</mapper>

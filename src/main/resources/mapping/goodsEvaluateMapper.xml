@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rce.ssm.dao.GoodsEvaluateMapper">
+    <resultMap type="com.rce.ssm.model.goods.GoodsEvaluate" id="goodsEvaluateMap">
+        <result column="goodsEvaluateId" property="goodsEvaluateId"/>
+        <result column="goodId" property="goodId"/>
+        <result column="userId" property="userId"/>
+        <result column="goodsScore" property="goodsScore"/>
+
+    </resultMap>
+
+
+   <insert id="addGoodsEvaluate" parameterType="com.rce.ssm.model.goods.GoodsEvaluate">
+       insert  into goods_evaluate (goodId,userId,goodsScore) values (#{goodId},#{userId},#{goodsScore})
+   </insert>
+
+  <select id="getGoodsEvaluate" resultMap="goodsEvaluateMap">
+      select  goodId,userId,goodsScore from goods_evaluate
+  </select>
+
+
+</mapper>

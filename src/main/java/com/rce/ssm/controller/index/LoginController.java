@@ -87,7 +87,7 @@ public class LoginController {
 //        } else {
 //            return "jsp/index/login";
 //        }
-        return "login";
+        return "index/login";
     }
 
     //登录

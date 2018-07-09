@@ -1,0 +1,44 @@
+.layui-row .foot,.layui-col-md3 .foot{
+	text-align: center;
+	font-size: 18px;
+}
+.foot-icon{
+	font-size: 32px;
+}
+.layui-seperator{
+	float: right;
+	line-height: 40px;
+	vertical-align: middle;
+	color: #d2d2d2;
+}
+.foot-hr{
+	margin: 20px 0;
+}
+.foot-table{
+	border: 0;
+	text-align: center;
+}
+.foot-link h2{
+	margin-bottom: 10px;
+}
+.foot-link li{
+	color: #808080;
+	margin-bottom: 8px;
+}
+.foot-contact{
+	text-align: center;
+}
+.foot-tel{
+	color: #008b8b;
+}
+.foot-contact h2,.foot-contact p,.foot-contact i,.foot-contact span{
+	color: #008b8b;
+}
+.copyright{
+	margin-top: 10px;
+	text-align: center;
+	color: #808080;
+}
+.layui-foot{
+	margin-top: 40px;
+}

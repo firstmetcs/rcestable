@@ -27,7 +27,7 @@ public class RegisterController {
     @RequestMapping("/index")
     public String index(HttpServletRequest request, Model model){
         log.info("注册页面");
-        return "register";
+        return "index/register";
     }
 
     @ResponseBody

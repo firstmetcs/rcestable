@@ -1,0 +1,140 @@
+body{
+	overflow-x: hidden;
+	width: 100%;
+	padding: 0;
+	margin:0;
+}
+
+#top{
+	text-align: center;
+	width: 1200px;
+	height: 100px;
+	left: 10%;
+	margin:0 auto;
+	padding: 20px;
+}
+
+#top p{
+	font-size: 18px;
+}
+
+#mid{
+	width: 1200px;
+	height: 1000px;
+	left: 10%;
+	margin:0 auto;
+	padding: 20px;
+	border:1px solid #D1CFCF;
+}
+
+#test-image-preview {
+　  border: 1px solid #ccc;
+	width: 100%;
+	height: 200px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.wrapper {  
+	display:inline-block; 
+	background:url(./img/头像.jpg) no-repeat;
+	height:50px; 
+	width:100px; 
+	overflow:hidden; 
+	cursor:pointer 
+}
+
+.wrapper input{ 
+	background:url(./img/头像.jpg) no-repeat;
+	opacity:0; 
+	height:50px; 
+	width:100px;
+}
+
+p{
+	font-size: 16px;
+}
+
+#profilePhoto{
+	margin-top: 10px;
+	margin-left: 11px;
+}
+
+#username-label{
+	font-size: 16px;
+}
+
+#realname-label{
+	font-size: 16px;
+}
+
+#username{
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+#realname{
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+#sex{
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+#birthday{
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+#sex-radio{
+	font-size: 16px;
+}
+
+#email-label{
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+#email{
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+#submit{
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+.layui-tab-item h4{
+	color: #008b8b;
+	font-size: 18px;
+	/*margin-left: 10px;*/
+	margin-top: 15px;
+}
+
+#delivery-info{
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+#base-info{
+	width: 200px;	
+	font-size: 16px;
+	line-height: 40px;
+}
+
+#security-service{
+	font-size: 16px;
+	line-height: 70px;
+}
+
+table tr td a{
+	color: #b0b0b0;
+}
+.btn-xs{
+	background-color: #008B8B;
+	 border-color: #008B8B;
+}

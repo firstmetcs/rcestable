@@ -1,0 +1,94 @@
+body,a{
+	color: #008b8b;
+}
+.login-header{
+	height: 100px;
+	width: 100%;
+}
+.layui-row{
+	line-height: 100px;
+	vertical-align: middle;
+}
+.login-title{
+	color: #000000;
+	margin: 0 30px;
+	font-size: 24px;
+}
+
+.login-body .bg-img{
+	width: 100%;
+	height: 600px;
+}
+.login-container{
+	background: #FFFFFF;
+	width: 400px;
+	height: 400px;
+	position: absolute;
+	top: 180px;
+	right: 200px;
+}
+.login-body-title{
+	font-size: 28px;
+	text-align: center;
+	margin: 20px 0;
+}
+.login-body-content{
+	margin: 0 40px;
+}
+.layui-btn{
+	width: 100%;
+}
+.login-btn{
+	opacity: 0.5;
+}
+.login-body-content .layui-input{
+	height: 50px;
+}
+.error-hint{
+	color: red;
+	visibility: hidden;
+}
+.layui-right{
+	margin-left: 125px;
+}
+.register-box{
+	width: 100%;
+	height: 800px;
+	background: #f2f2f2; 
+}
+.register-container{
+	position: absolute;
+	top: 100px;
+	width: 60%;
+	height: 500px;
+	margin-left: 20%;
+	background: #FFFFFF;
+	text-align: center;
+}
+.register-container h1{
+	margin: 20px 0;
+}
+.register-container .layui-input{
+	width: 200px;
+}
+.register-container .register-btn{
+	width: 250px;
+	opacity: 0.5;
+}
+.register-container .layui-btn{
+	width: 250px;
+}
+.vertify-email{
+	font-size: 14px;
+	color: #000000;
+}
+.form-vertify{
+	display: none;
+}
+.slide-box{
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -150px;
+    bottom: 130px;
+}

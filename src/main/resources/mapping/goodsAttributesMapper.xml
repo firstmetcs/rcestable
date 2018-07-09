@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rce.ssm.dao.GoodsAttrMapper">
+    <resultMap type="com.rce.ssm.model.goods.GoodsAttributes" id="goodsAttrMap">
+        <result column="goodsId" property="goodsId"/>
+        <result column="goodsAttrId" property="goodsAttrId"/>
+        <result column="goodsVersion" property="goodsVersion"/>
+        <result column="goodsNetType" property="goodsNetType"/>
+        <result column="goodsRom" property="goodsRom"/>
+        <result column="goodsRam" property="goodsRam"/>
+        <result column="goodsSize" property="goodsSize"/>
+        <result column="goodsColor" property="goodsColor"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsResRatio" property="goodsResRatio"/>
+        <result column="goodsImage" property="goodsImage" />
+        <result column="goodsStock" property="goodsStock" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.rce.ssm.model.goods.GoodsAttributes">
+        insert into goods_attributes (goodsId,goodsRom,goodsRam,goodsSize,goodsColor, goodsPrice,goodsStock,goodsResRatio,goodsVersion,goodsNetType,goodsImage)
+           values (#{goodsId},#{goodsRom},#{goodsRam},#{goodsSize},#{goodsColor},#{goodsPrice},#{goodsStock},#{goodsResRatio},#{goodsVersion},#{goodsNetType},#{goodsImage})
+    </insert>
+
+    <select id="findByVersion" resultMap="goodsAttrMap" parameterType="String">
+        select goodsId,goodsAttrId,goodsNetType,goodsRom,goodsRam,goodsSize,goodsColor,
+        goodsPrice,goodsResRatio from goods_attributes
+           where goodsVersion=#{goodsVersion}
+    </select>
+
+    <select id="findGoodsAttrByAttrId" resultMap="goodsAttrMap" parameterType="int">
+        select goodsId,goodsAttrId,goodsVersion,goodsNetType,goodsRom,goodsRam,goodsSize,goodsColor,
+        goodsPrice,goodsResRatio from goods_attributes
+           where goodsAttrId=#{goodsAttrId}
+    </select>
+
+    <select id="findAll" resultMap="goodsAttrMap" >
+        select goodsId,goodsAttrId,goodsVersion,goodsNetType,goodsRom,goodsRam,goodsSize,goodsColor,
+        goodsPrice,goodsResRatio,goodsStock from goods_attributes
+    </select>
+
+    <update id="update"  parameterType="com.rce.ssm.model.goods.GoodsAttributes">
+        update  goods_attributes
+        <trim prefix="set" suffixOverrides=",">
+            <if test="goodsRom!=null">goodsRom=#{goodsRom},</if>
+            <if test="goodsRam!=null">goodsRam=#{goodsRam},</if>
+            <if test="goodsColor!=null">goodsColor=#{goodsColor},</if>
+            <if test="goodsSize!=null">goodsSize=#{goodsSize},</if>
+            <if test="goodsPrice!=null">goodsPrice=#{goodsPrice},</if>
+        </trim>
+        where  goodsAttrId=#{goodsAttrId}
+    </update>
+
+
+    <delete id="delete" parameterType="int">
+        delete from goods_attributes where goodsAttrId=#{goodsAttrId}
+    </delete>
+
+    <select id="findByGoodsId" resultMap="goodsAttrMap" parameterType="int">
+         select goodsAttrId,goodsVersion,goodsNetType,goodsRom,goodsRam,goodsSize,goodsColor,
+        goodsPrice,goodsResRatio,goodsStock from goods_attributes where goodsId=#{goodsId}
+    </select>
+
+   <select id="findColorCount" resultType="Map" parameterType="int" >
+          select  goodsAttrId,goodsColor,goodsImage  from goods_attributes  where goodsId=#{goodsId} group by goodsColor
+    </select>
+
+   <select id="findRoamCount" resultType="Map" parameterType="int" >
+          select  goodsVersion,goodsNetType,goodsRom,goodsRam,goodsSize,goodsColor,
+        goodsPrice,goodsResRatio   from goods_attributes   where goodsId=#{goodsId} group by goodsRom,goodsRam
+    </select>
+
+    <select id="findDistRom" resultType="String" parameterType="int" >
+          select  distinct goodsRom  from goods_attributes  where goodsId=#{goodsId}
+    </select>
+
+    <select id="findDistRam" resultType="String" parameterType="int" >
+          select  distinct goodsRam  from goods_attributes  where goodsId=#{goodsId}
+    </select>
+
+    <select id="findDistColor" resultType="String" parameterType="int" >
+          select  distinct goodsColor  from goods_attributes  where goodsId=#{goodsId}
+    </select>
+
+    <select id="findDistSize" resultType="String" parameterType="int" >
+          select  distinct goodsSize  from goods_attributes  where goodsId=#{goodsId}
+    </select>
+
+    <select id="findGoodsInfo" resultType="Map" parameterType="int" >
+          select  goodsId,goodsAttrId,goodsRom,goodsRam,goodsSize,goodsColor,goodsPrice,goodsResRatio,goodsImage,goodsStock,goodsNetType  from goods_attributes
+           where goodsId=#{goodsId} group by goodsRom,goodsRam,goodsColor
+    </select>
+
+    <select id="findMPBygoodsId" resultType="Map" parameterType="int">
+        select goodsPrice, goodsImage from goods_attributes where goodsId=#{goodsId} order by goodsPrice
+    </select>
+
+    <select id="findGoodsByLowPrice" parameterType="int" resultType="Map">
+        select goodsId,goodsAttrId,goodsImage,goodsPrice from goods_attributes where goodsPrice &lt;= #{price}
+    </select>
+
+    <select id="findGoodsByHighPrice" parameterType="int" resultType="Map">
+        select goodsId,goodsAttrId,goodsImage,goodsPrice from goods_attributes where goodsPrice &gt; #{price}
+    </select>
+
+
+</mapper>

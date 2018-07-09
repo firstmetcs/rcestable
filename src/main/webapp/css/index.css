@@ -1,0 +1,144 @@
+.banner-container{
+	height: 400px;
+}
+.banner-left{
+	background-color:#393D49;
+	height: 400px;
+}
+.banner-nav{
+	margin: 15px 0;
+}
+.banner-nav li{
+	line-height: 40px;
+	vertical-align: middle;
+	padding: 0 20px;
+	margin: 0 0;
+}
+.banner-nav a{
+	color: white;
+	font-size: 18px;
+}
+.banner-nav i{
+	float: right;
+}
+.banner-right img{
+	width: 100%;
+	height: 100%;
+}
+.banner-recommend{
+	width: 100%;
+	height: 400px;
+	background-color: #FFFFFF;
+}
+.banner-recommend img{
+	width: 20%;
+	height: 20%;
+}
+
+
+.goods-recommend{
+	color: #808080;
+	padding: 20px 0;
+}
+.goods-recommend i{
+	font-size: 20px;
+}
+.goods-recommend img{
+	width: 100%;
+	height: 100%;
+}
+.goods-recommend-title{
+	margin: 20px 0;
+}
+.recommend-right img{
+	width: 100%;
+	height: 100%;
+}
+.recommend-right .layui-col-md3{
+	padding: 0 5px;
+	height: 263px;
+}
+.recommend-right-item{
+	height: 263px;
+	margin-left: 20px;
+	background: #FFFFFF;
+	text-align: center;
+}
+.recommend-bottom{
+	margin-top: 10px;
+}
+.recommend-bottom,.recommend-top{
+	float: right;
+} 
+.longad img{
+	width: 100%;
+}
+.recommend-discount{
+	width: 100px;
+	height: 20px;
+	line-height: 20px;
+	vertical-align: middle;
+	text-align: center;
+	color: #FFFFFF;
+	background: #EE113D;
+	position: absolute;
+	left: 34%;
+}
+.recommend-right-item img{
+	width: 50%;
+	height: 50%;
+	margin-top: 20px;
+}
+.goods-basic{
+	color: #000000;
+}
+.goods-des{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 200px;
+	margin: 0 10px;
+}
+.goods-price{
+	color: #EE113D;
+	font-size: 18px;
+}
+.initial-price{
+	color: #808080;
+	font-size: 12px;
+	margin-left: 10px;
+}
+.pc-recommend div{
+	height: 265px;
+	background-color: #ffffff;
+	width: 220px;
+}
+.pc-recommend .pc-recommend-item{
+	margin-left: 30px;
+}
+.pc-item{
+	width: 100%;
+	height: 265px;
+	text-align: center;
+}
+.pc-item img{
+	height: 50%;
+	width: 50%;
+}
+.pc-recommend-bottom{
+	margin-top: 20px;
+}
+
+.pc-comment{
+	width: 100%;
+	height: 80px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	background-color: #008b8b;
+	color: #FFFFFF;
+	opacity: 0.8;
+	display: none;
+}
+.banner-nav a{
+	background: #008b8b;
+}
