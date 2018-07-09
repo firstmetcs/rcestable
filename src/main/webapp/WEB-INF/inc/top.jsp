@@ -21,8 +21,8 @@
         <div class="top-nav-nav-right">
             <ul class="layui-nav">
                 <c:if test="${empty sessionScope.indexuser}">
-                    <li id="login" class="layui-nav-item"><a href="/rcestore/login/login.html">登录</a></li>
-                    <li id="register" class="layui-nav-item"><a href="">注册</a></li>
+                    <li class="layui-nav-item"><a href="/rcestore/login/index">登录</a></li>
+                    <li class="layui-nav-item"><a href="">注册</a></li>
                 </c:if>
                 <c:if test="${!empty sessionScope.indexuser}">
                     <li id="username" class="layui-nav-item">

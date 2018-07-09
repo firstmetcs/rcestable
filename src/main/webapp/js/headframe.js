@@ -1,5 +1,5 @@
-document.getElementById("login").style.display="none";
-document.getElementById("register").style.display="none";
+// document.getElementById("login").style.display="none";
+// document.getElementById("register").style.display="none";
 layui.use('element', function(){
 	var element = layui.element;
 });
