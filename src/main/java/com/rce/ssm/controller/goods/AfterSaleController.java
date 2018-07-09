@@ -32,6 +32,7 @@ public class AfterSaleController {
     GoodsService goodsService;
     @RequestMapping("/returnGoods")
 
+    //note
     public  ModelAndView returnGoods (HttpServletRequest req, HttpSession session, HttpServletResponse res) throws IOException,ServletException {
         int userId=Integer.parseInt(req.getParameter("userId")) ;
         int goodsId=Integer.parseInt(req.getParameter("goodsAttrId"));
