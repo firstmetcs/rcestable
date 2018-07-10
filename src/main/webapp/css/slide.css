@@ -1,12 +1,11 @@
 .slide-box{
     display: block;
     position: absolute;
-    left: 50%;
-    margin-left: -120px;
-    bottom: 170px;
+    bottom: 120px;
+    left: 25%;
 }
 .scroll-background{
-    background-image: url("/rcestore/img/slide/sprite.3.2.0.png");
+    background-image: url("../img/slide/sprite.3.2.0.png");
     background-repeat: no-repeat;
 }
 .scroll-bar{
@@ -150,4 +149,24 @@
 .slide-text{
     text-align: left !important;
     color: #4b3f33;
+}
+.slide-img-hint-info{
+    height: 22px;
+    width: 260px;
+    background-position: 0 -674px;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    bottom: 1px;
+    transition: height 0.3s;
+    z-index: 11;
+}
+.redColor{
+    color: red;
+}
+.greenColor{
+    color: green;
+}
+#slideBar{
+    color: black;
 }

@@ -61,6 +61,8 @@ public class GoodsController {
         List<Goods> goodsList = goodServiceImpl.findAll();
         PageInfo pageInfo = new PageInfo(goodsList,5);
 
+        System.out.println(pageInfo.getPages());
+
         ModelMap model = new ModelMap();
         model.addAttribute("goodsList", goodsList);
         model.addAttribute("pageInfo",pageInfo);

@@ -17,7 +17,7 @@
                 "<div class='slide-block' id='slideBlock'></div><div class='slide-box-shadow' id='cutBlock'></div></div>" +
                 "<div class='scroll-background  slide-img-hint-info' id='slideHintInfo'>" +
                 "<div class='slide-img-hint'><div class='scroll-background slide-icon' id='slideIcon'></div>" +
-                "<div class='slide-text'><span class='slide-text-type' id='slideType'></span>" +
+                "<div class='slide-text'><span class='slide-text-type' id='slideType'>232</span>" +
                 "<span class='slide-text-content' id='slideContent'></span></div></div></div></div>" +
                 "<div class='scroll-background slide-bottom'>" +
                 "<div class='scroll-background slide-bottom-refresh' id='refreshBtn' title='更换图片'></div>" +
@@ -86,7 +86,7 @@
         reToNewImg: function () {
             var _this = this;
             var index = Math.round(Math.random() * 8);         // 该方法有等于0 的情况
-            var imgSrc = "/rcestore/img/slide/" + _this.imgList[index] + "";
+            var imgSrc = "../img/slide/" + _this.imgList[index] + "";
             _this.slideImg.setAttribute("src", imgSrc);
             _this.slideBlock.style.backgroundImage = "url("+ imgSrc +")";
             _this.slideImg.onload = function (e) {

@@ -32,10 +32,10 @@ function removeShadow(goods,num) {
 function changeBanner(i) {
   $(".banner-nav-"+i).css('background-color','#008b8b');
   $("#carousel").css('display','none');
-  $(".banner-recommend").css('display','inline-block');
+  $("#banner-recommend-"+i).css('display','inline-block');
 }
 function resetBanner(i) {
   $(".banner-nav-"+i).css('background-color','');
-  $(".banner-recommend").css('display','none');
-    $("#carousel").css('display','inline-block');
+  $("#banner-recommend-"+i).css('display','none');
+  $("#carousel").css('display','inline-block');
 }
