@@ -57,8 +57,7 @@
     </select>
 
     <select id="findAll" resultMap="goodsMap">
-        select goodsId,goodsName,goodsImg,goodsSaleCount,goodsIsBook,goodsBookQuantity,goodsIsSale,goodsIsHot,
-        goodsIsNew,goodsIsRecommend,goodsStatus,goodsSaleTime,goodsEvaluationId,goodsSaleDesc,goodsAttrDesc,goodsType from goods
+        select * from goods
     </select>
 
     <select id="findDescById" resultMap="goodsMap" parameterType="int">

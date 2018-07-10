@@ -22,18 +22,16 @@
          var tr=$("#purchaseList").parent();
          tr.append($("#purchaseList").clone());
      }
-    /* $(document).ready(function () {
-             if($("#producer").value=="小米"){
+    $(document).ready(function () {
+        var form = layui.form();
+        form.on('select(producer)', function(data){
+            // console.log(data);
+            alert("hhhhh");
+        });
+    })
 
-             }
-     })*/
-    function producer(obj){
-       /* if(obj.val()=="小米"){*/
 
-            $("#totalAccount").text("lalalal");
 
-       // }
-    }
 </script>
 
 <body>
@@ -65,7 +63,7 @@
                             供应商：
                         </label>
                         <div class="layui-input-inline">
-                            <select id="producer" onchange="producer(this)">
+                            <select id="producer" lay-filter="producer">
                                 <option value="">供应商</option>
                                 <option value="小米">小米</option>
                                 <option value="vivo">vivo</option>
