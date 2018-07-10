@@ -26,19 +26,26 @@
                 </c:if>
                 <c:if test="${!empty sessionScope.indexuser}">
                     <li id="username" class="layui-nav-item">
-                        <a href="javascript:;"><img src="http://t.cn/RCzsdCq" class="layui-nav-img">${sessionScope.indexuser.username}</a>
+                        <a href="javascript:;"><img src="http://t.cn/RCzsdCq"
+                                                    class="layui-nav-img">${sessionScope.indexuser.username}</a>
                         <dl class="layui-nav-child">
                             <dd><a href="/rcestore/selfcenter/selfcenter.html">个人中心</a></dd>
                             <dd><a href="/rcestore/user/logout">退出登录</a></dd>
                         </dl>
                     </li>
+
                 </c:if>
                 <li class="layui-nav-item"><a href="">消息通知<span class="layui-badge">9</span></a></li>
                 <li id="myBookList" class="layui-nav-item"><a href="">我的订单</a></li>
                 <li class="layui-nav-item">
                     <a href="">购物车</a>
                     <dl class="layui-nav-child usercart">
-                        <dd><a href="">购物车为空...</a></dd>
+                        <c:if test="${!empty sessionScope.indexuser}">
+                            <dd><a href="">购物车为空...</a></dd>
+                        </c:if>
+                        <c:if test="${empty sessionScope.indexuser}">
+                            <dd>请<a href="/rcestore/login/index" style="display: inline">登录</a>后查看购物车</dd>
+                        </c:if>
                     </dl>
                 </li>
             </ul>
