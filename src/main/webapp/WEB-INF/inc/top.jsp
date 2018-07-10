@@ -22,7 +22,7 @@
             <ul class="layui-nav">
                 <c:if test="${empty sessionScope.indexuser}">
                     <li class="layui-nav-item"><a href="/rcestore/login/index">登录</a></li>
-                    <li class="layui-nav-item"><a href="">注册</a></li>
+                    <li class="layui-nav-item"><a href="/rcestore/register/index">注册</a></li>
                 </c:if>
                 <c:if test="${!empty sessionScope.indexuser}">
                     <li id="username" class="layui-nav-item">
@@ -44,7 +44,7 @@
                             <dd><a href="">购物车为空...</a></dd>
                         </c:if>
                         <c:if test="${empty sessionScope.indexuser}">
-                            <dd>请<a href="/rcestore/login/index" style="display: inline">登录</a>后查看购物车</dd>
+                            <dd><a href="/rcestore/login/index" style="display: inline">请登录后查看购物车</a></dd>
                         </c:if>
                     </dl>
                 </li>
