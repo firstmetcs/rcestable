@@ -9,6 +9,7 @@
 <html>
 <body>
 <h2>Hello World!</h2>
+<!-- note from wq -->
 ${indexuser.getCookieid()}<br>
 ${indexuser.cookieid}<br>
 <br>

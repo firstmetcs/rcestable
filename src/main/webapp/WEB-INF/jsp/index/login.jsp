@@ -147,7 +147,7 @@
 					<div style="">
 						<br>
 						<span style="float: right;">
-							<a href="register.jsp">立即注册</a>
+							<a href="/rcestore/register/index">立即注册</a>
 							|
 							<a href="/rcestore/forget/index">忘记密码</a>
 						</span>

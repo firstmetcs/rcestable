@@ -9,3 +9,7 @@ function getNavRec(i) {
 function removeNavRec(i) {
   $(".logo-nav-recommend").css('display','none');
 }
+function cartRemove(i)
+{
+    $(".cart-item-"+i).hide(500);
+}
