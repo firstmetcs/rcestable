@@ -2,9 +2,11 @@ package com.rce.ssm.controller.goods;
 
 import com.rce.ssm.model.goods.GoodsStock;
 import com.rce.ssm.service.GoodsService;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -14,9 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author xinror
@@ -28,90 +28,99 @@ import java.util.Map;
 @Controller
 @RequestMapping("/goodsStock")
 public class GoodsStockController {
-     @Resource
-     GoodsService goodsService;
+    @Resource
+    GoodsService goodsService;
+
     @RequestMapping("/saveGoodsStock")
-     public void  addGoodsStock(HttpServletRequest req, HttpServletResponse res) throws IOException,ServletException {
+    public void addGoodsStock(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
-         GoodsStock goodsStock=new GoodsStock();
+        GoodsStock goodsStock = new GoodsStock();
 
-         goodsStock.setGoodsType(req.getParameter("goodsType"));
-         goodsStock.setGoodsName(req.getParameter("goodsName"));
-         goodsStock.setGoodsRom(req.getParameter("goodsRom"));
-         goodsStock.setGoodsRam(req.getParameter("goodsRam"));
-         goodsStock.setGoodsColor(req.getParameter("goodsColor"));
-         goodsStock.setGoodsSize(req.getParameter("goodsSize"));
-         goodsStock.setStockNum(Integer.parseInt(req.getParameter("goodsNum")));
+        goodsStock.setGoodsType(req.getParameter("goodsType"));
+        goodsStock.setGoodsName(req.getParameter("goodsName"));
+        goodsStock.setGoodsRom(req.getParameter("goodsRom"));
+        goodsStock.setGoodsRam(req.getParameter("goodsRam"));
+        goodsStock.setGoodsColor(req.getParameter("goodsColor"));
+        goodsStock.setGoodsSize(req.getParameter("goodsSize"));
+        goodsStock.setStockNum(Integer.parseInt(req.getParameter("goodsNum")));
 
-         goodsService.addGoodsStock(goodsStock);
+        goodsService.addGoodsStock(goodsStock);
         req.getRequestDispatcher("showGoodsStock").forward(req, res);
 
-     }
-     @RequestMapping("/showGoodsStock")
-     public ModelAndView showGoodsStock(){
-       List<GoodsStock > goodsStockList=goodsService.showGoodsStock();
+    }
 
-       ModelMap model=new ModelMap();
-       model.addAttribute("goodsStockList",goodsStockList);
-       return new ModelAndView("admin/stock/goodsStock",model);
-     }
-     @RequestMapping("/addGoodsStock")
-     public String addGoodsStock(){
+    @RequestMapping("/showGoodsStock")
+    public ModelAndView showGoodsStock() {
+        List<GoodsStock> goodsStockList = goodsService.showGoodsStock();
+
+        ModelMap model = new ModelMap();
+        model.addAttribute("goodsStockList", goodsStockList);
+        return new ModelAndView("admin/stock/goodsStock", model);
+    }
+
+    @RequestMapping("/addGoodsStock")
+    public String addGoodsStock() {
         return "admin/stock/addGoodsStock";
-     }
+    }
 
-     @RequestMapping("/showSettle")
+    @RequestMapping("/showSettleByType")
     public ModelAndView showSettle(HttpServletRequest req) throws ParseException {
 
-       /* int year1= Integer.parseInt(req.getParameter("year1"));
-        int month1=Integer.parseInt(req.getParameter("month1"));
-         int day1= Integer.parseInt(req.getParameter("day1"));
-         int year2=Integer.parseInt(req.getParameter("year2"));
-         int month2= Integer.parseInt(req.getParameter("month2"));
-         int day2=Integer.parseInt(req.getParameter("day2"));
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
-         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        Date[] dateList=new Date[8];
+        dateList[0]=df.parse(df.format(cal.getTime()));
 
-         String dateStr1= year1+"-"+month1+"-"+day1;
-         String dateStr2= year2+"-"+month2+"-"+day2;
+        for(int i=1;i<8;i++) {
+            cal.add(Calendar.WEDNESDAY, -1);
+            dateList[i] = df.parse(df.format(cal.getTime()));
+        }
+        List< List<Map<String, Object>>> allSettleList=new ArrayList<List<Map<String, Object>>>();
+        for(int i=0;i<7;i++){
+            List<Map<String, Object>> settleList = goodsService.showSettle(dateList[i], dateList[i+1]);
+            allSettleList.add(settleList);
+        }
 
-         Date date1= df.parse(dateStr1);
-         Date date2= df.parse(dateStr2);*/
+        ModelMap model = new ModelMap();
+        model.addAttribute("allSettleList", allSettleList);
 
-         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-         String dateStr1= "2018-02-01";
-         String dateStr2="2018-03-30";
+        return new ModelAndView("admin/stock/echarts-zigzag", model);
+    }
 
-         Date date1= df.parse(dateStr1);
-         Date date2= df.parse(dateStr2);
+    @RequestMapping("/showGoodsStockNum")
+    public ModelAndView shoewGoodsStock() {
 
-         List<Map<String,Object>>  settleList=goodsService.showSettle(date1,date2);
+        List<Map<String, Object>> goodsAttrList = goodsService.showGoodsStockNum();
+        ModelMap model = new ModelMap();
+        model.addAttribute("goodsAttrList", goodsAttrList);
 
-        ModelMap model=new ModelMap();
-        model.addAttribute("settleList",settleList);
+        return new ModelAndView("admin/stock/showGoodsStockNum", model);
+    }
 
-        return new ModelAndView("admin/stock/showSettle",model);
-     }
+    @RequestMapping("/addStockList")
+    public String addStockList(HttpServletRequest req) {
 
-     @RequestMapping("/showGoodsStockNum")
-     public ModelAndView shoewGoodsStock(){
+        //   List<List<Map<String, Object>>> goodsAllList=goodsService.selectGoodsByStep();
 
-        List<Map<String,Object>> goodsAttrList=goodsService.showGoodsStockNum();
-         ModelMap model=new ModelMap();
-         model.addAttribute("goodsAttrList",goodsAttrList);
+        //  ModelMap model=new ModelMap();
+        //  model.addAttribute("goodsAllList",goodsAllList);
 
-         return new ModelAndView("admin/stock/showGoodsStockNum",model);
-     }
+        return "admin/stock/purchase-order";
+    }
 
-     @RequestMapping("/addStockList")
-    public ModelAndView addStockList(HttpServletRequest req){
+    @RequestMapping("/findPrice")
+    @ResponseBody
+    public String findGoodsPrice(HttpServletRequest req) {
 
-         List<List<Map<String, Object>>> goodsAllList=goodsService.selectGoodsByStep();
+        String rom = req.getParameter("goodsRom");
+        String ram = req.getParameter("goodsRam");
 
-        ModelMap model=new ModelMap();
-        model.addAttribute("goodsAllList",goodsAllList);
-
-        return new ModelAndView("admin/stock/purchase-order",model);
-     }
+        System.out.println(rom + " " + ram);
+        String price = String.valueOf(goodsService.findGoodsPrice(rom, ram).get(0));
+        System.out.println(price);
+        return price;
+    }
 
 }

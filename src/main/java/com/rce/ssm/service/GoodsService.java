@@ -51,4 +51,5 @@ public interface GoodsService {
    public List<Map<String,Object>> showSettle(Date date1, Date date2);
     public List<Map<String,Object>> showGoodsStockNum();
  public  List<List<Map<String, Object>>>  selectGoodsByStep();
+ public List<Double> findGoodsPrice(String rom,String ram);
 }

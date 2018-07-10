@@ -476,5 +476,9 @@ public class GoodServiceImpl implements GoodsService {
         return  goodsAttributesListNew;
     }
 
+    public List<Double> findGoodsPrice(String rom,String ram){
+         return  goodsAttrMapper.findGoodsPrice(rom,ram);
+    }
+
 
 }

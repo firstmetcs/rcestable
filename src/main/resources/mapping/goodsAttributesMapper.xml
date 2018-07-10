@@ -103,5 +103,11 @@
         select goodsId,goodsAttrId,goodsImage,goodsPrice from goods_attributes where goodsPrice &gt; #{price}
     </select>
 
+    <select id="findGoodsPrice"  resultType="double">
+        select goodsPrice from goods_attributes where goodsRom=#{0} and  goodsRam=#{1}
+    </select>
+
+
+
 
 </mapper>
