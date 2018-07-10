@@ -38,10 +38,44 @@
                 <li class="layui-nav-item"><a href="">消息通知<span class="layui-badge">9</span></a></li>
                 <li id="myBookList" class="layui-nav-item"><a href="">我的订单</a></li>
                 <li class="layui-nav-item">
-                    <a href="">购物车</a>
+                    <a href="/rcestore/shoppingCart/showSC">购物车</a>
                     <dl class="layui-nav-child usercart">
                         <c:if test="${!empty sessionScope.indexuser}">
-                            <dd><a href="">购物车为空...</a></dd>
+                            <c:if test="${!empty sessionScope.shoppingCarts}">
+                                <c:forEach var="shoppingCart" items="${sessionScope.shoppingCarts}" begin="0" end="4"
+                                           step="1">
+
+                                    <dd class="cart-item-1">
+                                        <div class="layui-row">
+                                            <a href="">
+                                                <div class="layui-col-md2">
+                                                    <img style="width: 100%;" src="img/phone/huaweiP20.png">
+                                                </div>
+                                                <div class="layui-col-md8">
+                                                    <p class="layui-ptop">
+                                                            ${shoppingCart.goodsname}&nbsp;&nbsp;${shoppingCart.goodsversion}
+                                                    </p>
+                                                    <p class="layui-ptop pbottom">
+                                                        X${shoppingCart.goodscount}
+                                                    </p>
+                                                </div>
+                                            </a>
+                                            <div class="layui-col-md2">
+                                                <p style="color: red" class="layui-ptop">
+                                                    ￥${shoppingCart.goodsprice}
+                                                </p>
+
+                                                <p class="layui-ptop pbottom" onclick="cartRemove(1)">
+                                                    删除
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </dd>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${empty sessionScope.shoppingCarts}">
+                                <dd><a href="">购物车为空...</a></dd>
+                            </c:if>
                         </c:if>
                         <c:if test="${empty sessionScope.indexuser}">
                             <dd><a href="/rcestore/login/index" style="display: inline">请登录后查看购物车</a></dd>

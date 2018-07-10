@@ -7,14 +7,14 @@
 	left: 0;
 	top: 0;
 	padding: 0;
-	background: none; 
+	background: none;
 }
 .top-nav .top-nav-nav-right{
 	position: absolute;
 	right: 0;
 	top: 0;
 	padding: 0;
-	background: none; 
+	background: none;
 }
 .top-nav .layui-nav{
 	padding: 0;
@@ -26,7 +26,7 @@
 	margin: 0 10px;
 }
 .top-nav .top-nav-nav-right .layui-nav-item{
-	margin: 0 1px;	
+	margin: 0 1px;
 }
 .logo-top-nav{
 	padding: 20px;
@@ -60,9 +60,9 @@
 	z-index: 10;
 }
 .usercart{
-	left: -200px;
-	width: 300px;
-	height: 100px;
+	left: -300px;
+	width: 400px;
+	/*height: 100px;*/
 	line-height: 100px;
 	text-align: center;
 	vertical-align: middle;
@@ -84,4 +84,12 @@
 }
 .logo-nav-recommend .layui-col-md2{
 	text-align: center;
+}
+.layui-ptop
+{
+	font-size:5px;color:#000000; line-height: 60px;vertical-align: bottom; width: 100%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+.pbottom
+{
+	line-height: 20px;
 }
