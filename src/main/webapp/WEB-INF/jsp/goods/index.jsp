@@ -1,54 +1,26 @@
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: LX
+  Date: 2018/7/3
+  Time: 10:13
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>RCE商城</title>
-    <link rel="stylesheet" type="text/css" href="/rcestore/layui/css/layui.css">
-    <link rel="stylesheet" type="text/css" href="/rcestore/css/global.css">
-    <link rel="stylesheet" type="text/css" href="/rcestore/css/headframe.css">
-    <link rel="stylesheet" type="text/css" href="/rcestore/css/footframe.css">
-    <link rel="stylesheet" type="text/css" href="/rcestore/css/index.css">
+    <link rel="stylesheet" type="text/css" href="${path}/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/global.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/headframe.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/footframe.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/index.css">
 </head>
 
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp"%>
-<div class="layui-top-nav logo-top-nav">
-    <div class="layui-main">
-        <a class="logo" href="index.jsp"><img src="/rcestore/img/logo.png"></a>
-        <div class="logo-nav">
-            <ul class="layui-logo-nav">
-                <li class="layui-nav-item logo-nav-1" onmouseover="getNavRec(1)" onmouseout="removeNavRec(1)"><a
-                        href="javascript:;">小米</a></li>
-                <li class="layui-nav-item logo-nav-2" onmouseover="getNavRec(2)" onmouseout="removeNavRec(2)"><a
-                        href="javascript:;">vivo</a></li>
-                <li class="layui-nav-item logo-nav-3" onmouseover="getNavRec(3)" onmouseout="removeNavRec(3)"><a
-                        href="javascript:;">oppo</a></li>
-                <li class="layui-nav-item logo-nav-4" onmouseover="getNavRec(4)" onmouseout="removeNavRec(4)"><a
-                        href="javascript:;">华为</a></li>
-                <li class="layui-nav-item logo-nav-5" onmouseover="getNavRec(5)" onmouseout="removeNavRec(5)"><a
-                        href="javascript:;">荣耀</a></li>
-                <li class="layui-nav-item logo-nav-6" onmouseover="getNavRec(6)" onmouseout="removeNavRec(6)"><a
-                        href="javascript:;">魅族</a></li>
-                <li class="layui-nav-item logo-nav-7" onmouseover="getNavRec(7)" onmouseout="removeNavRec(7)"><a
-                        href="javascript:;">一加</a></li>
-                <li class="layui-nav-item logo-nav-8" onmouseover="getNavRec(8)" onmouseout="removeNavRec(8)"><a
-                        href="javascript:;">努比亚</a></li>
-
-            </ul>
-        </div>
-        <div class="logo-nav-search">
-            <div class="layui-input-inline" style="width: 250px;">
-                <input type="text" name="" placeholder="请输入搜索内容..." class="layui-input" autocomplete="on">
-            </div>
-            <button class="layui-btn layui-btn-primary">
-                <i class="layui-icon layui-icon-search"></i>
-            </button>
-        </div>
-    </div>
-</div>
-
 
 <!-- 主题内容 -->
 <div class="layui-main">
@@ -126,22 +98,22 @@
             <div class="layui-carousel" id="carousel" lay-filter="carousel">
                 <div carousel-item="">
                     <a href="">
-                        <div><img src="/rcestore/img/banner/oppo.jpg"></div>
+                        <div><img src="${path}/img/banner/oppo.jpg"></div>
                     </a>
                     <a href="">
-                        <div><img src="/rcestore/img/banner/huawei.jpg"></div>
+                        <div><img src="${path}/img/banner/huawei.jpg"></div>
                     </a>
                     <a href="">
-                        <div><img src="/rcestore/img/banner/rongyao.jpg"></div>
+                        <div><img src="${path}/img/banner/rongyao.jpg"></div>
                     </a>
                     <a href="">
-                        <div><img src="/rcestore/img/banner/xiaomi.jpg"></div>
+                        <div><img src="${path}/img/banner/xiaomi.jpg"></div>
                     </a>
                     <a href="">
-                        <div><img src="/rcestore/img/banner/yijia.jpg"></div>
+                        <div><img src="${path}/img/banner/yijia.jpg"></div>
                     </a>
                     <a href="">
-                        <div><img src="/rcestore/img/banner/meizu.jpg"></div>
+                        <div><img src="${path}/img/banner/meizu.jpg"></div>
                     </a>
                 </div>
             </div>
@@ -197,7 +169,7 @@
 
                 <div class="layui-col-md2">
                     <a href="">
-                        <img class="left_xiaomi" src="/rcestore/img/phone/left_xiaomi.jpg">
+                        <img class="left_xiaomi" src="${path}/img/phone/left_xiaomi.jpg">
                     </a>
                 </div>
 
@@ -311,7 +283,7 @@
         </div>
         <a href="">
             <div class="longad">
-                <img src="/rcestore/img/phone/longad.jpg">
+                <img src="${path}/img/phone/longad.jpg">
             </div>
         </a>
         <div class="goods-recommend">
@@ -597,10 +569,10 @@
     <br>
     <br>
 </div>
-<script type="text/javascript" src="/rcestore/layui/layui.js"></script>
-<script type="text/javascript" src="/rcestore/js/global.js"></script>
-<script type="text/javascript" src="/rcestore/js/headframe.js"></script>
-<script type="text/javascript" src="/rcestore/js/index.js"></script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="${path}/layui/layui.js"></script>
+<script type="text/javascript" src="${path}/js/global.js"></script>
+<script type="text/javascript" src="${path}/js/headframe.js"></script>
+<script type="text/javascript" src="${path}/js/index.js"></script>
+<script src="${path}/js/jquery-3.3.1.min.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -7,8 +7,8 @@
         <meta name="renderer" content="webkit|ie-comp|ie-stand">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta http-equiv="Cache-Control" content="no-siteapp" />
-        <link rel="stylesheet" href="/rcestore/css/font.css">
-        <link rel="stylesheet" href="/rcestore/css/xadmin.css">
+        <link rel="stylesheet" href="${path}/css/font.css">
+        <link rel="stylesheet" href="${path}/css/xadmin.css">
     </head>
 
     <body>
@@ -36,7 +36,7 @@
             <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
         <div id="main" style="width: 100%;height:600px;"></div>
         </div>
-        <script type="text/javascript" src="/rcestore/layui/layui.js"></script>
+        <script type="text/javascript" src="${path}/layui/layui.js"></script>
         <script type="text/javascript">
             layui.use('laydate', function(){
               var laydate = layui.laydate;
@@ -49,7 +49,7 @@
               });
             });
         </script>
-        <script type="text/javascript" src="/rcestore/js/echarts.js"></script>
+        <script type="text/javascript" src="${path}/js/echarts.js"></script>
         <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));

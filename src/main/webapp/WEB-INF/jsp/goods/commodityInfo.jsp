@@ -1,14 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
+<%--商品详情--%>
+
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>商品信息</title>
-    <link rel="stylesheet" href="/rcestore/css/style.css">
-    <link rel="stylesheet" href="/rcestore/css/detail.css">
+    <link rel="stylesheet" href="${path}/css/style.css">
+    <link rel="stylesheet" href="${path}/css/detail.css">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/rcestore/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="${path}/layui/css/layui.css" media="all">
 </head>
 
 <body> <!-- 3是版本数量，需要改 -->
@@ -261,7 +263,7 @@
                         <img src="img/detail/红米5/index_game_list2.jpg" alt="" width="85%" style="margin-right: -45px;">
                     </div> -->
                     <div style="border: 0px solid #F53333; margin-top: 50px; width: 100%; float: left;">
-                        <img src="/rcestore/img/goods/小米8/index_game_list1.jpg" alt="" width="60%"
+                        <img src="${path}/img/goods/小米8/index_game_list1.jpg" alt="" width="60%"
                              style="margin-left: 5%;">
                     </div>
                     <div style="clear:both; margin-top: 50px; width: 100%; float: left;">
@@ -325,7 +327,7 @@
                 </div>
                 <div class="imgLayout">
                     <span id="span27">附送 TPU 极简保护壳</span>
-                    <img src="/rcestore/img/goods/小米8/index_extend.jpg" alt="" width="100%">
+                    <img src="${path}/img/goods/小米8/index_extend.jpg" alt="" width="100%">
                 </div>
             </div>
             <!-- 参数 -->
@@ -583,10 +585,10 @@
     </div>
 </div>
 
-<script type="text/javascript" src="/rcestore/js/decorate.js"></script>
-<script type="text/javascript" src="/rcestore/layui/layui.js"></script>
+<script type="text/javascript" src="${path}/js/decorate.js"></script>
+<script type="text/javascript" src="${path}/layui/layui.js"></script>
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="${path}/js/jquery-3.3.1.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 

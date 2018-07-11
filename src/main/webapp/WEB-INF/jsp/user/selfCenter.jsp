@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
 <%--
   Created by IntelliJ IDEA.
   User: Firstmetcs
@@ -6,9 +6,8 @@
   Time: 10:59
   To change this template use File | Settings | File Templates.
 --%>
+<%--用户个人中心--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 
@@ -16,13 +15,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>个人中心</title>
-    <link rel="stylesheet" type="text/css" href="/rcestore/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/rcestore/layui/css/layui.css">
-    <link rel="stylesheet" type="text/css" href="/rcestore/css/global.css">
-    <link rel="stylesheet" type="text/css" href="/rcestore/css/headframe.css">
-    <link rel="stylesheet" type="text/css" href="/rcestore/css/footframe.css">
-    <link rel="stylesheet" type="text/css" href="/rcestore/css/selfcenter.css">
-    <link rel="stylesheet" type="text/css" href="/rcestore/css/userInfo.css">
+    <link rel="stylesheet" type="text/css" href="${path}/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${path}/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/global.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/headframe.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/footframe.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/selfcenter.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/userInfo.css">
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
         /*加载省下拉选*/
@@ -34,7 +33,7 @@
                 data: param,
                 dataType: "json",
                 async: false,
-                url: "/rcestore/city/getProvince",
+                url: "${path}/city/getProvince",
                 success: function (data) {
                     var city = data.city;
                     for (var i = 0; i < city.length; i++) {
@@ -59,7 +58,7 @@
                 data: param,
                 dataType: "json",
                 async: false,
-                url: "/rcestore/city/getCity",
+                url: "${path}/city/getCity",
                 success: function (data) {
                     var city = data.city;
                     $('#cityidAdd').append("<option value='' selected='selected' >" + '请选择' + "</option>");
@@ -86,7 +85,7 @@
                 data: param,
                 dataType: "json",
                 async: false,
-                url: "/rcestore/city/getArea",
+                url: "${path}/city/getArea",
                 success: function (data) {
                     var city = data.city;
                     $('#areaidAdd').append("<option value='' selected='selected' >" + '请选择' + "</option>");
@@ -110,7 +109,7 @@
                 data: param,
                 dataType: "json",
                 async: false,
-                url: "/rcestore/city/getProvince",
+                url: "${path}/city/getProvince",
                 success: function (data) {
                     var city = data.city;
                     for (var i = 0; i < city.length; i++) {
@@ -135,7 +134,7 @@
                 data: param,
                 dataType: "json",
                 async: false,
-                url: "/rcestore/city/getCity",
+                url: "${path}/city/getCity",
                 success: function (data) {
                     var city = data.city;
                     $('#cityid').append("<option value='' selected='selected' >" + '请选择' + "</option>");
@@ -162,7 +161,7 @@
                 data: param,
                 dataType: "json",
                 async: false,
-                url: "/rcestore/city/getArea",
+                url: "${path}/city/getArea",
                 success: function (data) {
                     var city = data.city;
                     $('#areaid').append("<option value='' selected='selected' >" + '请选择' + "</option>");
@@ -182,31 +181,6 @@
 <!--头部导航-->
 
 <%@ include file="/WEB-INF/inc/top.jsp"%>
-<div class="layui-top-nav logo-top-nav">
-    <div class="layui-main">
-        <a class="logo" href="../index.html"><img src="../img/logo.png"></a>
-        <div class="logo-nav">
-            <ul class="layui-logo-nav">
-                <li class="layui-nav-item logo-nav-1" onmouseover="getNavRec(1)" onmouseout="removeNavRec(1)"><a href="javascript:;">荣耀</a></li>
-                <li class="layui-nav-item logo                     -nav-2" onmouseover="getNavRec(2)" onmouseout="removeNavRec(2)"><a href="javascript:;">华为</a></li>
-                <li class="layui-nav-item logo-nav-3" onmouseover="getNavRec(3)" onmouseout="removeNavRec(3)"><a href="javascript:;">oppo</a></li>
-                <li class="layui-nav-item logo-nav-4" onmouseover="getNavRec(4)" onmouseout="removeNavRec(4)"><a href="javascript:;">vivo</a></li>
-                <li class="layui-nav-item logo-nav-5" onmouseover="getNavRec(5)" onmouseout="removeNavRec(5)"><a href="javascript:;">魅族</a></li>
-                <li class="layui-nav-item logo-nav-6" onmouseover="getNavRec(6)" onmouseout="removeNavRec(6)"><a href="javascript:;">小米</a></li>
-                <li class="layui-nav-item logo-nav-7" onmouseover="getNavRec(7)" onmouseout="removeNavRec(7)"><a href="javascript:;">一加</a></li>
-                <li class="layui-nav-item logo-nav-8" onmouseover="getNavRec(8)" onmouseout="removeNavRec(8)"><a href="javascript:;">努比亚</a></li>
-            </ul>
-        </div>
-        <div class="logo-nav-search">
-            <div class="layui-input-inline" style="width: 250px;">
-                <input type="text" name="" placeholder="请输入搜索内容..." class="layui-input" autocomplete="on">
-            </div>
-            <button class="layui-btn layui-btn-primary">
-                <i class="layui-icon layui-icon-search"></i>
-            </button>
-        </div>
-    </div>
-</div>
 <div class="self-center">
     <div class="layui-main">
         <br>
@@ -666,11 +640,14 @@
     <br>
     <br>
 </div>
-<script type="text/javascript" src="/rcestore/layui/layui.js"></script>
-<script type="text/javascript" src="/rcestore/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/rcestore/js/global.js"></script>
-<script type="text/javascript" src="/rcestore/js/headframe.js"></script>
-<script type="text/javascript" src="/rcestore/js/userInfo.js"></script>
+<script type="text/javascript" src="${path}/layui/layui.js"></script>
+<script type="text/javascript" src="${path}/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${path}/js/global.js"></script>
+<script type="text/javascript" src="${path}/js/headframe.js"></script>
+<script type="text/javascript" src="${path}/js/userInfo.js"></script>
+
+<%--首页必要js--%>
+<script type="text/javascript" src="${path}/js/index.js"></script>
 </body>
 
 </html>

@@ -6,13 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+
+<script src="${path}/js/jquery-3.3.1.min.js"></script>
 <script>
     $(document).ready(function () {
 

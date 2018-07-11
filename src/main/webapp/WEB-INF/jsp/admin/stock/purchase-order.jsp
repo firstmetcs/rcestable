@@ -1,5 +1,5 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
 <html>
 
 <head>
@@ -10,13 +10,13 @@
     <meta name="viewport"
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-    <link rel="stylesheet" type="text/css" href="/rcestore/layui/css/layui.css">
-    <link rel="stylesheet" href="/rcestore/css/font.css">
-    <link rel="stylesheet" href="/rcestore/css/xadmin.css">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/rcestore/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/rcestore/js/xadmin.js"></script>
-    <script type="text/javascript" src="/rcestore/js/stock.js"></script>
+    <link rel="stylesheet" type="text/css" href="${path}/layui/css/layui.css">
+    <link rel="stylesheet" href="${path}/css/font.css">
+    <link rel="stylesheet" href="${path}/css/xadmin.css">
+    <script src="${path}/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="${path}/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${path}/js/xadmin.js"></script>
+    <script type="text/javascript" src="${path}/js/stock.js"></script>
 </head>
 
 <script>
@@ -65,7 +65,7 @@
 
                             $.ajax({
                                 type: "post",
-                                url: "/rcestore/goodsStock/findPrice",
+                                url: "${path}/goodsStock/findPrice",
                                 dataType: "json",
                                 data: {"goodsRom": data3.value, "goodsRam": data4.value},
                                 success: function (data) {
@@ -85,7 +85,7 @@
 
                             $.ajax({
                                 type: "post",
-                                url: "/rcestore/goodsStock/findPrice",
+                                url: "${path}/goodsStock/findPrice",
                                 dataType: "json",
                                 data: {"goodsRom": data4.value, "goodsRam": data3.value},
                                 success: function (data) {
