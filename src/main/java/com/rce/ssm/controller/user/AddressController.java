@@ -30,7 +30,7 @@ public class AddressController {
 
     @RequestMapping("/showAddress")
     public String showUser(HttpServletRequest request, Model model){
-        log.info("查询所有用户信息");
+        log.info("查询收货地址");
 
         List<Address> addressList = addressService.selectByUserId(((User)request.getSession().getAttribute(PublicStatic.USER)).getUserid());
 //
@@ -48,7 +48,7 @@ public class AddressController {
     @ResponseBody
     @RequestMapping("/add")
     public String showUser(HttpServletRequest request, Model model,Address address){
-        log.info("添加收获地址");
+        log.info("添加收货地址");
 
 
 
@@ -60,7 +60,27 @@ public class AddressController {
         address.setIsdefault(0);
         address.setAddressflag(0);
 
-        addressService.insertSelective(address);
+        Integer addressid = addressService.insertSelective(address);
+
+        return addressid.toString();
+    }
+
+    @ResponseBody
+    @RequestMapping("/update")
+    public String update(HttpServletRequest request, Model model,Address address){
+        log.info("修改收货地址");
+
+        addressService.updateByPrimaryKeySelective(address);
+
+        return "1";
+    }
+
+    @ResponseBody
+    @RequestMapping("/delete")
+    public String delete(HttpServletRequest request, Model model,Integer addressid){
+        log.info("删除收货地址");
+
+        addressService.deleteByPrimaryKey(addressid);
 
         return "1";
     }

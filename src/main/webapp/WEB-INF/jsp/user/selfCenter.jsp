@@ -27,7 +27,6 @@
     <script type="text/javascript">
         /*加载省下拉选*/
         $(function () {
-            alert("test");
             var param = {};
             param.name = "test";
             $.ajax({
@@ -104,7 +103,6 @@
     <script type="text/javascript">
         /*加载省下拉选*/
         $(function () {
-            alert("test");
             var param = {};
             param.name = "test";
             $.ajax({
@@ -277,7 +275,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="username" name="username" placeholder="收货人姓名">
+                                        <input type="text" class="form-control" id="usernamec" name="username" placeholder="收货人姓名">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -307,47 +305,51 @@
                     <div class="layui-tab-content">
                         <div class="layui-tab-item layui-show">
                             <div>
-                                <form class="form-horizontal">
-                                    <div class="form-group" id="username">
-                                        <label class="col-md-2 control-label" id="username-label" style="font-weight: lighter;">当前头像</label>
+                                <form class="form-horizontal" action="${path}/user/update" method="post">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" style="font-weight: lighter;">当前头像</label>
                                         <div class="col-md-7">
                                             <img src="../img/selfcenter/head_icon.jpg" width="80px" height="80px" alt="" title="点击修改" id="upload">
                                         </div>
                                     </div>
                                     <!-- 昵称 -->
-                                    <div class="form-group" id="username">
-                                        <label class="col-md-2 control-label" id="username-label" style="font-weight: lighter;">昵称</label>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" style="font-weight: lighter;">用户名</label>
                                         <div class="col-md-7">
-                                            <input type="email" class="form-control" placeholder="请输入昵称">
+                                            <span class="form-control" >${sessionScope.indexuser.loginname}</span>
                                         </div>
                                     </div>
                                     <!-- 真实姓名 -->
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" id="realname-label" style="font-weight: lighter;">真实姓名</label>
                                         <div class="col-md-7">
-                                            <input type="text" class="form-control" placeholder="请输入真实姓名">
+                                            <input type="text" class="form-control" placeholder="请输入真实姓名" name="username" value="${sessionScope.indexuser.username}">
                                         </div>
                                     </div>
                                     <!-- 性别 -->
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" style="font-weight: lighter;font-size: 16px;">性别</label>
-                                        <div class="col-md-2">
+                                        <div class="col-md-7">
                                             <div class="radio" id="sex-radio">
                                                 <label>
-                                                    <input type="radio" name="sex">男
+                                                    <input type="radio" name="usersex" value="0" <c:if test="${sessionScope.indexuser.usersex==0}">checked="checked"</c:if>>保密
                                                 </label>
                                                 &nbsp;&nbsp;
                                                 <label>
-                                                    <input type="radio" name="sex">女
+                                                    <input type="radio" name="usersex" value="1" <c:if test="${sessionScope.indexuser.usersex==1}">checked="checked"</c:if>>男
+                                                </label>
+                                                &nbsp;&nbsp;
+                                                <label>
+                                                    <input type="radio" name="usersex" value="2" <c:if test="${sessionScope.indexuser.usersex==2}">checked="checked"</c:if>>女
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- 邮箱 -->
+                                    <!-- 手机号 -->
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label" id="email-label" style="font-weight: lighter;">邮箱</label>
+                                        <label class="col-md-2 control-label" id="userphone-label" style="font-weight: lighter;">手机号</label>
                                         <div class="col-md-7">
-                                            <input type="email" class="form-control" id="email" placeholder="请输入邮箱">
+                                            <input type="text" class="form-control" name="userphone" placeholder="请输入手机号" value="${sessionScope.indexuser.userphone}" >
                                         </div>
                                     </div>
                                     <!-- 保存按钮 -->
@@ -367,12 +369,12 @@
                                 <table id="base-info">
                                     <tr>
                                         <td>会员名</td>
-                                        <td>wq</td>
+                                        <td>${sessionScope.indexuser.loginname}</td>
                                         <!-- 填会员名 -->
                                     </tr>
                                     <tr>
                                         <td>登录邮箱</td>
-                                        <td>wq@qq.com</td>
+                                        <td>${sessionScope.indexuser.useremail}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -521,16 +523,16 @@
                                     <tbody id="user-receive-address">
                                     <c:forEach var="address" items="${addressList}">
                                     <tr class="active">
-                                        <td id="username1">wq1</td>
-                                        <td id="detail-addr1">地址：${address.province} &nbsp;&nbsp;${address.city} &nbsp;&nbsp;${address.area}
-                                            &nbsp;&nbsp;${address.address}&nbsp;&nbsp;</td>
-                                        <td id="zipcode1">712100</td>
-                                        <td id="phone1">${address.userphone}&nbsp;&nbsp;</td>
+                                        <td id="username${address.addressid}">${address.username}</td>
+                                        <td id="addre${address.addressid}">地址：${address.province} &nbsp;&nbsp;${address.city} &nbsp;&nbsp;${address.area}
+                                            &nbsp;&nbsp;<i id="addressc${address.addressid}">${address.address}</i>&nbsp;&nbsp;</td>
+                                        <td id="postcode${address.addressid}">${address.postcode}</td>
+                                        <td id="userphone${address.addressid}">${address.userphone}&nbsp;&nbsp;</td>
                                         <td>
-                                            <a href="javascript:;" class="md-trigger btn-md" onclick="getData()" data-toggle="modal" data-target="#myModal">
+                                            <a href="javascript:;" class="md-trigger btn-md" onclick="getData(${address.addressid},${address.provinceid},${address.cityid},${address.areaid})" data-toggle="modal" data-target="#myModal">
                                                 修改
                                             </a> &nbsp;| &nbsp;
-                                            <a href="javascript:;" title="" onclick="deleteCurrentRow(this)" class="del">删除</a>
+                                            <a href="javascript:;" title="" onclick="deleteCurrentRow(this,${address.addressid})" class="del">删除</a>
                                         </td>
                                         <td class="first-td">
                                             <button type="button" class="btn btn-primary btn-xs set-default" id="toDefault1" onclick="swapRow()">设为默认

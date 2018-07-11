@@ -43,6 +43,9 @@
       #{createtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.rce.ssm.model.Address">
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="addressid">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into user_address
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="addressid != null">

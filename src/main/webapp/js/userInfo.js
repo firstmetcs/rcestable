@@ -20,60 +20,57 @@ var username;
 var detail_addr;
 var zipcode;
 var phone;
+var addressid;
 
 // 获得当前行的数据
-function getData() {
-    rowIndex = event.target.parentNode.parentNode.rowIndex;
-    username = $("#username" + rowIndex);
-    detail_addr = $("#detail-addr" + rowIndex);
-    zipcode = $("#zipcode" + rowIndex);
-    phone = $("#phone" + rowIndex);
+function getData(addressidGet, proid, citid, areid) {
+    addressid = addressidGet;
+    alert(addressidGet + " " + proid + " " + citid + " " + areid);
+    $("#provinceid").val(proid);
+    getCity();
+    $("#cityid").val(citid);
+    getArea();
+    $("#areaid").val(areid);
+    $("#address").val($("#addressc" + addressidGet).text());
+    $("#userphone").val($("#userphone" + addressidGet).text());
+    $("#usernamec").val($("#username" + addressidGet).text());
+    $("#postcode").val($("#postcode" + addressidGet).text());
 }
-
-var new_username;
-var new_detail_addr;
-var new_zipcode;
-var new_phone;
-
-// 获得模态框中的数据
-function getModalData() {
-    var province = $("#provinceid").find("option:selected").text();
-    var city = $("#cityid").find("option:selected").text();
-    var county = $("#areaid").find("option:selected").text();
-
-    new_detail_addr = province + city + county + $("#address").val();
-    new_username = $("#username").val();
-    new_zipcode = $("#postcode").val();
-    new_phone = $("#userphone").val();
-
-}
-
-// function changeModalData(){
-//     $("#provinceid").find("option:selected").text(username);
-//     $("#cityid").find("option:selected").text();
-// }
 
 // 修改表格中的数据
 function changeData() {
-    if (new_username != "") {
-        username.html(new_username);
-    }
-    if (new_detail_addr != "") {
-        detail_addr.html(new_detail_addr);
-    }
-    if (new_zipcode != "") {
-        zipcode.html(new_zipcode);
-    }
-    if (new_phone != "") {
-        phone.html(new_phone);
-    }
 
+    var param = {};
+
+    param.addressid = addressid;
+    param.provinceid = $("#provinceid").val();
+    param.cityid = $("#cityid").val();
+    param.areaid = $("#areaid").val();
+    param.address = $("#address").val();
+    param.userphone = $("#userphone").val();
+    param.username = $("#usernamec").val();
+    param.postcode = $("#postcode").val();
+    $.ajax({
+        type: "POST",
+        data: param,
+        dataType: "json",
+        async: false,
+        url: "/rcestore/address/update",
+        success: function (data) {
+            if (data == 1) {
+                alert("success");
+                $("#username" + addressid).html($("#usernamec").val());
+                $("#addre" + addressid).html($("#provinceid").find("option:selected").text() + $("#cityid").find("option:selected").text() + $("#areaid").find("option:selected").text() + $("#address").val());
+                $("#postcode" + addressid).html($("#postcode").val());
+                $("#userphone" + addressid).html($("#userphone").val());
+            }
+
+        },
+        error: function () {
+            alert("失败");
+        }
+    });
 }
-
-$("#save-btn-modal").click(function() {
-    getModalData();
-    changeData();
-})
 
 
 function getDefault(i) {
@@ -85,7 +82,6 @@ function swapRow() {
     var row1 = document.getElementById("toDefault1").parentNode.parentNode.rowIndex;
     var id = event.target.id;
     var row2 = document.getElementById(id).parentNode.parentNode.rowIndex;
-    var tr1 = document.getElementById("tr1");
     var tr2 = document.getElementById(id).parentNode.parentNode;
     for (var i = 1; i <= addrCount; i++) {
         if (i == row2) {
@@ -135,14 +131,14 @@ function addCurrentRow() {
         alert(provinceid);
 
         var param = {};
-        param.provinceid=provinceid;
-        param.cityid=cityid;
-        param.areaid=areaid;
-        param.address=address;
-        param.postcode=postcode;
-        param.username=username;
-        param.usertel=usertel;
-        param.userphone=userphone;
+        param.provinceid = provinceid;
+        param.cityid = cityid;
+        param.areaid = areaid;
+        param.address = address;
+        param.postcode = postcode;
+        param.username = username;
+        param.usertel = usertel;
+        param.userphone = userphone;
         $.ajax({
             type: "POST",
             data: param,
@@ -150,7 +146,7 @@ function addCurrentRow() {
             async: false,
             url: "/rcestore/address/add",
             success: function (data) {
-                if(data==1){
+                if (data == 1) {
                     alert("添加成功");
                     getAddr();
                     var index = addrCount + 1;
@@ -159,7 +155,7 @@ function addCurrentRow() {
                     var usernameTd = $("<td></td>").attr("id", "username" + index).append(add_receiver_name);
                     var detailTd = $("<td></td>").attr("id", "detail-addr" + index).append(add_detail_addr);
                     var zipcodeTd = $("<td></td>").attr("id", "zipcode" + index).append(add_zipcode);
-                    var phoneTd = $("<td></td>").attr("id", "phone" + index).append(add_phone);
+                    var phoneTd = $("<td></td>").attr("id", "phone" + index).append(add_mobile);
                     var editTd = $("<a href='javascript:;' class='md-trigger btn-md' onclick='getData()' data-toggle='modal' data-target='#myModal'>修改</a>")
                     // var editTd = $("<a></a>").attr("href", "javascript:;").addClass("md-trigger btn-md").attr("data-modal", "modal-1").attr("onclick", "getData()").append("修改");
                     var seprateLine = " &nbsp;| &nbsp;&nbsp;";
@@ -198,12 +194,31 @@ function addCurrentRow() {
     }
 }
 
-function deleteCurrentRow(obj) {
+function deleteCurrentRow(obj,add) {
     var isDelete = confirm("真的要删除吗？");
     if (isDelete) {
-        var tr = obj.parentNode.parentNode;
-        var tbody = tr.parentNode;
-        tbody.removeChild(tr);
-        changeCount();
+
+        var param = {};
+
+        param.addressid = add;
+        $.ajax({
+            type: "POST",
+            data: param,
+            dataType: "json",
+            async: false,
+            url: "/rcestore/address/delete",
+            success: function (data) {
+                if (data == 1) {
+                    var tr = obj.parentNode.parentNode;
+                    var tbody = tr.parentNode;
+                    tbody.removeChild(tr);
+                    changeCount();
+                }
+
+            },
+            error: function () {
+                alert("失败");
+            }
+        });
     }
 }
