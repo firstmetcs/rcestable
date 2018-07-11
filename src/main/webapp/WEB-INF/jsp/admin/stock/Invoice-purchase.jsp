@@ -95,7 +95,7 @@
             </form>
         </div>
         <xblock>
-            <button class="layui-btn" onclick="x_admin_show('添加进货单','Invoice-purchase-add.html',800,500)"><i class="layui-icon"></i>添加</button>
+            <button class="layui-btn" onclick="location.href='addStockList'"><i class="layui-icon"></i>添加进货单</button>
 
         </xblock>
         <table id="table1" class="layui-table">
@@ -118,22 +118,24 @@
                 </tr>
             </thead>
             <tbody>
+            <c:forEach items="${goodsStockList}" var="goodsStock">
                 <tr>
                     <td>
                         <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
                     </td>
-                    <td>华为</td>
-                    <th>1001</th>
-                    <td>华为P20</td>
-                    <td>4G</td>
-                    <td>64G</td>
-                    <td>5.7英寸</td>
-                    <td>红色</td>
-                    <td>6520</td>
-                    <th>进货时间</th>
-                    <td>1</td>
-                    <td>6520</td>
+                    <td>${goodsStock.goodsType}</td>
+                    <th>${goodsStock.goodsAttrId}</th>
+                    <td>${goodsStock.goodsName}</td>
+                    <td>${goodsStock.goodsRom}</td>
+                    <td>${goodsStock.goodsRam}</td>
+                    <td>${goodsStock.goodsSize}</td>
+                    <td>${goodsStock.goodsColor}</td>
+                    <td>${goodsStock.goodsPrice}</td>
+                    <th>${goodsStock.stockTime}</th>
+                    <td>${goodsStock.stockNum}</td>
+                    <td>${goodsStock.goodsTotalPrice}</td>
                 </tr>
+            </c:forEach>
             </tbody>
         </table>
         <div class="page">

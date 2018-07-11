@@ -15,6 +15,34 @@ public class GoodsStock {
   private String goodsSize;
   private long stockNum;
   private Date stockTime;
+  private String goodsAttrId;
+  private double goodsPrice;
+  private double goodsTotalPrice;
+
+  public double getGoodsTotalPrice() {
+    return goodsTotalPrice;
+  }
+
+  public void setGoodsTotalPrice(double goodsTotalPrice) {
+    this.goodsTotalPrice = goodsTotalPrice;
+  }
+
+
+  public double getGoodsPrice() {
+    return goodsPrice;
+  }
+
+  public void setGoodsPrice(double goodsPrice) {
+    this.goodsPrice = goodsPrice;
+  }
+
+  public String getGoodsAttrId() {
+    return goodsAttrId;
+  }
+
+  public void setGoodsAttrId(String goodsAttrId) {
+    this.goodsAttrId = goodsAttrId;
+  }
 
   public Date getStockTime() {
     return stockTime;

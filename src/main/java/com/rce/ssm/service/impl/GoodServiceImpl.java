@@ -459,21 +459,26 @@ public class GoodServiceImpl implements GoodsService {
         return goodsSettleMapper.settleByGoodsType(date1,date2);
     }
 
-    public List<Map<String,Object>> showGoodsStockNum(){
+    public List<GoodsAttributes>  showGoodsStockNum(){
 
         List<GoodsAttributes> goodsAttributesList=goodsAttrMapper.findAll();
+
+        return  goodsAttributesList;
+    }
+    public  List<Map<String,Object>> showGoodsStockNumWithType(List<GoodsAttributes> goodsAttributesList){
 
         List<Map<String,Object>> goodsAttributesListNew= new ArrayList<Map<String, Object>>();
         for(int i=0;i<goodsAttributesList.size();i++){
             String goodsId=String.valueOf(goodsAttributesList.get(i).getGoodsId());
             String goodsName=goodsMapper.findById(Integer.parseInt(goodsId)).getGoodsName();
+            String goodsType=goodsMapper.findById(Integer.parseInt(goodsId)).getGoodsType();
             Map<String,Object> map=new HashMap<String, Object>();
             map.put("goodsAttributes",goodsAttributesList.get(i));
             map.put("goodsName",goodsName);
+            map.put("goodsType",goodsType);
             goodsAttributesListNew.add(map);
         }
-
-        return  goodsAttributesListNew;
+        return goodsAttributesListNew;
     }
 
     public List<Double> findGoodsPrice(String rom,String ram){

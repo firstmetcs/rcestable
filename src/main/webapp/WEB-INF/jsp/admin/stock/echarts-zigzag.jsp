@@ -64,7 +64,7 @@
             },
             legend: {
                 // title数据
-                data:['荣耀','华为','oppo','vivo','魅族','小米','一加','努比亚']
+                data:['oppo','vivo','一加','努比亚','华为','小米','荣耀','魅族']
             },
             grid: {
                 left: '3%',
@@ -99,27 +99,27 @@
             },
             series: [
                 {
-                    name:'荣耀',
-                    type:'line',
-                    data:["${allSettleList.get(6).get(0).get("sum(settleNum)")}", ${allSettleList.get(5).get(0).get("sum(settleNum)")}, ${allSettleList.get(4).get(0).get("sum(settleNum)")}, ${allSettleList.get(3).get(0).get("sum(settleNum)")}, ${allSettleList.get(2).get(0).get("sum(settleNum)")}, ${allSettleList.get(1).get(0).get("sum(settleNum)")}, ${allSettleList.get(0).get(0).get("sum(settleNum)")}]
-                },
-                {
-                    name:'华为',
-                    type:'line',
-                    data:[${allSettleList.get(6).get(1).get("sum(settleNum)")}, ${allSettleList.get(5).get(1).get("sum(settleNum)")}, ${allSettleList.get(4).get(1).get("sum(settleNum)")}, ${allSettleList.get(3).get(1).get("sum(settleNum)")}, ${allSettleList.get(2).get(1).get("sum(settleNum)")}, ${allSettleList.get(1).get(1).get("sum(settleNum)")}, ${allSettleList.get(0).get(1).get("sum(settleNum)")}]
-                },
-                {
                     name:'oppo',
                     type:'line',
-                    data:[${allSettleList.get(6).get(2).get("sum(settleNum)")}, ${allSettleList.get(5).get(2).get("sum(settleNum)")}, ${allSettleList.get(4).get(2).get("sum(settleNum)")}, ${allSettleList.get(3).get(2).get("sum(settleNum)")}, ${allSettleList.get(2).get(2).get("sum(settleNum)")}, ${allSettleList.get(1).get(2).get("sum(settleNum)")}, ${allSettleList.get(0).get(2).get("sum(settleNum)")}]
+                    data:[${allSettleList.get(6).get(0).get("sum(settleNum)")}, ${allSettleList.get(5).get(0).get("sum(settleNum)")}, ${allSettleList.get(4).get(0).get("sum(settleNum)")}, ${allSettleList.get(3).get(0).get("sum(settleNum)")}, ${allSettleList.get(2).get(0).get("sum(settleNum)")}, ${allSettleList.get(1).get(0).get("sum(settleNum)")}, ${allSettleList.get(0).get(0).get("sum(settleNum)")}]
                 },
                 {
                     name:'vivo',
                     type:'line',
+                    data:[${allSettleList.get(6).get(1).get("sum(settleNum)")}, ${allSettleList.get(5).get(1).get("sum(settleNum)")}, ${allSettleList.get(4).get(1).get("sum(settleNum)")}, ${allSettleList.get(3).get(1).get("sum(settleNum)")}, ${allSettleList.get(2).get(1).get("sum(settleNum)")}, ${allSettleList.get(1).get(1).get("sum(settleNum)")}, ${allSettleList.get(0).get(1).get("sum(settleNum)")}]
+                },
+                {
+                    name:'一加',
+                    type:'line',
+                    data:[${allSettleList.get(6).get(2).get("sum(settleNum)")}, ${allSettleList.get(5).get(2).get("sum(settleNum)")}, ${allSettleList.get(4).get(2).get("sum(settleNum)")}, ${allSettleList.get(3).get(2).get("sum(settleNum)")}, ${allSettleList.get(2).get(2).get("sum(settleNum)")}, ${allSettleList.get(1).get(2).get("sum(settleNum)")}, ${allSettleList.get(0).get(2).get("sum(settleNum)")}]
+                },
+                {
+                    name:'努比亚',
+                    type:'line',
                     data:[${allSettleList.get(6).get(3).get("sum(settleNum)")}, ${allSettleList.get(5).get(3).get("sum(settleNum)")}, ${allSettleList.get(4).get(3).get("sum(settleNum)")}, ${allSettleList.get(3).get(3).get("sum(settleNum)")}, ${allSettleList.get(2).get(3).get("sum(settleNum)")}, ${allSettleList.get(1).get(3).get("sum(settleNum)")}, ${allSettleList.get(0).get(3).get("sum(settleNum)")}]
                 },
                 {
-                    name:'魅族',
+                    name:'华为',
                     type:'line',
                     data:[${allSettleList.get(6).get(4).get("sum(settleNum)")}, ${allSettleList.get(5).get(4).get("sum(settleNum)")}, ${allSettleList.get(4).get(4).get("sum(settleNum)")}, ${allSettleList.get(3).get(4).get("sum(settleNum)")}, ${allSettleList.get(2).get(4).get("sum(settleNum)")}, ${allSettleList.get(1).get(4).get("sum(settleNum)")}, ${allSettleList.get(0).get(4).get("sum(settleNum)")}]
                 },
@@ -129,12 +129,12 @@
                     data:[${allSettleList.get(6).get(5).get("sum(settleNum)")}, ${allSettleList.get(5).get(5).get("sum(settleNum)")}, ${allSettleList.get(4).get(5).get("sum(settleNum)")}, ${allSettleList.get(3).get(5).get("sum(settleNum)")}, ${allSettleList.get(2).get(5).get("sum(settleNum)")}, ${allSettleList.get(1).get(5).get("sum(settleNum)")}, ${allSettleList.get(0).get(5).get("sum(settleNum)")}]
                 },
                 {
-                    name:'一加',
+                    name:'荣耀',
                     type:'line',
                     data:[${allSettleList.get(6).get(6).get("sum(settleNum)")}, ${allSettleList.get(5).get(6).get("sum(settleNum)")}, ${allSettleList.get(4).get(6).get("sum(settleNum)")}, ${allSettleList.get(3).get(6).get("sum(settleNum)")}, ${allSettleList.get(2).get(6).get("sum(settleNum)")}, ${allSettleList.get(1).get(6).get("sum(settleNum)")}, ${allSettleList.get(0).get(6).get("sum(settleNum)")}]
                 },
                 {
-                    name:'努比亚',
+                    name:'魅族',
                     type:'line',
                     data:[${allSettleList.get(6).get(7).get("sum(settleNum)")}, ${allSettleList.get(5).get(7).get("sum(settleNum)")}, ${allSettleList.get(4).get(7).get("sum(settleNum)")}, ${allSettleList.get(3).get(7).get("sum(settleNum)")}, ${allSettleList.get(2).get(7).get("sum(settleNum)")}, ${allSettleList.get(1).get(7).get("sum(settleNum)")}, ${allSettleList.get(0).get(7).get("sum(settleNum)")}]
                 }

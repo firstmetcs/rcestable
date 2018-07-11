@@ -47,6 +47,7 @@
             <if test="goodsColor!=null">goodsColor=#{goodsColor},</if>
             <if test="goodsSize!=null">goodsSize=#{goodsSize},</if>
             <if test="goodsPrice!=null">goodsPrice=#{goodsPrice},</if>
+            <if test="goodsStock!=null">goodsStock=#{goodsStock},</if>
         </trim>
         where  goodsAttrId=#{goodsAttrId}
     </update>
