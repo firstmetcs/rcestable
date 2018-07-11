@@ -1,6 +1,8 @@
 package com.rce.ssm.controller.user;
 
+import com.rce.ssm.model.Address;
 import com.rce.ssm.model.User;
+import com.rce.ssm.service.AddressService;
 import com.rce.ssm.service.UserService;
 import com.rce.ssm.tool.PublicStatic;
 import org.apache.log4j.Logger;
@@ -26,6 +28,8 @@ public class UserController {
     private Logger log = Logger.getLogger(UserController.class);
     @Resource
     private UserService userService;
+    @Resource
+    private AddressService addressService;
 
     @RequestMapping("/showUser")
     public String showUser(HttpServletRequest request, Model model){
@@ -38,7 +42,8 @@ public class UserController {
     @RequestMapping("/index")
     public String index(HttpServletRequest request, Model model){
         log.info("主页");
-
+        List<Address> addressList = addressService.selectByUserId(((User)request.getSession().getAttribute(PublicStatic.USER)).getUserid());
+        model.addAttribute("addressList",addressList);
         return "user/selfCenter";
     }
 

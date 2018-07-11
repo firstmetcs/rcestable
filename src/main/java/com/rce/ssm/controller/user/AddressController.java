@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +27,6 @@ public class AddressController {
     private Logger log = Logger.getLogger(AddressController.class);
     @Resource
     private AddressService addressService;
-    @Resource
-    private CityService cityService;
 
     @RequestMapping("/showAddress")
     public String showUser(HttpServletRequest request, Model model){
@@ -46,9 +45,10 @@ public class AddressController {
         return "showAddress";
     }
 
+    @ResponseBody
     @RequestMapping("/add")
     public String showUser(HttpServletRequest request, Model model,Address address){
-        log.info("查询所有用户信息");
+        log.info("添加收获地址");
 
 
 
@@ -62,6 +62,6 @@ public class AddressController {
 
         addressService.insertSelective(address);
 
-        return "redirect: showAddress";
+        return "1";
     }
 }

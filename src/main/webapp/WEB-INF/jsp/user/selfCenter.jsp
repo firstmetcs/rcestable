@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Firstmetcs
@@ -6,6 +7,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 
@@ -20,42 +23,167 @@
     <link rel="stylesheet" type="text/css" href="/rcestore/css/footframe.css">
     <link rel="stylesheet" type="text/css" href="/rcestore/css/selfcenter.css">
     <link rel="stylesheet" type="text/css" href="/rcestore/css/userInfo.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        /*加载省下拉选*/
+        $(function () {
+            alert("test");
+            var param = {};
+            param.name = "test";
+            $.ajax({
+                type: "POST",
+                data: param,
+                dataType: "json",
+                async: false,
+                url: "/rcestore/city/getProvince",
+                success: function (data) {
+                    var city = data.city;
+                    for (var i = 0; i < city.length; i++) {
+                        $('#provinceidAdd').append("<option value='" + city[i].id + "' >" + city[i].name + "</option>");
+                    }
+                },
+                error: function () {
+                    alert("加载省失败");
+                }
+            });
+        });
+
+        /*加载市下拉选*/
+        function getCityAdd() {
+            var id = $("#provinceidAdd").val();
+            $("#cityidAdd").empty();
+            $("#areaidAdd").empty();
+            var param = {};
+            param.id = id;
+            $.ajax({
+                type: "POST",
+                data: param,
+                dataType: "json",
+                async: false,
+                url: "/rcestore/city/getCity",
+                success: function (data) {
+                    var city = data.city;
+                    $('#cityidAdd').append("<option value='' selected='selected' >" + '请选择' + "</option>");
+                    $('#areaidAdd').append("<option value='' selected='selected' >" + '请选择' + "</option>");
+                    for (var i = 0; i < city.length; i++) {
+                        $('#cityidAdd').append("<option value='" + city[i].id + "' >" + city[i].name + "</option>");
+                    }
+                },
+                error: function () {
+                    alert("加载市失败");
+                }
+            });
+        }
+        ;
+
+        /*加载地区下拉选*/
+        function getAreaAdd() {
+            var id = $("#cityidAdd").val();
+            $("#areaidAdd").empty();
+            var param = {};
+            param.id = id;
+            $.ajax({
+                type: "POST",
+                data: param,
+                dataType: "json",
+                async: false,
+                url: "/rcestore/city/getArea",
+                success: function (data) {
+                    var city = data.city;
+                    $('#areaidAdd').append("<option value='' selected='selected' >" + '请选择' + "</option>");
+                    for (var i = 0; i < city.length; i++) {
+                        $('#areaidAdd').append("<option value='" + city[i].id + "' >" + city[i].name + "</option>");
+                    }
+                },
+                error: function () {
+                    alert("加载区失败");
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        /*加载省下拉选*/
+        $(function () {
+            alert("test");
+            var param = {};
+            param.name = "test";
+            $.ajax({
+                type: "POST",
+                data: param,
+                dataType: "json",
+                async: false,
+                url: "/rcestore/city/getProvince",
+                success: function (data) {
+                    var city = data.city;
+                    for (var i = 0; i < city.length; i++) {
+                        $('#provinceid').append("<option value='" + city[i].id + "' >" + city[i].name + "</option>");
+                    }
+                },
+                error: function () {
+                    alert("加载省失败");
+                }
+            });
+        });
+
+        /*加载市下拉选*/
+        function getCity() {
+            var id = $("#provinceid").val();
+            $("#cityid").empty();
+            $("#areaid").empty();
+            var param = {};
+            param.id = id;
+            $.ajax({
+                type: "POST",
+                data: param,
+                dataType: "json",
+                async: false,
+                url: "/rcestore/city/getCity",
+                success: function (data) {
+                    var city = data.city;
+                    $('#cityid').append("<option value='' selected='selected' >" + '请选择' + "</option>");
+                    $('#areaid').append("<option value='' selected='selected' >" + '请选择' + "</option>");
+                    for (var i = 0; i < city.length; i++) {
+                        $('#cityid').append("<option value='" + city[i].id + "' >" + city[i].name + "</option>");
+                    }
+                },
+                error: function () {
+                    alert("加载市失败");
+                }
+            });
+        }
+        ;
+
+        /*加载地区下拉选*/
+        function getArea() {
+            var id = $("#cityid").val();
+            $("#areaid").empty();
+            var param = {};
+            param.id = id;
+            $.ajax({
+                type: "POST",
+                data: param,
+                dataType: "json",
+                async: false,
+                url: "/rcestore/city/getArea",
+                success: function (data) {
+                    var city = data.city;
+                    $('#areaid').append("<option value='' selected='selected' >" + '请选择' + "</option>");
+                    for (var i = 0; i < city.length; i++) {
+                        $('#areaid').append("<option value='" + city[i].id + "' >" + city[i].name + "</option>");
+                    }
+                },
+                error: function () {
+                    alert("加载区失败");
+                }
+            });
+        }
+    </script>
 </head>
 
 <body>
 <!--头部导航-->
-<div class="layui-top-nav top-nav">
-    <div class="layui-main">
-        <div class="top-nav-nav-left">
-            <ul class="layui-nav">
-                <li class="layui-nav-item layui-this"><a href="">RCE商城</a></li>
-                <li class="layui-nav-item"><a href="">广告合作</a></li>
-                <li class="layui-nav-item"><a href="">开放平台</a></li>
-            </ul>
-        </div>
-        <div class="top-nav-nav-right">
-            <ul class="layui-nav">
-                <li id="index-login" class="layui-nav-item"><a href="../login/login.html">登录</a></li>
-                <li id="index-register" class="layui-nav-item"><a href="../login/register.html">注册</a></li>
-                <li id="index-username" class="layui-nav-item">
-                    <a href="javascript:;"><img src="http://t.cn/RCzsdCq" class="layui-nav-img">koala1280</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="" style="text-decoration: none;margin-bottom: 10px; font-size: 16px; margin-top: 10px;">个人中心</a></dd>
-                        <dd><a href="" style="text-decoration: none;margin-bottom: 10px; font-size: 16px;">退出登录</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item"><a href="">消息通知<span class="layui-badge">9</span></a></li>
-                <li id="index-myBookList" class="layui-nav-item"><a href="">我的订单</a></li>
-                <li class="layui-nav-item">
-                    <a href="">购物车</a>
-                    <dl class="layui-nav-child usercart">
-                        <dd><a href="">购物车为空...</a></dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+
+<%@ include file="/WEB-INF/inc/top.jsp"%>
 <div class="layui-top-nav logo-top-nav">
     <div class="layui-main">
         <a class="logo" href="../index.html"><img src="../img/logo.png"></a>
@@ -314,18 +442,18 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" style="font-weight: lighter;">详细地址</label>
                                             <div class="col-sm-2">
-                                                <select class="form-control" id="provinceidAdd" name="provinceidAdd" onchange="getCity()">
-                                                    <option>选择您所在的省</option>
+                                                <select class="form-control" id="provinceidAdd" name="provinceidAdd" onchange="getCityAdd()">
+                                                    <option>请选择</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-2">
-                                                <select class="form-control" id="cityidAdd" name="cityidAdd" onchange="getArea()">
-                                                    <option>选择您所在的市</option>
+                                                <select class="form-control" id="cityidAdd" name="cityidAdd" onchange="getAreaAdd()">
+                                                    <option>请选择</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-2">
                                                 <select class="form-control" id="areaidAdd" name="areaidAdd">
-                                                    <option>选择您所在的地区</option>
+                                                    <option>请选择</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-4">
@@ -378,6 +506,7 @@
                                     <span>5</span>条地址，还能保存
                                     <span id="leftover">5</span>条地址</p>
                                 <br>
+                                <c:if test="${!empty addressList}">
                                 <table class="table table-striped table-hover" id="receive-addr" style="" bgcolor="#FFFFFF">
                                     <thead>
                                     <tr>
@@ -390,11 +519,13 @@
                                     </tr>
                                     </thead>
                                     <tbody id="user-receive-address">
-                                    <tr class="active" id="tr1">
+                                    <c:forEach var="address" items="${addressList}">
+                                    <tr class="active">
                                         <td id="username1">wq1</td>
-                                        <td id="detail-addr1">陕西省咸阳市杨凌区西北农林科技大学北校区</td>
+                                        <td id="detail-addr1">地址：${address.province} &nbsp;&nbsp;${address.city} &nbsp;&nbsp;${address.area}
+                                            &nbsp;&nbsp;${address.address}&nbsp;&nbsp;</td>
                                         <td id="zipcode1">712100</td>
-                                        <td id="phone1">18821673265</td>
+                                        <td id="phone1">${address.userphone}&nbsp;&nbsp;</td>
                                         <td>
                                             <a href="javascript:;" class="md-trigger btn-md" onclick="getData()" data-toggle="modal" data-target="#myModal">
                                                 修改
@@ -406,65 +537,10 @@
                                             </button>
                                         </td>
                                     </tr>
-                                    <tr class="active" id="tr2">
-                                        <td id="username2">wq2</td>
-                                        <td id="detail-addr2">陕西省咸阳市杨凌区西北农林科技大学北校区</td>
-                                        <td id="zipcode2">712100</td>
-                                        <td id="phone2">18821673265</td>
-                                        <td>
-                                            <a href="javascript:;" class="md-trigger btn-md" onclick="getData()" data-toggle="modal" data-target="#myModal">
-                                                修改
-                                            </a> &nbsp;| &nbsp;
-                                            <a href="javascript:;" title="" onclick="deleteCurrentRow(this)">删除</a></td>
-                                        <td class="last-td">
-                                            <button type="button" class="btn btn-primary btn-xs set-default" id="toDefault2" onclick="swapRow()">设为默认</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="active" id="tr3">
-                                        <td id="username3">wq3</td>
-                                        <td id="detail-addr3">陕西省咸阳市杨凌区西北农林科技大学北校区</td>
-                                        <td id="zipcode3">712100</td>
-                                        <td id="phone3">18821673265</td>
-                                        <td>
-                                            <a href="javascript:;" class="md-trigger btn-md" onclick="getData()" data-toggle="modal" data-target="#myModal">
-                                                修改
-                                            </a> &nbsp;| &nbsp;
-                                            <a href="javascript:;" title="" onclick="deleteCurrentRow(this)">删除</a></td>
-                                        <td class="last-td">
-                                            <button type="button" class="btn btn-primary btn-xs set-default" id="toDefault3" onclick="swapRow()">设为默认</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="active" id="tr4">
-                                        <td id="username4">wq4</td>
-                                        <td id="detail-addr4">陕西省咸阳市杨凌区西北农林科技大学北校区</td>
-                                        <td id="zipcode4">712100</td>
-                                        <td id="phone4">18821673265</td>
-                                        <td>
-                                            <a href="javascript:;" class="md-trigger btn-md" onclick="getData()" data-toggle="modal" data-target="#myModal">
-                                                修改
-                                            </a> &nbsp;| &nbsp;
-                                            <a href="javascript:;" title="" onclick="deleteCurrentRow(this)">删除</a></td>
-                                        <td class="last-td">
-                                            <button type="button" class="btn btn-primary btn-xs set-default" id="toDefault4" onclick="swapRow()">设为默认</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="active" id="tr5">
-                                        <td id="username5">wq5</td>
-                                        <td id="detail-addr5">陕西省咸阳市杨凌区西北农林科技大学北校区</td>
-                                        <td id="zipcode5">712100</td>
-                                        <td id="phone5">18821673265</td>
-                                        <td>
-                                            <a href="javascript:;" class="md-trigger btn-md" onclick="getData()" data-toggle="modal" data-target="#myModal">
-                                                修改
-                                            </a> &nbsp;| &nbsp;
-                                            <a href="javascript:;" title="" onclick="deleteCurrentRow(this)">删除</a>
-                                        </td>
-                                        <td class="last-td">
-                                            <button type="button" class="btn btn-primary btn-xs set-default" id="toDefault5" onclick="swapRow()">设为默认</button>
-                                        </td>
-                                    </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
+                                </c:if>
                             </div>
                         </div>
                     </div>
@@ -588,7 +664,6 @@
     <br>
     <br>
 </div>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="/rcestore/layui/layui.js"></script>
 <script type="text/javascript" src="/rcestore/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/rcestore/js/global.js"></script>

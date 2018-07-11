@@ -17,7 +17,7 @@
 Cookieid:${sessionScope.indexuser.getCookieid()}
 <a href="/rcestore/user/logout">退出</a>
 <a href="/rcestore/index.jsp">主页</a>
-<form action="${path}/user/update.do" method="post" >
+<form action="${path}/user/update" method="post" >
     <table cellspacing="0" cellpadding="0" id="profilelist">
         <tbody>
         <tr>
