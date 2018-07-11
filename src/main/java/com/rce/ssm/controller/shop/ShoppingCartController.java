@@ -38,7 +38,7 @@ public class ShoppingCartController {
         log.info("查询购物车信息");
 //        User usersession = (User)request.getSession().getAttribute(PublicStatic.USER);
 
-        return "sc";
+        return "user/shoppingc";
     }
 
     @ResponseBody

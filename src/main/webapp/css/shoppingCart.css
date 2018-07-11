@@ -1,0 +1,81 @@
+body{
+	min-width: 1300px;
+}
+
+.table-width{
+	width: 100%;
+	margin-top: 20px;
+}
+
+.all-select-th form{
+	text-align: left;
+}
+
+.table-width tr th{
+	text-align: center;
+}
+
+.table-width tr td{
+	text-align: center;
+}
+
+.shopCart{
+	width: 70%;
+	position: relative;
+	left: 15%;
+}
+
+.shopCart-checkbox{
+	float: left;
+	width: 20px;
+    height: 80px;
+    display: box;
+    box-pack:center;
+    box-orient:vertical;
+    display: -webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-orient:vertical;
+}
+
+.shopCart-thumbnail{
+	margin-left: 30px;
+}
+
+.width35px{
+	width: 35px;
+}
+
+.table-width tr td img{
+	width: 80px;
+	height: 80px;
+}
+
+.clearing-div{
+	padding-left: 18px;
+}
+
+.del-sel{
+	padding-top: 20px;
+	float: left;
+}
+
+.clear-float{
+	clear: both;
+}
+
+.clearing{
+	padding-left: 820px;
+	margin-top: 20px;
+	width: 400px;
+}
+
+.shopCart-totalPrice{
+	float: left;
+	margin-top: 3px;
+	margin-right: 10px;
+	font-size: 10px;
+}
+
+.clearing-btn{
+	padding-right: 10px;
+}
