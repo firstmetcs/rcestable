@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
+<%--商品详情--%>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -7,11 +8,11 @@
 	<title>商品信息</title>
 	
 	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="/rcestore/layui/css/layui.css" media="all">
-	<link rel="stylesheet" type="text/css" href="/rcestore/css/detail.css">
-	<link rel="stylesheet" href="/rcestore/css/commodityInfo.css">
-	<link rel="stylesheet" type="text/css" href="/rcestore/css/placeTop.css">
-	<link rel="stylesheet" type="text/css" href="/rcestore/css/recommend.css">
+	<link rel="stylesheet" href="${path}/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="${path}/css/detail.css">
+	<link rel="stylesheet" href="${path}/css/commodityInfo.css">
+	<link rel="stylesheet" type="text/css" href="${path}/css/placeTop.css">
+	<link rel="stylesheet" type="text/css" href="${path}/css/recommend.css">
 </head>
 <body>
 	<div class="OnlineService_Bg">
@@ -283,7 +284,7 @@
 						<span class="playGame">视野更广，先发制胜</span><br><br>
 						<span style="font-size: 15px; color: #727171;">比 16:9 的手机显示区域更多，提前发现敌人位置，助你一击制胜。</span><br>
 						<div class="marginTop50px width100 floatLeft">
-							<img src="/rcestore/img/goods/小米8/index_game_list1.jpg" alt="" width="60%" style="margin-left: 5%;">
+							<img src="${path}/img/goods/小米8/index_game_list1.jpg" alt="" width="60%" style="margin-left: 5%;">
 						</div>
 						<div class="marginTop50px width100 floatLeft">
 							<span class="screen-ratio">16:9 屏幕比例 5.5" </span>
@@ -343,7 +344,7 @@
 					</div>
 					<div class="imgLayout">
 						<span id="span27">附送 TPU 极简保护壳</span>
-						<img src="/rcestore/img/goods/小米8/index_extend.jpg" alt="" width="100%">
+						<img src="${path}/img/goods/小米8/index_extend.jpg" alt="" width="100%">
 					</div>
 			  	</div>
 				<div class="layui-tab-item" style="width: 80%;">
