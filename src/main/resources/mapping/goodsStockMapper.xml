@@ -12,11 +12,14 @@
         <result column="goodsSize" property="goodsSize"/>
         <result column="stockNum" property="stockNum"/>
         <result column="stockTime" property="stockTime"/>
+        <result column="goodsAttrId" property="goodsAttrId"/>
+        <result column="goodsPrice" property="goodsPrice"/>
+        <result column="goodsTotalPrice" property="goodsTotalPrice"/>
     </resultMap>
 
     <insert id="addGoodsStock" parameterType="com.rce.ssm.model.goods.GoodsStock">
 
-       insert  into goods_stock (goodsType,goodsName,goodsRom,goodsRam,goodsColor,goodsSize,stockNum,stockTime) values (#{goodsType},#{goodsName},#{goodsRom},#{goodsRam},#{goodsColor},#{goodsSize},#{stockNum},#{stockTime})
+       insert  into goods_stock (goodsType,goodsName,goodsRom,goodsRam,goodsColor,goodsSize,stockNum,stockTime,goodsAttrId,goodsPrice,goodsTotalPrice) values (#{goodsType},#{goodsName},#{goodsRom},#{goodsRam},#{goodsColor},#{goodsSize},#{stockNum},#{stockTime},#{goodsAttrId},#{goodsPrice},#{goodsTotalPrice})
 
     </insert>
 

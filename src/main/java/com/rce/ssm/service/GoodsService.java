@@ -49,7 +49,8 @@ public interface GoodsService {
     public void addGoodsStock(GoodsStock goodsStock);
     public List<GoodsStock>  showGoodsStock();
    public List<Map<String,Object>> showSettle(Date date1, Date date2);
-    public List<Map<String,Object>> showGoodsStockNum();
+    public List<GoodsAttributes> showGoodsStockNum();
  public  List<List<Map<String, Object>>>  selectGoodsByStep();
  public List<Double> findGoodsPrice(String rom,String ram);
+ public  List<Map<String,Object>> showGoodsStockNumWithType(List<GoodsAttributes> goodsAttributesList);
 }

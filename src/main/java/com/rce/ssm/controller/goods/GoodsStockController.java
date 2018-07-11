@@ -1,11 +1,15 @@
 package com.rce.ssm.controller.goods;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.rce.ssm.model.goods.GoodsAttributes;
 import com.rce.ssm.model.goods.GoodsStock;
 import com.rce.ssm.service.GoodsService;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,22 +35,32 @@ public class GoodsStockController {
     @Resource
     GoodsService goodsService;
 
-    @RequestMapping("/saveGoodsStock")
-    public void addGoodsStock(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+    @RequestMapping("/addGoodsStock")
+    @ResponseBody
+    public String addGoodsStock(HttpServletRequest req )  {
 
         GoodsStock goodsStock = new GoodsStock();
 
         goodsStock.setGoodsType(req.getParameter("goodsType"));
         goodsStock.setGoodsName(req.getParameter("goodsName"));
-        goodsStock.setGoodsRom(req.getParameter("goodsRom"));
-        goodsStock.setGoodsRam(req.getParameter("goodsRam"));
-        goodsStock.setGoodsColor(req.getParameter("goodsColor"));
-        goodsStock.setGoodsSize(req.getParameter("goodsSize"));
-        goodsStock.setStockNum(Integer.parseInt(req.getParameter("goodsNum")));
 
+        GoodsAttributes goodsAttributes=goodsService.findGoodsAttrByAttrId(Integer.parseInt(req.getParameter("goodsAttrId")));
+
+        goodsStock.setStockNum(Integer.parseInt(req.getParameter("addNum")));
+        goodsStock.setGoodsSize(goodsAttributes.getGoodsSize());
+        goodsStock.setGoodsColor(goodsAttributes.getGoodsColor());
+        goodsStock.setGoodsRam(goodsAttributes.getGoodsRam());
+        goodsStock.setGoodsRom(goodsAttributes.getGoodsRom());
+        goodsStock.setGoodsPrice(goodsAttributes.getGoodsPrice());
+        goodsStock.setGoodsAttrId(req.getParameter("goodsAttrId"));
+        double totalPrice=Integer.parseInt(req.getParameter("addNum"))*goodsAttributes.getGoodsPrice();
+        goodsStock.setGoodsTotalPrice(totalPrice);
         goodsService.addGoodsStock(goodsStock);
-        req.getRequestDispatcher("showGoodsStock").forward(req, res);
 
+        goodsAttributes.setGoodsStock(Integer.parseInt(req.getParameter("goodsNum")));
+        goodsService.updateGoodsAttr(goodsAttributes);
+
+        return "添加成功";
     }
 
     @RequestMapping("/showGoodsStock")
@@ -55,12 +69,7 @@ public class GoodsStockController {
 
         ModelMap model = new ModelMap();
         model.addAttribute("goodsStockList", goodsStockList);
-        return new ModelAndView("admin/stock/goodsStock", model);
-    }
-
-    @RequestMapping("/addGoodsStock")
-    public String addGoodsStock() {
-        return "admin/stock/addGoodsStock";
+        return new ModelAndView("admin/stock/Invoice-purchase", model);
     }
 
     @RequestMapping("/showSettleByType")
@@ -75,13 +84,25 @@ public class GoodsStockController {
 
         for(int i=1;i<8;i++) {
             cal.add(Calendar.WEDNESDAY, -1);
+           // System.out.println(df.format(cal.getTime()));
             dateList[i] = df.parse(df.format(cal.getTime()));
+        }
+        for(int i=0;i<dateList.length;i++){
+            System.out.println(dateList[i]);
         }
         List< List<Map<String, Object>>> allSettleList=new ArrayList<List<Map<String, Object>>>();
         for(int i=0;i<7;i++){
-            List<Map<String, Object>> settleList = goodsService.showSettle(dateList[i], dateList[i+1]);
+            List<Map<String, Object>> settleList = goodsService.showSettle(dateList[i+1], dateList[i]);
+          //  System.out.println(settleList);
             allSettleList.add(settleList);
         }
+       /* for(int i=0;i<allSettleList.size();i++){
+            for(int j=0;j<allSettleList.get(i).size();j++){
+                System.out.println(allSettleList.get(i).get(j).get("goodsType"));
+                System.out.println(allSettleList.get(i).get(j).get("sum(settleNum)"));
+            }
+            System.out.println("-------------------时间分割-----------------------------");
+        }*/
 
         ModelMap model = new ModelMap();
         model.addAttribute("allSettleList", allSettleList);
@@ -90,13 +111,17 @@ public class GoodsStockController {
     }
 
     @RequestMapping("/showGoodsStockNum")
-    public ModelAndView shoewGoodsStock() {
+    public ModelAndView shoewGoodsStock(@RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn) {
+        PageHelper.startPage(pn,5);
+        List<GoodsAttributes> goodsAttrListF = goodsService.showGoodsStockNum();
+        PageInfo pageInfo = new PageInfo(goodsAttrListF,5);
 
-        List<Map<String, Object>> goodsAttrList = goodsService.showGoodsStockNum();
+        List<Map<String,Object>> goodsAttrList=goodsService.showGoodsStockNumWithType(goodsAttrListF);
         ModelMap model = new ModelMap();
         model.addAttribute("goodsAttrList", goodsAttrList);
+        model.addAttribute("pageInfo",pageInfo);
 
-        return new ModelAndView("admin/stock/showGoodsStockNum", model);
+        return new ModelAndView("admin/stock/Invoice-in-stock", model);
     }
 
     @RequestMapping("/addStockList")

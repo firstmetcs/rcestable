@@ -20,25 +20,27 @@
 </head>
 
 <script>
-    var totaType =1;
+    var totaType = 1;
+
     function addPurchaseList() {
         totaType++;
         $("#totalType").val(totaType);
 
     }
-    function changeNum(obj){
-        var num=$(obj).val();
+
+    function changeNum(obj) {
+        var num = $(obj).val();
         $("#totalNum").val(num);
     }
 
     $(document).ready(function () {
 
-        var date=new Date();
-        var month=date.getMonth()+1;
-        var stockId="JRCE"+date.getFullYear()+month+date.getDay()+date.getHours()+date.getMinutes();
+        var date = new Date();
+        var month = date.getMonth() + 1;
+        var stockId = "JRCE" + date.getFullYear() + month + date.getDay() + date.getHours() + date.getMinutes();
         $("#stockId").val(stockId);
 
-        var stockTime=date.getFullYear()+"-"+month+"-"+date.getDay();
+        var stockTime = date.getFullYear() + "-" + month + "-" + date.getDay();
         $("#stockTime").val(stockTime);
 
         $("#totalType").val(totaType);
@@ -68,7 +70,7 @@
                                 data: {"goodsRom": data3.value, "goodsRam": data4.value},
                                 success: function (data) {
                                     $("#goodsPrice").val(data);
-                                    var totalPrice=$("#goodsPrice").val();
+                                    var totalPrice = $("#goodsPrice").val();
                                     $("#totalAccount").val(totalPrice);
                                 },
                                 error: function (data) {
@@ -89,7 +91,7 @@
                                 success: function (data) {
 
                                     $("#goodsPrice").val(data);
-                                    var totalPrice=$("#goodsPrice").val();
+                                    var totalPrice = $("#goodsPrice").val();
                                     $("#totalAccount").val(totalPrice);
                                 },
                                 error: function (data) {
@@ -114,7 +116,7 @@
             <a href="">进货</a>
             <a><cite>进货单</cite></a>
         </span>
-   <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
        href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i>
     </a>
@@ -128,7 +130,7 @@
                         进货票号：
                     </label>
                     <div class="layui-input-inline">
-                        <input  id="stockId" type="text" placeholder="进货票号" autocomplete="off" class="layui-input">
+                        <input id="stockId" type="text" placeholder="进货票号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-input-inline">
@@ -179,7 +181,7 @@
                         进货时间：
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" class="layui-input" id="stockTime" placeholder="进货时间"  >
+                        <input type="text" class="layui-input" id="stockTime" placeholder="进货时间">
                     </div>
                 </div>
                 <div class="layui-input-inline">
@@ -228,7 +230,7 @@
                 </tr>
                 </thead>
                 <tbody>
-               <tr id="purchaseList">
+                <tr id="purchaseList">
                     <td>
                         <select id="goodsName" lay-filter="goodsName">
                             <option value="">商品名称</option>
@@ -237,7 +239,7 @@
                             <option value="小米6X">小米6X</option>
                         </select>
                     </td>
-                 <td>
+                    <td>
                         <select id="goodsRom" lay-filter="goodsRom">
                             <option value="">运行内存</option>
                             <option value="4G">4G</option>
@@ -279,11 +281,12 @@
                             <option value="玫瑰金">玫瑰金</option>
                         </select>
                     </td>
-                   <td>
-                       <input id="goodsNum" type="text"   onchange="changeNum(this)" placeholder="数量" class="layui-input">
-                   </td>
                     <td>
-                        <input id="goodsPrice" type="text"  placeholder="单价" class="layui-input">
+                        <input id="goodsNum" type="text" onchange="changeNum(this)" placeholder="数量"
+                               class="layui-input">
+                    </td>
+                    <td>
+                        <input id="goodsPrice" type="text" placeholder="单价" class="layui-input">
                     </td>
                     <td class="td-manage">
                         <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
@@ -297,37 +300,16 @@
         <div class="layui-form-item" align="center">
             <label class="layui-form-label">
             </label>
-            <button class="layui-btn" lay-filter="add" lay-submit="" href="">
-                生成进货单
-            </button>
         </div>
     </form>
+    <center>
+    <a href="showGoodsStock">
+        <button class="layui-btn">
+            生成进货单
+        </button>
+    </a>
+    </center>
 </div>
-<script>
-    /*删除*/
-    layui.use('laydate', function () {
-        var laydate = layui.laydate;
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#start' //指定元素
-        });
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#end' //指定元素
-        });
-    });
-
-    function member_del(obj, id) {
-        layer.confirm('确认要删除吗？', function (index) {
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            totaType--;
-            $("#totalType").val(totaType);
-            layer.msg('已删除!', {icon: 1, time: 1000});
-        });
-    }
-</script>
-
 </body>
 
 </html>
