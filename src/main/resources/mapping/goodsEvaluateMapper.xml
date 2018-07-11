@@ -4,7 +4,7 @@
 <mapper namespace="com.rce.ssm.dao.GoodsEvaluateMapper">
     <resultMap type="com.rce.ssm.model.goods.GoodsEvaluate" id="goodsEvaluateMap">
         <result column="goodsEvaluateId" property="goodsEvaluateId"/>
-        <result column="goodId" property="goodId"/>
+        <result column="goodsId" property="goodsId"/>
         <result column="userId" property="userId"/>
         <result column="goodsScore" property="goodsScore"/>
 
@@ -12,11 +12,11 @@
 
 
    <insert id="addGoodsEvaluate" parameterType="com.rce.ssm.model.goods.GoodsEvaluate">
-       insert  into goods_evaluate (goodId,userId,goodsScore) values (#{goodId},#{userId},#{goodsScore})
+       insert  into goods_evaluate (goodsId,userId,goodsScore) values (#{goodsId},#{userId},#{goodsScore})
    </insert>
 
   <select id="getGoodsEvaluate" resultMap="goodsEvaluateMap">
-      select  goodId,userId,goodsScore from goods_evaluate
+      select  goodsId,userId,goodsScore from goods_evaluate
   </select>
 
 

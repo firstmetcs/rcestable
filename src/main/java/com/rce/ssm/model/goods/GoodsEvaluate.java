@@ -5,11 +5,11 @@ public class GoodsEvaluate {
 
   private long goodsEvaluateId;
   private long orderId;
-  private long goodId;
+  private long goodsId;
   private long userId;
-  private long goodsScore;
-  private long serviceScore;
-  private long logisticsScore;
+  private int goodsScore;
+  private int serviceScore;
+  private int logisticsScore;
   private String content;
   private java.sql.Timestamp createTime;
 
@@ -31,13 +31,36 @@ public class GoodsEvaluate {
     this.orderId = orderId;
   }
 
+  public int getGoodsScore() {
+    return goodsScore;
+  }
+
+  public void setGoodsScore(int goodsScore) {
+    this.goodsScore = goodsScore;
+  }
+
+  public int getServiceScore() {
+    return serviceScore;
+  }
+
+  public void setServiceScore(int serviceScore) {
+    this.serviceScore = serviceScore;
+  }
+
+  public int getLogisticsScore() {
+    return logisticsScore;
+  }
+
+  public void setLogisticsScore(int logisticsScore) {
+    this.logisticsScore = logisticsScore;
+  }
 
   public long getGoodId() {
-    return goodId;
+    return goodsId;
   }
 
   public void setGoodId(long goodId) {
-    this.goodId = goodId;
+    this.goodsId = goodId;
   }
 
 
@@ -47,33 +70,6 @@ public class GoodsEvaluate {
 
   public void setUserId(long userId) {
     this.userId = userId;
-  }
-
-
-  public long getGoodsScore() {
-    return goodsScore;
-  }
-
-  public void setGoodsScore(long goodsScore) {
-    this.goodsScore = goodsScore;
-  }
-
-
-  public long getServiceScore() {
-    return serviceScore;
-  }
-
-  public void setServiceScore(long serviceScore) {
-    this.serviceScore = serviceScore;
-  }
-
-
-  public long getLogisticsScore() {
-    return logisticsScore;
-  }
-
-  public void setLogisticsScore(long logisticsScore) {
-    this.logisticsScore = logisticsScore;
   }
 
 

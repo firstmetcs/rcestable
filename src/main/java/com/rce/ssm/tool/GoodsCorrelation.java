@@ -13,22 +13,14 @@ import java.util.HashMap;
  */
 
 public class GoodsCorrelation {
-
         /*
-         *
          *     主函数~
-         *
          */
 	/*public static void main(String[] args) throws IOException {
         _Run();
-
-
 	}*/
-
         /*
-         *
          *     基于物品的实现~
-         *
          */
 
         static int usersum = 20836;     //用户数
@@ -40,10 +32,10 @@ public class GoodsCorrelation {
         static int[][] recommend;  //为每个用户推荐N个物品
         static simi [][]simiItem; //排序后的相似性矩阵
         static double [][]itemsim; //未排序的相似性矩阵
-        static String road = "D:\\Code\\JavaEE\\rcestore\\src\\main\\webapp\\file\\评分.txt" ; //数据路径，格式为用户编号::物品编号::评分
-        static String road2 = "D:\\Code\\JavaEE\\rcestore\\src\\main\\webapp\\file\\物品.txt" ;   //物 品 ID：No
-        static String road3 = "D:\\Code\\JavaEE\\rcestore\\src\\main\\webapp\\file\\推荐.txt";
-        public static String road4 = "D:\\Code\\JavaEE\\rcestore\\src\\main\\webapp\\file\\用户.txt";   //用户 ID：No
+        static String road = "D:\\Code\\rcestable\\src\\main\\webapp\\file\\评分.txt" ; //数据路径，格式为用户编号::物品编号::评分
+        static String road2 = "D:\\Code\\rcestable\\src\\main\\webapp\\file\\物品.txt" ;   //物 品 ID：No
+        static String road3 = "D:\\Code\\rcestable\\src\\main\\webapp\\file\\推荐.txt";
+        public static String road4 = "D:\\Code\\rcestable\\src\\main\\webapp\\file\\用户.txt";   //用户 ID：No
         public static class simi
         {
             double value; //相似值

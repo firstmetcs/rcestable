@@ -17,6 +17,8 @@
  <!--   <select id="getGoodsEvaluate" resultMap="goodsEvaluateMap">
       select  goodId,userId,goodsScore from goods_evaluate
    </select>-->
-
+    <select id="findRecGoods" resultType="String" parameterType="int">
+        select goodsIdStr from goods_recommand where userId=#{userId}
+    </select>
 
 </mapper>

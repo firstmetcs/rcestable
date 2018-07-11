@@ -59,7 +59,7 @@
 
     <select id="findByGoodsId" resultMap="goodsAttrMap" parameterType="int">
          select goodsAttrId,goodsVersion,goodsNetType,goodsRom,goodsRam,goodsSize,goodsColor,
-        goodsPrice,goodsResRatio,goodsStock from goods_attributes where goodsId=#{goodsId}
+        goodsPrice,goodsResRatio,goodsStock,goodsImage from goods_attributes where goodsId=#{goodsId}
     </select>
 
    <select id="findColorCount" resultType="Map" parameterType="int" >

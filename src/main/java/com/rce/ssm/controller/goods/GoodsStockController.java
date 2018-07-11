@@ -72,6 +72,11 @@ public class GoodsStockController {
         return new ModelAndView("admin/stock/Invoice-purchase", model);
     }
 
+    @RequestMapping("showSettleByProfit")
+    public String showSettle2(){
+        return "admin/stock/echarts-cylinder";
+    }
+
     @RequestMapping("/showSettleByType")
     public ModelAndView showSettle(HttpServletRequest req) throws ParseException {
 

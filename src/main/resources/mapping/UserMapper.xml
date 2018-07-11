@@ -250,4 +250,8 @@
         </if> -->
     </select>
 
+    <select id="findUserId" resultType="int">
+        select UserId from users;
+    </select>
+
 </mapper>

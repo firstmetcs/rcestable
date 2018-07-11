@@ -43,6 +43,9 @@ public class GoodServiceImpl implements GoodsService {
     @Autowired
     GoodsSettleMapper goodsSettleMapper;
 
+    @Autowired
+    UserDao userDao;
+
     public Goods findById(int goodsId) {
 
         return goodsMapper.findById(goodsId);
@@ -330,11 +333,11 @@ public class GoodServiceImpl implements GoodsService {
 
         return goodsList;
     }
-/*
-    public void getGoodsRec() throws IOException {
-        List<Integer> userIdList = userMapper.getUserId();
 
-        FileWriter ufw = new FileWriter("D:\\Code\\JavaEE\\rcestore\\src\\main\\webapp\\file\\用户.txt");
+    public void getGoodsRec() throws IOException {
+        List<Integer> userIdList = userDao.findUserId();
+
+        FileWriter ufw = new FileWriter("D:\\Code\\rcestable\\src\\main\\webapp\\file\\用户.txt");
         for (int i = 0; i < userIdList.size(); i++) {
             int No = i + 1;
             ufw.write(userIdList.get(i) + "::" + No);
@@ -342,7 +345,7 @@ public class GoodServiceImpl implements GoodsService {
         }
         ufw.close();
 
-        FileWriter gfw = new FileWriter("D:\\Code\\JavaEE\\rcestore\\src\\main\\webapp\\file\\物品.txt");
+        FileWriter gfw = new FileWriter("D:\\Code\\rcestable\\src\\main\\webapp\\file\\物品.txt");
 
         List<Integer> goodsIdList = goodsMapper.getGoodsId();
 
@@ -353,7 +356,7 @@ public class GoodServiceImpl implements GoodsService {
         }
         gfw.close();
 
-      *//*  for(int i=0;i<50;i++){
+      /*  for(int i=0;i<50;i++){
             Random num=new Random();
             int num1=num.nextInt(20)+1;
             int num2=num.nextInt(50)+1;
@@ -365,10 +368,10 @@ public class GoodServiceImpl implements GoodsService {
             goodsEvaluate.setGoodsScore(num3);
 
             goodsEvaluateMapper.addGoodsEvaluate(goodsEvaluate);
-        }*//*
+        }*/
 
 
-        FileWriter efw = new FileWriter("D:\\Code\\JavaEE\\rcestore\\src\\main\\webapp\\file\\评分.txt");
+        FileWriter efw = new FileWriter("D:\\Code\\rcestable\\src\\main\\webapp\\file\\评分.txt");
 
         List<GoodsEvaluate> goodsEvaluatesList = goodsEvaluateMapper.getGoodsEvaluate();
 
@@ -380,7 +383,7 @@ public class GoodServiceImpl implements GoodsService {
 
         new GoodsCorrelation()._Run();
 
-        FileReader data_about = new FileReader("D:\\Code\\JavaEE\\rcestore\\src\\main\\webapp\\file\\推荐.txt");
+        FileReader data_about = new FileReader("D:\\Code\\rcestable\\src\\main\\webapp\\file\\推荐.txt");
         BufferedReader read_data_about = new BufferedReader(data_about);
         String s2;        //暂存文件一行记录
         int userId = 1;
@@ -402,9 +405,84 @@ public class GoodServiceImpl implements GoodsService {
 
         }
 
-    }*/
+    }
 
-     public void addGoodsReturn(GoodsReturn goodsReturn){
+    public List<Map<String,Object>> findUserGoodsRec(int userId){
+        String goodsStr=goodsRecMapper.findRecGoods(userId);
+        String[] goodsId=goodsStr.split("#");
+        List<Map<String,Object>> goodsList=new ArrayList<Map<String,Object>>();
+        for(int i=0;i<goodsId.length;i++){
+            Goods goods=goodsMapper.findById(Integer.parseInt(goodsId[i]));
+            List<GoodsAttributes> goodsAttributes=goodsAttrMapper.findByGoodsId(Integer.parseInt(goodsId[i]));
+            String img=goodsAttributes.get(0).getGoodsImage();
+            System.out.println("00000000000000000000000"+img);
+            double price=goodsAttributes.get(0).getGoodsPrice();
+            Map<String,Object> map=new HashMap<String, Object>();
+            map.put("goods",goods);
+            map.put("image","/rcestore/img/goodsAttr/"+img);
+            map.put("price",price);
+            goodsList.add(map);
+        }
+        Map<String,Object> map1=new HashMap<String, Object>();
+        map1.put("goods",goodsMapper.findById(1));
+        map1.put("image", "/rcestore/img/goodsAttr/小米8/白色.jpg");
+        map1.put("price","2699");
+        Map<String,Object> map2=new HashMap<String, Object>();
+        map2.put("goods",goodsMapper.findById(6));
+        map2.put("image","/rcestore/img/goodsAttr/vivoNEX旗舰版/宝石红.jpg");
+        map2.put("price","3898");
+        Map<String,Object> map3=new HashMap<String, Object>();
+        map3.put("goods",goodsMapper.findById(11));
+        map3.put("image"," /rcestore/img/goodsAttr/HUAWEI_P20/樱粉金.jpg");
+        map3.put("price","4988");
+        if(goodsList.size()<3){
+            if(goodsList.size()==2){
+                      goodsList.add(map1);
+            }
+            if(goodsList.size()==1){
+                goodsList.add(map1);
+                goodsList.add(map2);
+            }
+            if(goodsList.size()==0){
+                goodsList.add(map1);
+                goodsList.add(map2);
+                goodsList.add(map3);
+            }
+        }
+         return goodsList;
+    }
+     public List<Map<String,Object>> findGoodsRecWithOutUser(){
+         List<Map<String,Object>> goodsList=new ArrayList<Map<String,Object>>();
+         Map<String,Object> map1=new HashMap<String, Object>();
+         map1.put("goods",goodsMapper.findById(1));
+         map1.put("image", "/rcestore/img/goodsAttr/小米8/白色.jpg");
+         map1.put("price","2699");
+         Map<String,Object> map2=new HashMap<String, Object>();
+         map2.put("goods",goodsMapper.findById(6));
+         map2.put("image","/rcestore/img/goodsAttr/vivoNEX旗舰版/宝石红.jpg");
+         map2.put("price","3898");
+         Map<String,Object> map3=new HashMap<String, Object>();
+         map3.put("goods",goodsMapper.findById(11));
+         map3.put("image"," /rcestore/img/goodsAttr/HUAWEI_P20/樱粉金.jpg");
+         map3.put("price","4988");
+         if(goodsList.size()<3){
+             if(goodsList.size()==2){
+                 goodsList.add(map1);
+             }
+             if(goodsList.size()==1){
+                 goodsList.add(map1);
+                 goodsList.add(map2);
+             }
+             if(goodsList.size()==0){
+                 goodsList.add(map1);
+                 goodsList.add(map2);
+                 goodsList.add(map3);
+             }
+         }
+         return goodsList;
+     }
+
+    public void addGoodsReturn(GoodsReturn goodsReturn){
          goodsReturn.setStatus(0);
 
          goodsReturnMapper.addGoodsReturn(goodsReturn);

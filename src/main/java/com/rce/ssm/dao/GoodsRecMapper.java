@@ -15,4 +15,5 @@ import java.util.List;
 public interface GoodsRecMapper {
     public void addGoodsRec(GoodsRecommand goodsRecommand);
     public void saveList(List<GoodsRecommand> list);
+    public String findRecGoods(int userId);
 }

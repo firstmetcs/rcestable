@@ -30,4 +30,6 @@ public interface UserDao {
     List<User> find(User user);
 
     User findbycode(User user);
+
+    List<Integer> findUserId();
 }

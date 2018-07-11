@@ -2,8 +2,10 @@ package com.rce.ssm.controller.goods;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.rce.ssm.model.User;
 import com.rce.ssm.model.goods.Goods;
 import com.rce.ssm.model.goods.GoodsAttributes;
+import com.rce.ssm.tool.PublicStatic;
 import com.rce.ssm.tool.UpLoadFile;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,19 +39,33 @@ public class GoodsController {
     @Resource
     private GoodsService goodServiceImpl;
     @RequestMapping("/findGood")
-    public ModelAndView getGoodsInfo(HttpServletRequest req) {
+    public ModelAndView getGoodsInfo(HttpServletRequest req) throws IOException{
 
         int goodsId = Integer.parseInt(req.getParameter("goodsId"));
+
+        List<Map<String,Object>> goodsRecList= new ArrayList<Map<String,Object>>();
+        if(req.getSession().getAttribute(PublicStatic.USER)!=null){
+            int userId=((User)req.getSession().getAttribute(PublicStatic.USER)).getUserid();
+            goodsRecList=goodServiceImpl.findUserGoodsRec(userId);
+
+        }else{
+             goodsRecList=goodServiceImpl.findGoodsRecWithOutUser();
+        }
+
         Goods good = goodServiceImpl.findById(goodsId);
         List<Map<String, String>> colorList = goodServiceImpl.findColorCount(goodsId);
         List<Map<String, String>> RoamList = goodServiceImpl.findRoamCount(goodsId);
         List<Map<String, String>> descList = goodServiceImpl.findDescById(goodsId);
+
+        //goodServiceImpl.getGoodsRec();
+
 
         ModelMap model = new ModelMap();
         model.addAttribute("goods", good);
         model.addAttribute("goodsColor", colorList);
         model.addAttribute("goodsRoam", RoamList);
         model.addAttribute("goodsDesc", descList);
+        model.addAttribute("goodsRecList", goodsRecList);
 
         return new ModelAndView("goods/commodityInfo", model);
 
@@ -339,5 +356,4 @@ public class GoodsController {
     }
 
 
-          // goodServiceImpl.getGoodsRec();
 }
