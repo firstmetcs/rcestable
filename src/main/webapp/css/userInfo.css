@@ -46,7 +46,7 @@ body{
 }
 
 #test-image-preview {
-　  border: 1px solid #ccc;
+	border: 1px solid #ccc;
 	width: 100%;
 	height: 200px;
 	background-size: contain;
@@ -55,16 +55,16 @@ body{
 }
 
 .wrapper {  
-	display:inline-block; 
-	background:url(./img/头像.jpg) no-repeat;
+	display:inline-block;
+	/*background:url(./img/头像.jpg) no-repeat;*/
 	height:50px; 
 	width:100px; 
 	overflow:hidden; 
 	cursor:pointer 
 }
 
-.wrapper input{ 
-	background:url(./img/头像.jpg) no-repeat;
+.wrapper input{
+	/*background:url(./img/头像.jpg) no-repeat;*/
 	opacity:0; 
 	height:50px; 
 	width:100px;
