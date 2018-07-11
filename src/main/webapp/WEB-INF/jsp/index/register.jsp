@@ -1,3 +1,4 @@
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
 <%--
   Created by IntelliJ IDEA.
   User: Firstmetcs
@@ -5,7 +6,9 @@
   Time: 16:21
   To change this template use File | Settings | File Templates.
 --%>
+<%--注册页面--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>

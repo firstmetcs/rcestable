@@ -1,3 +1,4 @@
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
 <%--
   Created by IntelliJ IDEA.
   User: LX
@@ -5,8 +6,8 @@
   Time: 16:51
   To change this template use File | Settings | File Templates.
 --%>
+<%--申请结果--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>

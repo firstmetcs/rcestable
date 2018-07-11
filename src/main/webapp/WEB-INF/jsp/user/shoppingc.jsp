@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -10,10 +10,16 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/rcestore/layui/css/layui.css">
-    <script type="text/javascript" src="/rcestore/layui/layui.js"></script>
-    <link rel="stylesheet" type="text/css" href="/rcestore/css/shoppingCart.css">
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" type="text/css" href="${path}/css/shoppingCart.css">
+
+    <%--主页必要css--%>
+    <link rel="stylesheet" type="text/css" href="${path}/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/global.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/headframe.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/footframe.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/index.css">
+
+    <script src="${path}/js/jquery-3.3.1.min.js"></script>
     <script>
         function change(id) {
             var param = {};
@@ -31,7 +37,7 @@
             $("#total").html("¥" + sum.toFixed(2));
             $.ajax({
                 type: "POST",
-                url: "/rcestore/shoppingCart/change",
+                url: "${path}/shoppingCart/change",
                 data: param,
                 dataType: "json",
                 async: true,
@@ -58,6 +64,9 @@
     </script>
 </head>
 <body>
+
+<%@ include file="/WEB-INF/inc/top.jsp"%>
+
 <div class="layui-form shopCart">
     <table class="layui-table table-width" lay-skin="line">
         <colgroup>
@@ -156,7 +165,7 @@
             </div>
             <div class="clearing-btn">
                 <button type="" class="layui-btn" id="settleNow" disabled="disabled">立即结算</button>
-                <a  class="layui-btn" href="/rcestore/order/index">立即结算</a>
+                <a  class="layui-btn" href="${path}/order/index">立即结算</a>
             </div>
         </div>
     </div>
@@ -241,7 +250,7 @@
             $("#total").html("¥" + sum.toFixed(2));
             $.ajax({
                 type: "POST",
-                url: "/rcestore/shoppingCart/change",
+                url: "${path}/shoppingCart/change",
                 data: param,
                 dataType: "json",
                 async: true,
@@ -256,5 +265,9 @@
 
     });
 </script>
+<script type="text/javascript" src="${path}/layui/layui.js"></script>
+<script type="text/javascript" src="${path}/js/global.js"></script>
+<script type="text/javascript" src="${path}/js/headframe.js"></script>
+<script type="text/javascript" src="${path}/js/index.js"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
 <%--
   Created by IntelliJ IDEA.
   User: Firstmetcs
@@ -5,18 +6,20 @@
   Time: 10:48
   To change this template use File | Settings | File Templates.
 --%>
+<%--登陆页面--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>RCE商城登陆</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="/rcestore/layui/css/layui.css">
-	<link rel="stylesheet" type="text/css" href="/rcestore/css/global.css">
-	<link rel="stylesheet" type="text/css" href="/rcestore/css/slide.css">
-	<link rel="stylesheet" type="text/css" href="/rcestore/css/login.css">
+	<link rel="stylesheet" type="text/css" href="${path}/layui/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="${path}/css/global.css">
+	<link rel="stylesheet" type="text/css" href="${path}/css/slide.css">
+	<link rel="stylesheet" type="text/css" href="${path}/css/login.css">
 
-	<script src="/rcestore/js/jquery-3.3.1.min.js"></script>
+	<script src="${path}/js/jquery-3.3.1.min.js"></script>
 
 	<script type="text/javascript">
 
@@ -68,7 +71,7 @@
                 param.pathlocation = '${pathlocation}';
                 $.ajax({
                     type: "POST",
-                    url: "/rcestore/login/login",
+                    url: "${path}/login/login",
                     data: param,
                     dataType: "json",
                     async: false,
@@ -88,7 +91,7 @@
                             $("#namespan").hide();
                             $("#pwdspan").hide();
                         } else if (flag == 66) {
-                            window.location.href = "/rcestore/verify/index?pathlocation=" + pathlocation;
+                            window.location.href = "${path}/verify/index?pathlocation=" + pathlocation;
                         } else if (flag == 0) {
                             $("#namespan").html("请激活邮箱");
                             $("#namespan").show();
@@ -114,8 +117,8 @@
 					&nbsp;
 				</div>
 				<div class="layui-col-md8">
-					<a href="/rcestore/index.html">
-					<img src="/rcestore/img/logo.png">
+					<a href="${path}/index.html">
+					<img src="${path}/img/logo.png">
 					<span class="login-title">走在科技的前沿</span>
 					</a>
 				</div>
@@ -126,7 +129,7 @@
 		</div>
 		<div class="login-body">
 			<a href="">
-				<img class="bg-img" src="/rcestore/img/xiaomimix.jpg">
+				<img class="bg-img" src="${path}/img/xiaomimix.jpg">
 			</a>
 			<div class="login-container">
 				<div class="login-body-title">
@@ -147,18 +150,18 @@
 					<div style="">
 						<br>
 						<span style="float: right;">
-							<a href="/rcestore/register/index">立即注册</a>
+							<a href="${path}/register/index">立即注册</a>
 							|
-							<a href="/rcestore/forget/index">忘记密码</a>
+							<a href="${path}/forget/index">忘记密码</a>
 						</span>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="/rcestore/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="/rcestore/layui/layui.js"></script>
-	<script type="text/javascript" src="/rcestore/js/slide.js"></script>
+	<script src="${path}/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="${path}/layui/layui.js"></script>
+	<script type="text/javascript" src="${path}/js/slide.js"></script>
 	<script type="text/javascript">
 		function test()
 		{
