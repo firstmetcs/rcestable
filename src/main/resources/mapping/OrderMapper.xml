@@ -6,7 +6,7 @@
     <result column="orderNo" jdbcType="VARCHAR" property="orderno" />
     <result column="userId" jdbcType="INTEGER" property="userid" />
     <result column="addressId" jdbcType="INTEGER" property="addressid" />
-    <result column="orderStatus" jdbcType="INTEGER" property="orderstatus" />
+    <result column="orderStatus" jdbcType="INTEGER" property="orderstatus" /><!--0:待支付，1：待收货，2：已完成，3：已取消-->
     <result column="totalMoney" jdbcType="DECIMAL" property="totalmoney" />
     <result column="deliverMoney" jdbcType="DECIMAL" property="delivermoney" />
     <result column="payType" jdbcType="INTEGER" property="paytype" />
