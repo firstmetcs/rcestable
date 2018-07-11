@@ -18,9 +18,27 @@ body{
 	font-size: 18px;
 }
 
+#disabledInput{
+	border-style: none;
+	border:0; 
+	outline: none;
+	border-color: #ffffff;
+	background-color: #FFFFFF;
+}
+
+.set-default{
+	background-color: #008b8b;
+}
+
+#disabledInput:focus{
+	outline: none;
+	box-shadow: none;
+    border-color: #ffffff;
+}
+
 #mid{
 	width: 1200px;
-	height: 1000px;
+	height: 1100px;
 	left: 10%;
 	margin:0 auto;
 	padding: 20px;
@@ -134,7 +152,9 @@ p{
 table tr td a{
 	color: #b0b0b0;
 }
-.btn-xs{
-	background-color: #008B8B;
-	 border-color: #008B8B;
+
+.save-addr-btn{
+	background-color: #008B8B; 
+	border-color: #008B8B;
+	color: white;
 }

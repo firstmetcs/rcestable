@@ -39,7 +39,7 @@ public class UserController {
     public String index(HttpServletRequest request, Model model){
         log.info("主页");
 
-        return "userinfo";
+        return "user/selfCenter";
     }
 
     //退出

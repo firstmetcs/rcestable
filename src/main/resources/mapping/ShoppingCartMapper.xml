@@ -110,13 +110,13 @@
     t3.goodsPrice as goodsprice, t3.goodsStock as goodsstock, (t1.goodsCount*t3.goodsPrice) as termprice
     from shopping_cart t1
     left join goods t2 on t1.goodsId=t2.goodsId
-    left join goods_attribute t3 on t1.goodsAttrId=t3.goodsAttrId
+    left join goods_attributes t3 on t1.goodsAttrId=t3.goodsAttrId
     where t1.userId = #{userid,jdbcType=INTEGER}
   </select>
   <select id="getTotalPrice" parameterType="java.lang.Integer" resultType="java.math.BigDecimal">
     select sum(t1.goodsCount*t2.goodsPrice)
     from shopping_cart t1
-    left join goods_attribute t2
+    left join goods_attributes t2
     on t1.goodsAttrId=t2.goodsAttrId
     where t1.isCheck = #{1,jdbcType=INTEGER}
     and t1.userId = #{userid,jdbcType=INTEGER}
