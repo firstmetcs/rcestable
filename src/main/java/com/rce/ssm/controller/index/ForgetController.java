@@ -101,6 +101,7 @@ public class ForgetController {
         return flag;
     }
 
+    @ResponseBody
     @RequestMapping("repass")
     public String repass(HttpServletRequest request) {
         User tempuser=userService.getuser(request.getParameter("loginname"));
@@ -134,7 +135,7 @@ public class ForgetController {
             System.out.println(e);
         }
 
-        return "login";
+        return "1";
     }
 
 }

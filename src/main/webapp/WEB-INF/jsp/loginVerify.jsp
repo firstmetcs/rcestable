@@ -1,3 +1,4 @@
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -9,7 +10,10 @@
 <html>
 <head>
     <title>Title</title>
-    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${path}/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/global.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/login.css">
+    <script src="${path}/js/jquery-3.3.1.min.js"></script>
     <script>
         function isverifyCode() {
             var flag = false;
@@ -59,13 +63,39 @@
     </script>
 </head>
 <body>
-<h5>系统检测到您的登陆地点为：${sessionScope.loginaddress}<br>
-    不在常用地点登录，请进行验证</h5>
-<h5>验证码已发送至您的邮箱</h5>
-<input type="text" id="verifyCode" onblur="isverifyCode();">
-<button onclick="">重新发送</button>
-<i id="verifyCodespan"></i><br>
-<button onclick="submit();">提交</button>
+<div class="register-box">
+    <div class="register-container">
+        <img src="${path}/img/logo.png">
+        <h1>RCE 找回密码</h1>
+        <br><br><br>
+        <center>
+            <h5>系统检测到您的登陆地点为：${sessionScope.loginaddress}<br>
+                不在常用地点登录，请进行验证</h5>
+            <h5>验证码已发送至您的邮箱</h5>
+        </center>
+        <br><br><br>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">验证码</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="verifyCode" class="layui-input" onblur="isverifyCode();">
+                </div>
+            </div>
+        </div>
+        <i id="verifyCodespan"></i><br>
+        <br>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <button type="button" class="layui-btn find-password-btn" onclick="submit();">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="${path}/layui/layui.js"></script>
+<script type="text/javascript" src="${path}/js/slide.js"></script>
+
 
 </body>
 </html>

@@ -22,6 +22,18 @@
 	<script src="${path}/js/jquery-3.3.1.min.js"></script>
 
 	<script type="text/javascript">
+		//登陆检测页面
+        function beforeLogin()
+        {
+            $(".content-1").hide();
+            $(".content-2").show(500);
+        }
+        function isError()
+        {
+            $(".content-2").hide();
+            $(".content-1").show(500);
+        }
+
 
         document.onkeydown = function (e) {
             var keycode = document.all ? event.keyCode : e.which;
@@ -66,6 +78,7 @@
                 } else {
                     param.loginname = name;
                 }
+                beforeLogin();
                 param.loginpwd = pwd;
                 param.isremember = $("#isremember").is(':checked');
                 param.pathlocation = '${pathlocation}';
@@ -74,28 +87,32 @@
                     url: "${path}/login/login",
                     data: param,
                     dataType: "json",
-                    async: false,
+                    async: true,
                     success: function (data) {
                         var flag = data.flag;
                         var pathlocation = data.pathlocation;
                         if (flag == 99) {
                             $("#namespan").html("用户名错误");
                             $("#namespan").show();
+                            isError();
                         } else if (flag == 88) {
                             $("#pwdspan").html("密码错误");
                             $("#pwdspan").show();
                             $("#namespan").hide();
+                            isError();
                         } else if (flag == 77) {
                             $("#yanzhengmaspan").html("验证码错误");
                             $("#yanzhengmaspan").show();
                             $("#namespan").hide();
                             $("#pwdspan").hide();
+                            isError();
                         } else if (flag == 66) {
                             window.location.href = "${path}/verify/index?pathlocation=" + pathlocation;
                         } else if (flag == 0) {
                             $("#namespan").html("请激活邮箱");
                             $("#namespan").show();
                             $("#pwdspan").hide();
+                            isError();
                         } else if (flag == 1) {
                             window.location.href = pathlocation;
                         } else {
@@ -135,7 +152,7 @@
 				<div class="login-body-title">
 					<span>账号登录</span>
 				</div>
-				<div class="login-body-content">
+				<div class="login-body-content content-1">
 					<input type="text" name="name" id="name" size="25" maxlength="25" onblur="isusername();" class="layui-input" placeholder="邮箱/RCE ID"/>
 					<br>
 					<input type="password" id="pwd" size="25" maxlength="15" onblur="ispwd();" class="layui-input" placeholder="密码"/>
@@ -156,6 +173,10 @@
 						</span>
 					</div>
 				</div>
+				<div class="login-body-content content-2" style="display: none; ;margin-top: 60px;font-size: 24px; text-align: center;">
+					安全检测中...请稍等...
+				</div>
+
 			</div>
 		</div>
 	</div>

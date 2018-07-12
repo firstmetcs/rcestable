@@ -1,3 +1,4 @@
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
 <%--
   Created by IntelliJ IDEA.
   User: Firstmetcs
@@ -9,7 +10,10 @@
 <html>
 <head>
     <title>forget</title>
-    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${path}/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/global.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/login.css">
+    <script src="${path}/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
         document.onkeydown = function(e) {
             var keycode = document.all ? event.keyCode : e.which;
@@ -67,40 +71,85 @@
 
         function submitzhuc() {
             if (checkemail()) {
-                window.location.href='/rcestore/forget/repass?loginname='+$.trim($("#name").val());
-                alert("已发送重置密码邮件，请查看邮箱！");
+                var param = {};
+                param.loginname = $.trim($("#name").val());
+                $.ajax({
+                    type : "POST",
+                    url : "${path}/forget/repass",
+                    data : param,
+                    dataType : "json",
+                    async : false,
+                    success : function(data) {
+                        findPassword();
+                    }
+                });
             }
         }
 
     </script>
 </head>
 <body>
-<form method="post" id="form" action="">
-    <table>
-        <tbody>
-        <tr>
-            <th><span>*</span><label for="ZODRdi">用户名:</label></th>
-            <td><input type="text" name="loginname" id="name"
-                       class="px" size="25" maxlength="25" onblur="isusername();" /></td>
-            <td class="tipcol" colspan="3"><i id="namespan"></i></td>
-        </tr>
+<div class="register-box">
+    <div class="register-container">
+        <img src="${path}/img/logo.png">
+        <h1>RCE 找回密码</h1>
+        <form class="layui-form form-find-password" action="">
+            <br><br><br>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="name" name="name" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <i id="namespan"></i>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">注册邮箱</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="email" name="email" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <i id="emailspan"></i>
+            <span class="error-hint">*输入正确的邮箱<br><br></span>
+            <br>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <input type="button" class="layui-btn find-password-btn" value="找回密码" onclick="submitzhuc();">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form class="layui-form form-vertify" action="">
+            <br><br><br><br>
+            <h3>我们向您的邮箱<span class="vertify-email">example@firstmetcs.com</span>发送了验证码，请登录邮箱认证</h3>
+            <br><br><br>
+            <a class="layui-btn find-password-btn" href="${path}/login/index" onclick="submitzhuc();">登陆</a>
+            <br>
 
-        <tr>
-            <th><span></span><label for="ZODRdi">邮箱:</label></th>
-            <td><input type="text" name="email" id="email"
-                       class="px" size="25" maxlength="20" /></td>
-            <td class="tipcol" colspan="3"><i id="emailspan"></i></td>
-        </tr>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="${path}/layui/layui.js"></script>
+<script type="text/javascript" src="${path}/js/slide.js"></script>
+<script type="text/javascript">
+    var int;
+    function findPassword()
+    {
+        $(".form-find-password").css("display","none");
+        $(".form-vertify").fadeIn(500);
+        var email = $("#email").val();
+        console.log(email);
+        $(".vertify-email").text(email);
+        int = setInterval("clock()",1000);
+        $(".resentcode").attr("diabled","true");
+        $(".resentcode").css("opacity","0.5");
+    }
 
-        </tbody>
-    </table>
+</script>
 
-
-    <span id="reginfo_a_btn"> <em>&nbsp;</em> <input
-            class="btn" type="button" id="zhucbut" value="重置密码"
-            onclick="submitzhuc();" />
-								</span>
-
-</form>
 </body>
 </html>

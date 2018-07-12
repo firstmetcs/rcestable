@@ -60,9 +60,9 @@ public class AddressController {
         address.setIsdefault(0);
         address.setAddressflag(0);
 
-        Integer addressid = addressService.insertSelective(address);
+        addressService.insertSelective(address);
 
-        return addressid.toString();
+        return address.getAddressid().toString();
     }
 
     @ResponseBody

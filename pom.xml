@@ -228,6 +228,44 @@
       <artifactId>ezmorph</artifactId>
       <version>1.0.6</version>
     </dependency>
+
+    <!--lucene start-->
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-core</artifactId>
+      <version>7.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-queryparser</artifactId>
+      <version>7.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-analyzers-common</artifactId>
+      <version>7.2.0</version>
+    </dependency>
+    <!--结果高亮显示-->
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-highlighter</artifactId>
+      <version>7.2.0</version>
+    </dependency>
+    <!--中文分词-->
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-analyzers-smartcn</artifactId>
+      <version>7.2.0</version>
+    </dependency>
+    <!--lucene end-->
+    <!--quartz-->
+    <!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+      <version>2.2.0</version>
+    </dependency>
+
   </dependencies>
 
   <build>

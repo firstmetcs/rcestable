@@ -6,12 +6,16 @@ import com.github.pagehelper.PageInfo;
 import com.rce.ssm.model.*;
 import com.rce.ssm.model.goods.ExpressDatas;
 import com.rce.ssm.model.goods.GoodsEvaluate;
+import com.rce.ssm.quartz.OrderJob;
+import com.rce.ssm.quartz.QuartzManager;
 import com.rce.ssm.service.*;
 import com.rce.ssm.tool.PublicStatic;
 import com.rce.ssm.tool.Tool;
 import com.rce.ssm.tool.kuaidi100;
 import net.sf.json.JSONArray;
 import org.apache.log4j.Logger;
+import org.quartz.DateBuilder;
+import org.quartz.SchedulerException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -23,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -100,6 +105,16 @@ public class OrderController {
         //删除购物车
 
         shoppingCartService.deleteByUserId(((User) request.getSession().getAttribute(PublicStatic.USER)).getUserid());
+
+        //30分钟自动取消订单
+        try {
+            QuartzManager.addJob(order.getOrderid().toString(),new OrderJob(),30,DateBuilder.IntervalUnit.MINUTE);
+            QuartzManager.seeTime(order.getOrderid().toString());
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         //修改库存
 

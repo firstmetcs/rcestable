@@ -1,3 +1,4 @@
+<%@ include file="/WEB-INF/inc/taglibs.jsp" %>
 <%--
   Created by IntelliJ IDEA.
   User: Firstmetcs
@@ -9,7 +10,10 @@
 <html>
 <head>
     <title>repass</title>
-    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${path}/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/global.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/login.css">
+    <script src="${path}/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
         document.onkeydown=function(e){
             var keycode=document.all?event.keyCode:e.which;
@@ -39,7 +43,7 @@
                 $("#qpwdspan").show();
                 return false;
             }else{
-                $("#qpwdspan").html('<p class="duihao"></p>');
+                $("#qpwdspan").html('ok');
                 $("#qpwdspan").show();
                 return true;
             }
@@ -72,33 +76,55 @@
     </script>
 </head>
 <body>
-<form method="post" id="form" action="${path}/zhuc/add.do">
-    <table>
-        <tbody>
-        <tr>
-            <th><span class="rq">*</span><label for="ZODRdi">用户名:</label></th>
-            <td>${sessionScope.repassuser.loginname}</td>
-            <td class="tipcol" colspan="3">
-                <i id="namespan" class="p_tip"></i>
-            </td>
-        </tr>
-        <tr>
-            <th><span class="rq">*</span><label for="ZODRdi">密码:</label></th>
-            <td><input type="password" id="pwd"  size="25" maxlength="15"  onblur="ispwd();"/></td>
-            <td class="tipcol" colspan="3">
-                <i id="pwdspan" class="p_tip"></i>
-            </td>
-        </tr>
-        <tr>
-            <th><span class="rq">*</span><label for="ZODRdi">确认密码:</label></th>
-            <td><input type="password" name="pwd" id="qpwd"  size="25" maxlength="15" onblur="isqpwd();" /></td>
-            <td class="tipcol" colspan="3">
-                <i id="qpwdspan" class="p_tip"></i>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <span id="reginfo_a_btn"> <em>&nbsp;</em> <input class="btn"  type="button" id="zhucbut" value="重置密码" onclick="submitzhuc();"/> </span>
-</form>
+
+<div class="register-box">
+    <div class="register-container">
+        <img src="${path}/img/logo.png">
+        <h1>RCE 重置密码</h1>
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" size="25" maxlength="15" value="${sessionScope.repassuser.loginname}" disabled/>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">新密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" id="pwd" class="layui-input" size="25" maxlength="15"  onblur="ispwd();"/>
+                    </div>
+                </div>
+            </div>
+            <i id="pwdspan" class="p_tip"></i><br><br>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">确认密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="pwd" id="qpwd"  class="layui-input" size="25" maxlength="15" onblur="isqpwd();" />
+                    </div>
+                </div>
+            </div>
+            <i id="qpwdspan" class="p_tip"></i><br>
+            <br>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <a href="login.html">
+                            <input type="button" class="layui-btn" value="重置密码"  onclick="submitzhuc();">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="${path}/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="${path}/layui/layui.js"></script>
+<script type="text/javascript" src="${path}/js/slide.js"></script>
+
 </body>
 </html>
