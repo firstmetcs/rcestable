@@ -36,7 +36,7 @@
                     <ul>
                         <h3>个人中心</h3>
                         <li><a href="${path}/user/index?userid=${userid}">我的个人中心</a></li>
-                        <li><a href="">消息通知</a></li>
+                        <li><a href="${path}/user/showMessage?userid=${userid}">消息通知</a></li>
                         <li><a href="${path}/user/showCoupon?userid=${userid}">优惠券</a></li>
                     </ul>
                     <ul>
@@ -133,6 +133,40 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div class="logo-nav-recommend" onmouseover="getNavRec(1)" onmouseout="removeNavRec(1)" style="display: none;">
+    <div class="layui-main layui-row">
+        <div class="layui-col-md2">
+            <img src="${path}/img/phone/vivonex.png">
+            <p class="goods-title">vivo Nex</p>
+            <p class="goods-price">3982元起</p>
+        </div>
+        <div class="layui-col-md2">
+            <img src="${path}/img/phone/vivonex.png">
+            <p class="goods-title">vivo Nex</p>
+            <p class="goods-price">3982元起</p>
+        </div>
+        <div class="layui-col-md2">
+            <img src="${path}/img/phone/vivonex.png">
+            <p class="goods-title">vivo Nex</p>
+            <p class="goods-price">3982元起</p>
+        </div>
+        <div class="layui-col-md2">
+            <img src="${path}/img/phone/vivonex.png">
+            <p class="goods-title">vivo Nex</p>
+            <p class="goods-price">3982元起</p>
+        </div>
+        <div class="layui-col-md2">
+            <img src="${path}/img/phone/vivonex.png">
+            <p class="goods-title">vivo Nex</p>
+            <p class="goods-price">3982元起</p>
+        </div>
+        <div class="layui-col-md2">
+            <img src="${path}/img/phone/vivonex.png">
+            <p class="goods-title">vivo Nex</p>
+            <p class="goods-price">3982元起</p>
         </div>
     </div>
 </div>

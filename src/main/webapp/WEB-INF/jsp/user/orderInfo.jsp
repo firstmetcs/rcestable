@@ -425,40 +425,6 @@
         </div>
     </div>
 </div>
-<div class="logo-nav-recommend" onmouseover="getNavRec(1)" onmouseout="removeNavRec(1)" style="display: none;">
-    <div class="layui-main layui-row">
-        <div class="layui-col-md2">
-            <img src="${path}/img/phone/vivonex.png">
-            <p class="goods-title">vivo Nex</p>
-            <p class="goods-price">3982元起</p>
-        </div>
-        <div class="layui-col-md2">
-            <img src="${path}/img/phone/vivonex.png">
-            <p class="goods-title">vivo Nex</p>
-            <p class="goods-price">3982元起</p>
-        </div>
-        <div class="layui-col-md2">
-            <img src="${path}/img/phone/vivonex.png">
-            <p class="goods-title">vivo Nex</p>
-            <p class="goods-price">3982元起</p>
-        </div>
-        <div class="layui-col-md2">
-            <img src="${path}/img/phone/vivonex.png">
-            <p class="goods-title">vivo Nex</p>
-            <p class="goods-price">3982元起</p>
-        </div>
-        <div class="layui-col-md2">
-            <img src="${path}/img/phone/vivonex.png">
-            <p class="goods-title">vivo Nex</p>
-            <p class="goods-price">3982元起</p>
-        </div>
-        <div class="layui-col-md2">
-            <img src="${path}/img/phone/vivonex.png">
-            <p class="goods-title">vivo Nex</p>
-            <p class="goods-price">3982元起</p>
-        </div>
-    </div>
-</div>
 <!--尾部-->
 <%@ include file="/WEB-INF/inc/footer.jsp"%>
 <script type="text/javascript" src="${path}/layui/layui.js"></script>
