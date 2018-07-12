@@ -26,7 +26,7 @@
                 </c:if>
                 <c:if test="${!empty sessionScope.indexuser}">
                     <li id="username" class="layui-nav-item">
-                        <a href="javascript:;"><img src="http://t.cn/RCzsdCq"
+                        <a href="javascript:;"><img src="${path}/img/selfcenter/head_icon.jpg"
                                                     class="layui-nav-img">${sessionScope.indexuser.username}</a>
                         <dl class="layui-nav-child">
                             <dd><a href="${path}/user/index">个人中心</a></dd>

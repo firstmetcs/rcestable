@@ -186,7 +186,7 @@
     <div class="layui-main">
         <br>
         <span class="layui-breadcrumb breadcrumb" lay-separator=">">
-				<a href="${path}/order/OrList?userid=${addressList.get(0).userid}">首页</a>
+				<a href="${path}/order/OrList?userid=${sessionScope.indexuser.userid}">首页</a>
 				<a ><cite>个人中心</cite></a>
 			</span>
         <div class="layui-row">
@@ -194,15 +194,15 @@
                 <div class="left-nav">
                     <ul>
                         <h3>订单中心</h3>
-                        <li><a href="${path}/order/OrList?userid=${addressList.get(0).userid}">我的订单</a></li>
-                        <li><a href="${path}/order/showEvaluate?userid=${addressList.get(0).userid}">评价晒单</a></li>
-                        <li><a href="${path}/order/showInsurance?userid=${addressList.get(0).userid}">意外保</a></li>
+                        <li><a href="${path}/order/OrList?userid=${sessionScope.indexuser.userid}">我的订单</a></li>
+                        <li><a href="${path}/order/showEvaluate?userid=${sessionScope.indexuser.userid}">评价晒单</a></li>
+                        <li><a href="${path}/order/showInsurance?userid=${sessionScope.indexuser.userid}">意外保</a></li>
                     </ul>
                     <ul>
                         <h3>个人中心</h3>
-                        <li><a href="${path}/user/index?userid=${addressList.get(0).userid}" style="color: #008b8b">我的个人中心</a></li>
-                        <li><a href="${path}/user/showMessage?userid=${addressList.get(0).userid}">消息通知</a></li>
-                        <li><a href="${path}/user/showCoupon?userid=${addressList.get(0).userid}">优惠券</a></li>
+                        <li><a href="${path}/user/index?userid=${sessionScope.indexuser.userid}" style="color: #008b8b">我的个人中心</a></li>
+                        <li><a href="${path}/user/showMessage?userid=${sessionScope.indexuser.userid}">消息通知</a></li>
+                        <li><a href="${path}/user/showCoupon?userid=${sessionScope.indexuser.userid}">优惠券</a></li>
                     </ul>
                     <ul>
                         <h3>售后服务</h3>
@@ -284,7 +284,7 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" style="font-weight: lighter;">当前头像</label>
                                         <div class="col-md-7">
-                                            <img src="../img/selfcenter/head_icon.jpg" width="80px" height="80px" alt="" title="点击修改" id="upload">
+                                            <img src="${path}/img/selfcenter/head_icon.jpg" width="80px" height="80px" alt="" title="点击修改" id="upload">
                                         </div>
                                     </div>
                                     <!-- 昵称 -->

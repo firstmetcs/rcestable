@@ -31,7 +31,7 @@ public class UserEmailController {
 
         userService.active(code);
 
-        return "";
+        return "redirect:/login/index";
     }
 
     public static void sendActiveEmail(String code, String email) {
