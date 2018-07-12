@@ -64,7 +64,7 @@ public class OrderController {
         order.setCreattime(Tool.getDate());
         order.setUserid(((User) request.getSession().getAttribute(PublicStatic.USER)).getUserid());
         order.setOrderno(uniNo);
-        order.setOrderstatus(1);
+        order.setOrderstatus(0);
         order.setTotalmoney(BigDecimal.valueOf(Double.valueOf((String) request.getSession().getAttribute("total"))));
         order.setRealtotalmoney(BigDecimal.valueOf(Double.valueOf((String) request.getSession().getAttribute("total")) + 5));
         order.setDelivermoney(BigDecimal.valueOf(5));
