@@ -431,7 +431,7 @@
 <script type="text/javascript" src="${path}/layui/layui.js"></script>
 <script type="text/javascript" src="${path}/js/global.js"></script>
 <script type="text/javascript" src="${path}/js/headframe.js"></script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="${path}/js/jquery-3.3.1.min.js"></script>
 <%--首页必要js--%>
 <script type="text/javascript" src="${path}/js/index.js"></script>
 </body>
