@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Zhangxq on 2016/7/15.
  */
 
-@Service
+@Service("orderService")
 @Transactional(rollbackFor = Exception.class)
 public class OrderServiceImpl implements OrderService {
 

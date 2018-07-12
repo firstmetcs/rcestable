@@ -19,7 +19,7 @@ public class OrderJob implements Job {
         ApplicationContext applicationContext = springContextUtils.getApplicationContextNoWeb();
         springContextUtils.setApplicationContext(applicationContext);
         OrderService orderService = (OrderService) SpringContextUtils.getBean("orderService");
-        orderService.changeOrderStatusTo2(Integer.parseInt(name));
+        orderService.changeOrderStatusTo3(Integer.parseInt(name));
         QuartzManager.seeTime(name);
     }
 

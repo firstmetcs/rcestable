@@ -14,14 +14,14 @@ function defaultAddr(obj) {
 
 function getInfo() {
     // addrFlag+1是radio的value值
-    alert($("input[name='optionsRadios']:checked").val() + " " + sendtimeFlag + " " + invoiceFlag);
+    alert($("input[name='optionsRadios']:checked").val() + " " + sendtimeFlag + " " + invoiceFlag + " " + $("#orderremarks").val() + "!");
 
     var param = {};
     param.addressid = $("input[name='optionsRadios']:checked").val();
     param.delivertype = 1;
     param.paytype = 1;
-    param.deliverytime = 1;
-    // param.orderremarks = $("#orderremarks").val();
+    param.deliverytime = sendtimeFlag;
+    param.orderremarks = $("#orderremarks").val();
 
     $.ajax({
         type: "POST",
