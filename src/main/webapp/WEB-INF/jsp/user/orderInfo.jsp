@@ -21,7 +21,7 @@
     <div class="order-nav">
         <a>您的位置：</a>
         <a href="${path}/user/index?userid=${orderGoods.get(0).orderGoodsList.get(0).userid}">首页 </a><span>></span>
-        <a href="${path}/order/OrList?orderid=${orderGoods.get(0).orderid}">我的订单 </a><span>></span>
+        <a href="${path}/order/OrList?userid=${orderGoods.get(0).orderGoodsList.get(0).userid}">我的订单 </a><span>></span>
         <a href=""><span>已买到的宝贝</span></a>
     </div>
     <div class="order-progressbar">
@@ -32,38 +32,70 @@
                     <div class="order-box-completed"><span>√</span></div>
                     <div class="order-schedule-in-completed"></div>
                 </div>
-                <div class="order-font-schedule-time"><span>${orderGoods.get(0).creattime}</span></div>
             </li>
             <li class="order-div">
                 <div class="order-font-schedule-status"><span>付款</span></div>
-                <div>
-                    <div class="order-box-completed"><span>√</span></div>
-                    <div class="order-schedule-in-completed"></div>
-                </div>
-                <div class="order-font-schedule-time"><span>2018-06-03 11:44:34</span></div>
+                <c:if test="${orderGoods.get(0).orderstatus!=0}">
+                    <c:if test="${orderGoods.get(0).orderstatus!=3}">
+                        <div>
+                            <div class="order-box-completed"><span>√</span></div>
+                            <div class="order-schedule-in-completed"></div>
+                        </div>
+                    </c:if>
+                </c:if>
+                <c:if test="${orderGoods.get(0).orderstatus==0}">
+                    <div>
+                        <div class="order-box-uncompleted"><span>√</span></div>
+                        <div class="order-schedule-in-uncompleted"></div>
+                    </div>
+                </c:if>
+                <c:if test="${orderGoods.get(0).orderstatus==3}">
+                    <div>
+                        <div class="order-box-uncompleted"><span>√</span></div>
+                        <div class="order-schedule-in-uncompleted"></div>
+                    </div>
+                </c:if>
             </li>
             <li class="order-div">
                 <div class="order-font-schedule-status"><span>卖家发货</span></div>
-                <div>
-                    <div class="order-box-completed"><span>√</span></div>
-                    <div class="order-schedule-in-completed"></div>
-                </div>
-                <div class="order-font-schedule-time"><span>2018-06-03 13:13:18</span></div>
+                <c:if test="${expressStatus==1}">
+                    <div>
+                        <div class="order-box-completed"><span>√</span></div>
+                        <div class="order-schedule-in-completed"></div>
+                    </div>
+                </c:if>
+                <c:if test="${expressStatus==0}">
+                    <div>
+                        <div class="order-box-uncompleted"><span>√</span></div>
+                        <div class="order-schedule-in-uncompleted"></div>
+                    </div>
+                </c:if>
             </li>
             <li class="order-div">
                 <div class="order-font-schedule-status"><span>确认收货</span></div>
-                <div>
-                    <div class="order-box-completed"><span>√</span></div>
-                    <div class="order-schedule-in-uncompleted"></div>
-                </div>
-                <div class="order-font-schedule-time"><span>2018-06-04 15:49:54</span></div>
+                <c:if test="${orderGoods.get(0).orderstatus==2}">
+                    <div>
+                        <div class="order-box-completed"><span>√</span></div>
+                        <div class="order-schedule-in-completed"></div>
+                    </div>
+                </c:if>
+                <c:if test="${orderGoods.get(0).orderstatus!=2}">
+                    <div>
+                        <div class="order-box-uncompleted"><span>√</span></div>
+                        <div class="order-schedule-in-uncompleted"></div>
+                    </div>
+                </c:if>
+
             </li>
             <li class="order-div">
                 <div class="order-font-schedule-status"><span>评价</span></div>
-                <div>
-                    <div class="order-box-uncompleted"><span>√</span></div>
-                </div>
-                <div class="order-font-schedule-time"><span></span></div>
+                <c:if test="${orderGoods.get(0).orderstatus==2}">
+                    <c:if test="${orderGoods.get(0).isappraises==1}">
+                        <div>
+                            <div class="order-box-completed"><span>√</span></div>
+                        </div>
+                    </c:if>
+                </c:if>
             </li>
         </ol>
     </div>
@@ -116,25 +148,21 @@
                                 </c:if>
                                 <c:if test="${expressDatas.state==1}">
                                     <dd>
-                                            <%--state	快递单当前的状态 。0：在途中,1：已发货，2：疑难件，3： 已签收 ，4：已退货。--%>
                                         <h3>订单状态：您的订单已发货。。</h3>
                                     </dd>
                                 </c:if>
                                 <c:if test="${expressDatas.state==2}">
                                     <dd>
-                                            <%--state	快递单当前的状态 。0：在途中,1：已发货，2：疑难件，3： 已签收 ，4：已退货。--%>
                                         <h3>订单状态：您的订单因某些原因出现了一些问题</h3>
                                     </dd>
                                 </c:if>
                                 <c:if test="${expressDatas.state==3}">
                                     <dd>
-                                            <%--state	快递单当前的状态 。0：在途中,1：已发货，2：疑难件，3： 已签收 ，4：已退货。--%>
                                         <h3>订单状态：您的订单已签收。。</h3>
                                     </dd>
                                 </c:if>
                                 <c:if test="${expressDatas.state==4}">
                                     <dd>
-                                            <%--state	快递单当前的状态 。0：在途中,1：已发货，2：疑难件，3： 已签收 ，4：已退货。--%>
                                         <h3>订单状态：您的订单已退货。。</h3>
                                     </dd>
                                 </c:if>
@@ -162,7 +190,6 @@
                         <div class="order-firstmain-right-div">
                             <dl>
                                 <dd>
-                                        <%--state	快递单当前的状态 。0：在途中,1：已发货，2：疑难件，3： 已签收 ，4：已退货。--%>
                                     <h3>订单状态：交易成功</h3>
                                 </dd>
 
@@ -272,11 +299,40 @@
                                             <span>x${goodsList.goodsnums}</span>
                                         </div>
                                     </td>
-                                    <td class="order-secondmain-goods"></td>
                                     <td class="order-secondmain-goods">
-                                        <div>
-                                            <span>交易成功</span>
-                                        </div>
+                                        <c:if test="${orderGoods.get(0).orderstatus==2}">
+                                            <div>
+                                                    <%--${path}/afterSale/doAfterSale?goodsAttrId=${goodsList.goodsattrId}&orderId=${orderGoods.get(0).orderid}--%>
+                                                <span><a href="#">申请售后</a></span>
+                                            </div>
+                                        </c:if>
+                                    </td>
+                                    <td class="order-secondmain-goods">
+                                        <c:if test="${expressDatas.state==0}">
+                                            <div>
+                                                <span>已购买</span>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${expressDatas.state==1}">
+                                            <div>
+                                                <span>已发货</span>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${expressDatas.state==2}">
+                                            <div>
+                                                <span>交易失败</span>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${expressDatas.state==3}">
+                                            <div>
+                                                <span>已签收</span>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${expressDatas.state==4}">
+                                            <div>
+                                                <span>已退货</span>
+                                            </div>
+                                        </c:if>
                                     </td>
                                 </tr>
                             </c:forEach>

@@ -8,6 +8,8 @@ public class OrderGoodsList {
 
     private Integer goodsid;
 
+    private Integer goodsattrId;
+
     private String username;
 
     private String goodsimage;
@@ -23,7 +25,6 @@ public class OrderGoodsList {
     private String goodstotaldesc;
 
     private String goodscolor;
-
 
     public Integer getGodorderid() {
         return godorderid;
@@ -109,6 +110,14 @@ public class OrderGoodsList {
 
     public void setGoodscolor(String goodscolor) {
         this.goodscolor = goodscolor;
+    }
+
+    public Integer getGoodsattrId() {
+        return goodsattrId;
+    }
+
+    public void setGoodsattrId(Integer goodsattrId) {
+        this.goodsattrId = goodsattrId;
     }
 
     @Override

@@ -31,6 +31,8 @@ public class OrderList implements Serializable {
 
     private String expresscode;//快递单号
 
+    private Date receivetime;//收货时间
+
     private Date creattime;//创建时间
 
     private List<OrderGoodsList> orderGoodsList;//订单商品关系列表
@@ -111,6 +113,22 @@ public class OrderList implements Serializable {
 
     public void setOrderGoodsList(List<OrderGoodsList> orderGoodsList) {
         this.orderGoodsList = orderGoodsList;
+    }
+
+    public String getInvoiceclient() {
+        return invoiceclient;
+    }
+
+    public void setInvoiceclient(String invoiceclient) {
+        this.invoiceclient = invoiceclient;
+    }
+
+    public Date getReceivetime() {
+        return receivetime;
+    }
+
+    public void setReceivetime(Date receivetime) {
+        this.receivetime = receivetime;
     }
 
     public String getInvoicelient() {
