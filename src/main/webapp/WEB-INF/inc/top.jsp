@@ -49,7 +49,7 @@
                                         <div class="layui-row">
                                             <a href="">
                                                 <div class="layui-col-md2">
-                                                    <img style="width: 100%;" src="${path}img/phone/huaweiP20.png">
+                                                    <img style="width: 100%;" src="${path}/img/phone/huaweiP20.png">
                                                 </div>
                                                 <div class="layui-col-md8">
                                                     <p class="layui-ptop">
