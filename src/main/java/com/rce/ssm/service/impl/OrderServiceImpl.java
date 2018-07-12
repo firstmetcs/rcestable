@@ -2,11 +2,14 @@ package com.rce.ssm.service.impl;
 
 import com.rce.ssm.dao.OrderDao;
 import com.rce.ssm.model.Order;
+import com.rce.ssm.model.OrderList;
+import com.rce.ssm.model.goods.GoodsEvaluate;
 import com.rce.ssm.service.OrderService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Zhangxq on 2016/7/15.
@@ -41,5 +44,29 @@ public class OrderServiceImpl implements OrderService {
 
     public int updateByPrimaryKey(Order record) {
         return orderDao.updateByPrimaryKey(record);
+    }
+
+    public List<OrderList> getOrderList(Integer userid) {
+        return orderDao.queryForOrderList(userid);
+    }
+
+    public List<OrderList> SelectOrderById(Integer orderid) {
+        return orderDao.selectOrderById(orderid);
+    }
+
+    public Integer ChangeEvaluateFlag(Integer orderid) {
+        return orderDao.changeEvaluateFlag(orderid);
+    }
+
+    public Integer InsertGoodsEvaluateList(List<GoodsEvaluate> goodsEvaluates) {
+        return orderDao.insertGoodsEvaluate(goodsEvaluates);
+    }
+
+    public Integer changeOrderStatusTo2(Integer orderid) {
+        return orderDao.changeorderstatusto2(orderid);
+    }
+
+    public Integer changeOrderStatusTo3(Integer orderid) {
+        return orderDao.changeorderstatusto3(orderid);
     }
 }

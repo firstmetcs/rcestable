@@ -1,6 +1,8 @@
 package com.rce.ssm.model.goods;
 
 
+import java.util.Date;
+
 public class GoodsEvaluate {
 
   private long goodsEvaluateId;
@@ -11,7 +13,7 @@ public class GoodsEvaluate {
   private int serviceScore;
   private int logisticsScore;
   private String content;
-  private java.sql.Timestamp createTime;
+  private Date createTime;
 
 
   public long getGoodsEvaluateId() {
@@ -82,11 +84,11 @@ public class GoodsEvaluate {
   }
 
 
-  public java.sql.Timestamp getCreateTime() {
+  public Date getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(java.sql.Timestamp createTime) {
+  public void setCreateTime(Date createTime) {
     this.createTime = createTime;
   }
 

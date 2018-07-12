@@ -28,6 +28,30 @@
     <result column="expressCompany" jdbcType="VARCHAR" property="expresscompany" />
     <result column="expressCode" jdbcType="VARCHAR" property="expresscode" />
   </resultMap>
+  <resultMap id="queryForOrderListMap" type="com.rce.ssm.model.OrderList">
+    <id column="orderId" property="orderid" jdbcType="INTEGER"/>
+    <result column="orderNo" property="orderno" jdbcType="VARCHAR"/>
+    <result column="orderStatus" property="orderstatus" jdbcType="INTEGER"/><!--0:待支付，1：待收货，2：已完成，3：已取消-->
+    <result column="totalMoney" property="totalmoney" jdbcType="DECIMAL"/>
+    <result column="deliverMoney" property="delivermoney" jdbcType="DECIMAL"/>
+    <result column="payType" property="paytype" jdbcType="INTEGER"/>
+    <result column="isDeliver" property="isdeliver" jdbcType="INTEGER"/>
+    <result column="isAppraises" property="isappraises" jdbcType="INTEGER"/><!--0:未评价，1:已评价-->
+    <result column="creatTime" property="creattime" jdbcType="TIMESTAMP"/>
+    <collection property="orderGoodsList" javaType="java.util.List" ofType="com.rce.ssm.model.OrderGoodsList">
+      <id column="godOrderId" property="godorderid" jdbcType="INTEGER"/>
+      <result column="userId" property="userid" jdbcType="INTEGER"/>
+      <result column="goodsId" property="goodsid" jdbcType="INTEGER"/>
+      <result column="userName" property="username" jdbcType="VARCHAR"/>
+      <result column="goodsImage" property="goodsimage" jdbcType="VARCHAR"/>
+      <result column="goodsName" property="goodsname" jdbcType="VARCHAR"/>
+      <result column="goodsVersion" property="goodsversion" jdbcType="VARCHAR"/>
+      <result column="goodsNums" property="goodsnums" jdbcType="INTEGER"/>
+      <result column="goodsPrice" property="goodsprice" jdbcType="DECIMAL"/>
+      <result column="goodsTotalDesc" property="goodstotaldesc" jdbcType="VARCHAR"/>
+      <result column="goodsColor" property="goodscolor" jdbcType="VARCHAR"/>
+    </collection>
+  </resultMap>
   <sql id="Base_Column_List">
     orderId, orderNo, userId, addressId, orderStatus, totalMoney, deliverMoney, payType, 
     isPay, deliverType, deliveryTime, invoiceClient, orderRemarks, isAppraises, creatTime, 
@@ -330,4 +354,58 @@
       expressCode = #{expresscode,jdbcType=VARCHAR}
     where orderId = #{orderid,jdbcType=INTEGER}
   </update>
+  <select id="queryForOrderList" resultMap="queryForOrderListMap" parameterType="java.lang.Integer">-- 通过用户id查询用户订单
+  select t1.orderId,t1.orderNo,t1.orderStatus,t1.totalMoney,t1.deliverMoney,t1.isAppraises,t1.creatTime,
+         t2.godOrderId,t2.goodsAttrId,t2.goodsNums,
+         t3.goodsId,t3.goodsName,t3.goodsTotalDesc,
+         t4.goodsVersion,t4.goodsPrice,t4.goodsColor,t4.goodsPrice,t4.goodsImage,
+         t5.userName,t5.userId
+  from order_table t1
+  left  join  order_goods t2 on t1.orderId = t2.orderId
+  left  join  goods t3 on t2.goodsId = t3.goodsId
+  left  join  goods_attributes t4 on t2.goodsAttrId = t4.goodsAttrId
+  left  join  users t5 on t1.userId = t5.userId
+  where t5.userId=#{userId}
+</select>
+
+  <select id="selectOrderById" parameterType="java.lang.Integer" resultMap="queryForOrderListMap">
+  select t1.orderId,t1.orderNo,t1.orderStatus,t1.totalMoney,t1.deliverMoney,t1.isAppraises,t1.creatTime,
+         t2.godOrderId,t2.goodsAttrId,t2.goodsNums,
+         t3.goodsId,t3.goodsName,t3.goodsTotalDesc,
+         t4.goodsVersion,t4.goodsPrice,t4.goodsColor,t4.goodsPrice,t4.goodsImage,
+         t5.userName,t5.userId
+  from order_table t1
+  left  join  order_goods t2 on t1.orderId = t2.orderId
+  left  join  goods t3 on t2.goodsId = t3.goodsId
+  left  join  goods_attributes t4 on t2.goodsAttrId = t4.goodsAttrId
+  left  join  users t5 on t1.userId = t5.userId
+  where t1.orderId=#{orderId}
+  order by t1.creatTime
+  </select>
+
+  <insert id="insertGoodsEvaluate" parameterType="java.util.List">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into goods_evaluate (orderId, goodsId,
+    userId, goodsScore,serviceScore ,logisticsScore, content, createTime)
+    values
+    <foreach collection="list" item="goodsEvaluate" index="index" separator=",">
+      ( #{goodsEvaluate.orderId}, #{goodsEvaluate.goodsId},#{goodsEvaluate.userId}, #{goodsEvaluate.goodsScore},#{goodsEvaluate.serviceScore},
+      #{goodsEvaluate.logisticsScore}, #{goodsEvaluate.content},#{goodsEvaluate.createTime}
+      )
+    </foreach>
+  </insert>
+  <update id="changeEvaluateFlag" parameterType="java.lang.Integer">
+    update order_table set isAppraises = 1
+    where orderId = #{orderId}
+    </update>
+  <update id="changeorderstatusto2" parameterType="java.lang.Integer">
+        update  order_table set orderStatus = 2
+        where orderId=#{orderId}
+    </update>
+  <update id="changeorderstatusto3" parameterType="java.lang.Integer">
+        update  order_table set orderStatus = 3
+        where orderId=#{orderId}
+    </update>
 </mapper>

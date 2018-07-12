@@ -4,7 +4,7 @@ layui.use('element', function(){
 	var element = layui.element;
 });
 function getNavRec(i) {
-  $(".logo-nav-recommend").css('display','inline-block');
+  $(".logo-nav-recommend").css('display','');
 }
 function removeNavRec(i) {
   $(".logo-nav-recommend").css('display','none');

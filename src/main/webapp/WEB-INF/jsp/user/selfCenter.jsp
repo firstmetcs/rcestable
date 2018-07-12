@@ -193,13 +193,13 @@
                 <div class="left-nav">
                     <ul>
                         <h3>订单中心</h3>
-                        <li><a href="orderlist.html">我的订单</a></li>
-                        <li><a href="commentlist.html">评价晒单</a></li>
-                        <li><a href="insurance.html">意外保</a></li>
+                        <li><a href="${path}/order/OrList?userid=${addressList.get(0).userid}">我的订单</a></li>
+                        <li><a href="${path}/order/showEvaluate?userid=${addressList.get(0).userid}">评价晒单</a></li>
+                        <li><a href="${path}/order/showInsurance?userid=${addressList.get(0).userid}">意外保</a></li>
                     </ul>
                     <ul>
                         <h3>个人中心</h3>
-                        <li><a href="selfcenter.html" style="color: #008b8b">我的个人中心</a></li>
+                        <li><a href="${path}/user/index?userid=${addressList.get(0).userid}" style="color: #008b8b">我的个人中心</a></li>
                         <li><a href="message.html">消息通知</a></li>
                         <li><a href="coupon.html">优惠券</a></li>
                     </ul>
