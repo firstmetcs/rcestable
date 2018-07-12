@@ -94,7 +94,7 @@
     <div class="layui-main">
         <br>
         <span class="layui-breadcrumb breadcrumb" lay-separator=">">
-				<a href="">首页</a>
+				<a href="${path}/user/index?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">首页</a>
 				<a><cite>交易订单</cite></a>
 			</span>
         <div class="layui-row">
@@ -103,18 +103,18 @@
                 <div class="left-nav">
                     <ul>
                         <h3>订单中心</h3>
-                        <li><a href="${path}/order/OrList?userid=${orders.get(0).orderGoodsList.get(0).userid}"
+                        <li><a href="${path}/order/OrList?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}"
                                style="color: #008b8b">我的订单</a></li>
-                        <li><a href="${path}/order/showEvaluate?userid=${orders.get(0).orderGoodsList.get(0).userid}">评价晒单</a>
+                        <li><a href="${path}/order/showEvaluate?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">评价晒单</a>
                         </li>
-                        <li><a href="${path}/order/showInsurance?userid=${orders.get(0).orderGoodsList.get(0).userid}">意外保</a></li>
+                        <li><a href="${path}/order/showInsurance?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">意外保</a></li>
                     </ul>
                     <ul>
                         <h3>个人中心</h3>
-                        <li><a href="${path}/user/index?userid=${orders.get(0).orderGoodsList.get(0).userid}">我的个人中心</a>
+                        <li><a href="${path}/user/index?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">我的个人中心</a>
                         </li>
-                        <li><a href="message.html">消息通知</a></li>
-                        <li><a href="coupon.html">优惠券</a></li>
+                        <li><a href="${path}/user/showMessage?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">消息通知</a></li>
+                        <li><a href="${path}/user/showCoupon?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">优惠券</a></li>
                     </ul>
                     <ul>
                         <h3>售后服务</h3>

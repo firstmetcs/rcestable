@@ -563,5 +563,9 @@ public class GoodServiceImpl implements GoodsService {
          return  goodsAttrMapper.findGoodsPrice(rom,ram);
     }
 
+    public List<GoodsEvaluateList> GetAllgoodsEvaluate(Integer goodsid) {
+        return goodsEvaluateMapper.selectAllGoodsEvaluate(goodsid);
+    }
+
 
 }

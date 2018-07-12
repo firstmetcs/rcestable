@@ -1,6 +1,7 @@
 package com.rce.ssm.dao;
 
 import com.rce.ssm.model.goods.GoodsEvaluate;
+import com.rce.ssm.model.goods.GoodsEvaluateList;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,4 +16,5 @@ import java.util.List;
 public interface GoodsEvaluateMapper {
    public void addGoodsEvaluate(GoodsEvaluate goodsEvaluate);
    public List<GoodsEvaluate> getGoodsEvaluate();
+   List<GoodsEvaluateList> selectAllGoodsEvaluate(Integer goodsid);
 }

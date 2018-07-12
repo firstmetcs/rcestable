@@ -8,6 +8,7 @@ import com.rce.ssm.tool.PublicStatic;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
@@ -71,4 +72,23 @@ public class UserController {
         request.getSession().setAttribute(PublicStatic.USER, user);
         return "redirect:/user/index";
     }
+
+    //查看优惠券
+    @RequestMapping("showCoupon")
+    public String showCoupon(HttpServletRequest request, ModelMap modelMap){
+        log.info("优惠券显示");
+        int userid= Integer.parseInt(request.getParameter("userid"));
+        modelMap.addAttribute("userid",userid);
+        return "user/coupon";
+    }
+
+    //查看物流消息
+    @RequestMapping("showMessage")
+    public String showMessage(HttpServletRequest request,ModelMap modelMap){
+        log.info("物流消息显示");
+        int userid=Integer.parseInt(request.getParameter("userid"));
+        modelMap.addAttribute("userid",userid);
+        return "user/message";
+    }
+
 }

@@ -10,6 +10,29 @@
 
     </resultMap>
 
+    <resultMap id="goodsApprListMap" type="com.rce.ssm.model.goods.GoodsEvaluateList">
+        <id column="appraiseId" property="appraiseid" jdbcType="INTEGER"/>
+        <result column="goodsId" property="goodsid" jdbcType="INTEGER"/>
+        <result column="userId" property="userid" jdbcType="INTEGER"/>
+        <result column="goodsScore" property="goodsscore" jdbcType="FLOAT"/>
+        <result column="serviceScore" property="servicescore" jdbcType="FLOAT"/>
+        <result column="logisticsScore" property="logisticsscore" jdbcType="FLOAT"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="createTime" property="createtime" jdbcType="TIMESTAMP"/>
+        <result column="goodsName" property="goodsname" jdbcType="VARCHAR"/>
+        <result column="userName" property="username" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectAllGoodsEvaluate" parameterType="java.lang.Integer" resultMap="goodsApprListMap">
+            select t1.goodsEvaluateId, t1.goodsId,t1.userId,t1.goodsScore,t1.serviceScore,t1.logisticsScore,t1.content,t1.createTime,
+                    t2.goodsName,
+                    t3.userName
+             from goods_evaluate t1
+             left join  goods t2 on t1.goodsId = t2.goodsId
+             left join  users t3 on t1.userId = t3.userId
+             where t1.goodsId=#{goodsId}
+             order by t1.createTime
+    </select>
 
    <insert id="addGoodsEvaluate" parameterType="com.rce.ssm.model.goods.GoodsEvaluate">
        insert  into goods_evaluate (goodsId,userId,goodsScore) values (#{goodsId},#{userId},#{goodsScore})

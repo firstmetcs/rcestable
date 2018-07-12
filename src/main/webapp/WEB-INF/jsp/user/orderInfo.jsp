@@ -171,11 +171,11 @@
                                 <li>
                                     <span>物流：</span>
 
-                                    <span>-</span>
+                                    <span>您暂时没有物流信息</span>
                                     <br>
-                                    <span>运单号：<span></span></span><span>-</span>
+                                    <span>运单号：<span></span></span><span></span>
                                     <br>
-                                    <span>-</span><span class="order-firstmain-right-status">-}</span>
+                                    <span></span><span class="order-firstmain-right-status"></span>
                                 </li>
                             </ul>
                             <dl>

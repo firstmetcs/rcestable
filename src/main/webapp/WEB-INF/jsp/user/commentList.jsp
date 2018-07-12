@@ -21,7 +21,7 @@
     <div class="layui-main">
         <br>
         <span class="layui-breadcrumb breadcrumb" lay-separator="|">
-				<a href="">首页</a>
+				<a href="${path}/user/index?userid=${orders.get(0).orderGoodsList.get(0).userid}">首页</a>
 				<a><cite>评价晒单</cite></a>
 			</span>
         <div class="layui-row">
@@ -40,8 +40,8 @@
                         <h3>个人中心</h3>
                         <li><a href="${path}/user/index?userid=${orders.get(0).orderGoodsList.get(0).userid}">我的个人中心</a>
                         </li>
-                        <li><a href="message.html">消息通知</a></li>
-                        <li><a href="coupon.html">优惠券</a></li>
+                        <li><a href="${path}/user/showMessage?userid=${orders.get(0).orderGoodsList.get(0).userid}">消息通知</a></li>
+                        <li><a href="${path}/user/showCoupon?userid=${orders.get(0).orderGoodsList.get(0).userid}">优惠券</a></li>
                     </ul>
                     <ul>
                         <h3>售后服务</h3>

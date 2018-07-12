@@ -89,4 +89,6 @@ public interface GoodsService {
     public List<Map<String,Object>> findUserGoodsRec(int userId);
 
     public List<Map<String,Object>> findGoodsRecWithOutUser();
+
+    List<GoodsEvaluateList> GetAllgoodsEvaluate(Integer goodsid);
 }

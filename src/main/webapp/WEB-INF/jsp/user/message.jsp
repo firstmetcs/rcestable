@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/inc/taglibs.jsp" %>
-<%--意外险--%>
+<%--消息通知--%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,13 +16,12 @@
 <body>
 <!--头部导航-->
 <%@ include file="/WEB-INF/inc/top.jsp" %>
-
 <div class="self-center">
     <div class="layui-main">
         <br>
         <span class="layui-breadcrumb breadcrumb" lay-separator=">">
-				<a href="${path}/user/index?userid=${userid}">首页</a>
-				<a><cite>意外保险</cite></a>
+				<a href="">首页</a>
+				<a><cite>消息通知</cite></a>
 			</span>
         <div class="layui-row">
             <br>
@@ -48,59 +47,97 @@
                 </div>
             </div>
             <div class="layui-col-md9 content" style="margin-left: 60px;">
-                <h1>我的手机意外保障服务</h1>
-                <div style="text-align: center; margin-top: 20px;">
-                    <h1>您尚未购买手机意外保障服务</h1><br><br>
-                    <img src="${path}/img/selfcenter/insurance.png">
-                    <h1 style="font-size: 20px;">
-                        原厂配件保证<br>
-                        一年内免费维修<br>
-                        自助保修，报销运费
-                    </h1>
+                <h1>消息通知</h1>
+                <br>
+                <br>
 
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">全部消息</li>
+                        <li>物流动态</li>
+                        <li>特惠活动</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <div class="booklist-detail">
+                                <br>
+                                <div class="nonelist">暂无数据</div>
+                                <div>
+                                    <div class="message-title">
+                                        RCE物流：你购买的宝贝有新的动态
+                                    </div>
+                                    <div class="message-content">
+                                        <img class="message-img" src="${path}/img/phone/vivonex.png">
+                                        <h1 style="font-size: 12px">
+                                            订单号：28973829483265<br>
+                                            快递已签收<br>
+                                            <a href="">去看看</a>
+                                        </h1>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <div class="message-title">
+                                            RCE：跳楼大甩卖！！！满200-199！
+                                        </div>
+                                        <div class="message-content">
+                                            <img class="message-img" src="${path}/img/phone/vivonex.png">
+                                            <h1 style="font-size: 12px">
+
+                                                <a href="">去看看</a>
+                                            </h1>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div class="booklist-detail">
+                                <br>
+                                <div class="nonelist">暂无数据</div>
+                                <div>
+                                    <div class="message-title">
+                                        RCE物流：你购买的宝贝有新的动态
+                                    </div>
+                                    <div class="message-content">
+                                        <img class="message-img" src="${path}/img/phone/vivonex.png">
+                                        <h1 style="font-size: 12px">
+                                            订单号：28973829483265<br>
+                                            快递已签收<br>
+                                            <a href="">去看看</a>
+                                        </h1>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div class="booklist-detail">
+                                <br>
+                                <div class="nonelist">暂无数据</div>
+                                <div>
+                                    <div class="message-title">
+                                        RCE：跳楼大甩卖！！！满200-199！
+                                    </div>
+                                    <div class="message-content">
+                                        <img class="message-img" src="${path}/img/phone/vivonex.png">
+                                        <h1 style="font-size: 12px">
+
+                                            <a href="">去看看</a>
+                                        </h1>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-<div class="logo-nav-recommend" onmouseover="getNavRec(1)" onmouseout="removeNavRec(1)" style="display: none;">
-    <div class="layui-main layui-row">
-        <div class="layui-col-md2">
-            <img src="${path}/img/phone/vivonex.png">
-            <p class="goods-title">vivo Nex</p>
-            <p class="goods-price">3982元起</p>
-        </div>
-        <div class="layui-col-md2">
-            <img src="${path}/img/phone/vivonex.png">
-            <p class="goods-title">vivo Nex</p>
-            <p class="goods-price">3982元起</p>
-        </div>
-        <div class="layui-col-md2">
-            <img src="${path}/img/phone/vivonex.png">
-            <p class="goods-title">vivo Nex</p>
-            <p class="goods-price">3982元起</p>
-        </div>
-        <div class="layui-col-md2">
-            <img src="${path}/img/phone/vivonex.png">
-            <p class="goods-title">vivo Nex</p>
-            <p class="goods-price">3982元起</p>
-        </div>
-        <div class="layui-col-md2">
-            <img src="${path}/img/phone/vivonex.png">
-            <p class="goods-title">vivo Nex</p>
-            <p class="goods-price">3982元起</p>
-        </div>
-        <div class="layui-col-md2">
-            <img src="${path}/img/phone/vivonex.png">
-            <p class="goods-title">vivo Nex</p>
-            <p class="goods-price">3982元起</p>
-        </div>
-    </div>
-</div>
 <!--尾部-->
-<div class="layui-main layui-foot">
+<div class="layui-main">
     <div class="layui-row foot">
         <div class="layui-col-md3 foot">
             <i class="layui-icon layui-icon-util foot-icon"></i>

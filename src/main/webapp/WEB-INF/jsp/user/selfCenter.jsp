@@ -186,7 +186,7 @@
     <div class="layui-main">
         <br>
         <span class="layui-breadcrumb breadcrumb" lay-separator=">">
-				<a href="">首页</a>
+				<a href="${path}/order/OrList?userid=${addressList.get(0).userid}">首页</a>
 				<a ><cite>个人中心</cite></a>
 			</span>
         <div class="layui-row">
@@ -201,8 +201,8 @@
                     <ul>
                         <h3>个人中心</h3>
                         <li><a href="${path}/user/index?userid=${addressList.get(0).userid}" style="color: #008b8b">我的个人中心</a></li>
-                        <li><a href="message.html">消息通知</a></li>
-                        <li><a href="coupon.html">优惠券</a></li>
+                        <li><a href="${path}/user/showMessage?userid=${addressList.get(0).userid}">消息通知</a></li>
+                        <li><a href="${path}/user/showCoupon?userid=${addressList.get(0).userid}">优惠券</a></li>
                     </ul>
                     <ul>
                         <h3>售后服务</h3>
