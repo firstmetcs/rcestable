@@ -269,6 +269,6 @@
   </dependencies>
 
   <build>
-    <finalName>web-ssm</finalName>
+    <finalName>rcestore</finalName>
   </build>
 </project>
