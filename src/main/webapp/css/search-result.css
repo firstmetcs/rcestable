@@ -80,6 +80,7 @@ body {
 .searchresult-selector .searchresult-firstwrap {
     position: relative;
     zoom: 1;
+    height: 34px;
     line-height: 34px;
     border-bottom: 1px solid #DDD;
     background: #f3f3f3;
@@ -97,6 +98,8 @@ body {
     margin-left: 110px;
     padding-right: 130px;
     padding-left: 10px;
+    height: 34px;
+    line-height: 34px;
     overflow: hidden;
     zoom: 1;
     background: #fff;
@@ -105,7 +108,7 @@ body {
 .searchresult-selector .searchresult-sl-v-list {
     overflow: hidden;
     zoom: 1;
-    padding-top: 4px;
+    padding-top: 16px;
 }
 
 .searchresult-selector .searchresult-brandselect .searchresult-sl-v-list .searchresult-v-fixed {

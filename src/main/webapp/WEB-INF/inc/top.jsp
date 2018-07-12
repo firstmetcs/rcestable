@@ -14,8 +14,8 @@
         <div class="top-nav-nav-left">
             <ul class="layui-nav">
                 <li class="layui-nav-item layui-this"><a href="">RCE商城</a></li>
-                <li class="layui-nav-item"><a href="">广告合作</a></li>
-                <li class="layui-nav-item"><a href="">开放平台</a></li>
+                <li class="layui-nav-item"><a href="${path}/index/advertise">广告合作</a></li>
+                <li class="layui-nav-item"><a href="${path}/index/openPlatform">开放平台</a></li>
             </ul>
         </div>
         <div class="top-nav-nav-right">
@@ -112,7 +112,7 @@
         </div>
         <div class="logo-nav-search">
             <div class="layui-input-inline" style="width: 250px;">
-                <input type="text" name="" placeholder="请输入搜索内容..." class="layui-input" autocomplete="on" id="keyword" <c:if test="${! empty keyword}">value="${keyword}"></c:if>>
+                <input type="text" name="" placeholder="请输入搜索内容..." class="layui-input" autocomplete="on" id="keyword" <c:if test="${! empty keyword}">value="${keyword}"</c:if>>
             </div>
             <button class="layui-btn layui-btn-primary" onclick="search();">
                 <i class="layui-icon layui-icon-search"></i>

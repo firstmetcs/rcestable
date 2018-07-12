@@ -1,0 +1,15 @@
+.advertising-wrapper {
+    width: 100%;
+    height: 700px;
+    background: #FFFFFF;
+}
+
+.advertising-font {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    margin: auto;
+    font-family: "微软雅黑";
+    font-size: 30px;
+    margin-top: -15%;
+}

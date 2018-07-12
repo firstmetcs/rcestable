@@ -1,0 +1,34 @@
+.open-platform-wrapper {
+    width: 100%;
+    height: 600px;
+    background: #FFFFFF;
+}
+
+.open-platform-title {
+    width: 100%;
+    height: 100px;
+    color: #FFFFFF;
+    text-align: center;
+    margin: auto;
+    font-family: "微软雅黑";
+    font-size: 50px;
+    margin-top: -13%;
+}
+
+.open-platform-main {
+    width: 100%;
+    margin: auto;
+    margin-top: 130px;
+}
+
+.open-platform-main td {
+    text-align: center;
+    width: 300px;
+    height: 50px;
+}
+.open-platform-main span {
+    font-family: "微软雅黑";
+    color: #707070;
+    font-size: 20px;
+    line-height: 3;
+}

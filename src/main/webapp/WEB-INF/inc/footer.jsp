@@ -83,12 +83,12 @@
             </div>
         </div>
     </div>
+    <br>
     <div class="copyright">
         This Page <a href="http://www.firstmetcs.com/" target="_blank" title="Firstmetcs">Firstmetcs</a> - Part of <a
             href="http://www.firstmetcs.com/" title="Firstmetcs" target="_blank">Firstmetcs</a> | <a target="_blank"
                                                                                                      href="http://www.miitbeian.gov.cn/"
                                                                                                      rel="nofollow">鲁ICP备16003126号</a>
-        <br>
         <div style="width:300px;margin:0 auto; padding:20px 0;">
             <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=61909002000037"
                style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img
@@ -97,7 +97,5 @@
                     61909002000037号</p></a>
         </div>
     </div>
-    <br>
-    <br>
     <br>
 </div>
