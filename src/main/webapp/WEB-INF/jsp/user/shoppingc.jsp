@@ -171,6 +171,10 @@
         </div>
     </div>
 </div>
+
+<%@ include file="/WEB-INF/inc/footer.jsp"%>
+
+
 <script>
     //Demo
     layui.use('form', function() {

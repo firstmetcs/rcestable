@@ -42,12 +42,12 @@ public class OrderController {
 
     @RequestMapping("/index")
     public String index(HttpServletRequest request, Model model) {
-        log.info("查询所有用户信息");
+        log.info("提交订单页面");
 
-        User usersession = (User)request.getSession().getAttribute(PublicStatic.USER);
+        User usersession = (User) request.getSession().getAttribute(PublicStatic.USER);
         BigDecimal total = shoppingCartService.getTotalPrice(usersession.getUserid());
-        request.getSession().setAttribute("total",total==null?"0":String.valueOf(total));
-        request.getSession().setAttribute(PublicStatic.SHOPPINGCARTS,shoppingCartService.selectByUserId(usersession.getUserid()));
+        request.getSession().setAttribute("total", total == null ? "0" : String.valueOf(total));
+        request.getSession().setAttribute(PublicStatic.SHOPPINGCARTS, shoppingCartService.selectByUserId(usersession.getUserid()));
 
         User sessionuser = (User) request.getSession().getAttribute(PublicStatic.USER);
         List<Address> addressList = addressService.selectByUserId(sessionuser.getUserid());
@@ -57,9 +57,10 @@ public class OrderController {
         return "suborder";
     }
 
+    @ResponseBody
     @RequestMapping("/submit")
     public String submit(HttpServletRequest request, Model model, Order order) {
-        log.info("查询所有用户信息");
+        log.info("提交订单");
 
         String uniNo = Tool.getyyyyMMddHHmmssSSS() + "0" + ((User) request.getSession().getAttribute(PublicStatic.USER)).getUserid() + "0" + Tool.getRandom();
 
@@ -69,13 +70,14 @@ public class OrderController {
         order.setOrderno(uniNo);
         order.setOrderstatus(0);
         order.setTotalmoney(BigDecimal.valueOf(Double.valueOf((String) request.getSession().getAttribute("total"))));
-        order.setRealtotalmoney(BigDecimal.valueOf(Double.valueOf((String) request.getSession().getAttribute("total")) + 5));
+        order.setRealtotalmoney(BigDecimal.valueOf(Double.valueOf((String) request.getSession().getAttribute("total")) + 10));
         order.setDelivermoney(BigDecimal.valueOf(5));
         order.setIspay(0);
         order.setIsrefund(0);
         order.setIsappraises(0);
 
         orderService.insertSelective(order);
+        System.out.println("orderId" + order.getOrderid());
 
         //订单分表
         List<ShoppingCart> shoppingCarts = (List<ShoppingCart>) request.getSession().getAttribute(PublicStatic.SHOPPINGCARTS);
@@ -99,7 +101,7 @@ public class OrderController {
         //修改库存
 
 
-        return "redirect: success";
+        return "1";
     }
 
     @RequestMapping("/success")
@@ -165,7 +167,7 @@ public class OrderController {
         long orderid = goodsEvaluateList.get(0).getOrderId();
         int orderId = new Long(orderid).intValue();
         //更改订单支付状态
-        if (orderService.ChangeEvaluateFlag(orderId)== 0)
+        if (orderService.ChangeEvaluateFlag(orderId) == 0)
             System.out.println("更新失败");
         //批量插入订单评价
         if (orderService.InsertGoodsEvaluateList(goodsEvaluateList) == 0)
@@ -174,7 +176,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "showEvaluate")
-    public String showEvaluate(HttpServletRequest request,ModelMap modelMap){
+    public String showEvaluate(HttpServletRequest request, ModelMap modelMap) {
         log.info("查看所有评价");
         int userid = Integer.parseInt(request.getParameter("userid"));
         List<OrderList> orderLists = orderService.getOrderList(userid);
@@ -183,31 +185,30 @@ public class OrderController {
     }
 
     @RequestMapping(value = "showInsurance")
-    public String showInsurance(HttpServletRequest request,ModelMap modelMap){
+    public String showInsurance(HttpServletRequest request, ModelMap modelMap) {
         log.info("意外险显示");
-        int userid=Integer.parseInt(request.getParameter("userid"));
-        modelMap.addAttribute("userid",userid);
+        int userid = Integer.parseInt(request.getParameter("userid"));
+        modelMap.addAttribute("userid", userid);
         return "user/insurance";
     }
 
     @RequestMapping(value = "showOrderInfo")
-    public String showOrderInfo(HttpServletRequest request,ModelMap modelMap){
+    public String showOrderInfo(HttpServletRequest request, ModelMap modelMap) {
         log.info("订单详情");
-        int orderid=Integer.parseInt(request.getParameter("orderid"));
+        int orderid = Integer.parseInt(request.getParameter("orderid"));
         List<OrderList> orderGoods = orderService.SelectOrderById(orderid);
-        List<Address> addresses = addressService.selectByUserId(((User)request.getSession().getAttribute(PublicStatic.USER)).getUserid());
+        List<Address> addresses = addressService.selectByUserId(((User) request.getSession().getAttribute(PublicStatic.USER)).getUserid());
         kuaidi100 kuaidi100 = new kuaidi100();
         ExpressDatas expressDatas = (ExpressDatas) JSON.parseObject(
                 kuaidi100.getWuLiu(orderGoods.get(0).getExpresscompany(), orderGoods.get(0).getExpresscode()), ExpressDatas.class);
-        if(addresses==null)
-            modelMap.addAttribute("expressStatus",0);
-        if(addresses!=null)
-        {
-            modelMap.addAttribute("expressDatas",expressDatas);
-            modelMap.addAttribute("expressStatus",1);
+        if (addresses == null)
+            modelMap.addAttribute("expressStatus", 0);
+        if (addresses != null) {
+            modelMap.addAttribute("expressDatas", expressDatas);
+            modelMap.addAttribute("expressStatus", 1);
         }
-        modelMap.addAttribute("orderGoods",orderGoods);
-        modelMap.addAttribute("addresses",addresses);
+        modelMap.addAttribute("orderGoods", orderGoods);
+        modelMap.addAttribute("addresses", addresses);
         return "user/orderInfo";
     }
 

@@ -14,12 +14,12 @@
 <head>
 	<title>RCE账号注册</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="/rcestore/layui/css/layui.css">
-	<link rel="stylesheet" type="text/css" href="/rcestore/css/global.css">
-	<link rel="stylesheet" type="text/css" href="/rcestore/css/slide.css">
-	<link rel="stylesheet" type="text/css" href="/rcestore/css/login.css">
+	<link rel="stylesheet" type="text/css" href="${path}/layui/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="${path}/css/global.css">
+	<link rel="stylesheet" type="text/css" href="${path}/css/slide.css">
+	<link rel="stylesheet" type="text/css" href="${path}/css/login.css">
 
-	<script src="/rcestore/js/jquery-3.3.1.min.js"></script>
+	<script src="${path}/js/jquery-3.3.1.min.js"></script>
 
 	<script type="text/javascript">
         document.onkeydown=function(e){
@@ -50,7 +50,7 @@
             param.useremail=useremail;
             $.ajax({
                 type: "POST",
-                url: "/rcestore/register/exist",
+                url: "${path}/register/exist",
                 data: param,
                 dataType:"json",
                 async: false,
@@ -135,7 +135,7 @@
 <body>
 	<div class="register-box">
 		<div class="register-container">
-			<img src="/rcestore/img/logo.png">
+			<img src="${path}/img/logo.png">
 			<h1>注册RCE账号</h1>
 			<form class="layui-form form-register" action="">
 				<div class="layui-form-item">
@@ -179,7 +179,7 @@
 				<div class="layui-form-item">
 					<div class="layui-inline">
 						<div class="layui-input-inline">
-							<a href="/rcestore/login/index">
+							<a href="${path}/login/index">
 								<input type="button" class="layui-btn" value="去登录">
 							</a>
 						</div>
@@ -188,8 +188,8 @@
 			</form>
 		</div>
 	</div>
-	<script type="text/javascript" src="/rcestore/layui/layui.js"></script>
-	<script type="text/javascript" src="/rcestore/js/slide.js"></script>
+	<script type="text/javascript" src="${path}/layui/layui.js"></script>
+	<script type="text/javascript" src="${path}/js/slide.js"></script>
 	<script type="text/javascript">
         var dataList = ["0","1"];
         var options = {
