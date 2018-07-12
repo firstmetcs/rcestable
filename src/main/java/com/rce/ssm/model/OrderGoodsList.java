@@ -8,7 +8,7 @@ public class OrderGoodsList {
 
     private Integer goodsid;
 
-    private Integer goodsattrId;
+    private Integer goodsattrid;
 
     private String username;
 
@@ -112,26 +112,11 @@ public class OrderGoodsList {
         this.goodscolor = goodscolor;
     }
 
-    public Integer getGoodsattrId() {
-        return goodsattrId;
+    public Integer getGoodsattrid() {
+        return goodsattrid;
     }
 
-    public void setGoodsattrId(Integer goodsattrId) {
-        this.goodsattrId = goodsattrId;
-    }
-
-    @Override
-    public String toString() {
-        return "OrderGoodsList{" +
-                "godorderid=" + godorderid +
-                ", username='" + username + '\'' +
-                ", goodsimage='" + goodsimage + '\'' +
-                ", goodsname='" + goodsname + '\'' +
-                ", goodsversion='" + goodsversion + '\'' +
-                ", goodsnums='" + goodsnums + '\'' +
-                ", goodsprice='" + goodsprice + '\'' +
-                ", goodstotaldesc='" + goodstotaldesc + '\'' +
-                ", goodscolor='" + goodscolor + '\'' +
-                '}';
+    public void setGoodsattrid(Integer goodsattrid) {
+        this.goodsattrid = goodsattrid;
     }
 }

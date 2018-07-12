@@ -42,12 +42,14 @@
     <result column="isAppraises" property="isappraises" jdbcType="INTEGER"/><!--0:未评价，1:已评价-->
     <result column="realTotalMoney" property="realtotalmoney" jdbcType="DECIMAL"/>
     <result column="creatTime" property="creattime" jdbcType="TIMESTAMP"/>
+    <result column="receiveTime" property="receivetime" jdbcType="TIMESTAMP"/>
     <result column="expressCompany" property="expresscompany" jdbcType="VARCHAR"/>
     <result column="expressCode" property="expresscode" jdbcType="VARCHAR"/>
     <collection property="orderGoodsList" javaType="java.util.List" ofType="com.rce.ssm.model.OrderGoodsList">
       <id column="godOrderId" property="godorderid" jdbcType="INTEGER"/>
       <result column="userId" property="userid" jdbcType="INTEGER"/>
       <result column="goodsId" property="goodsid" jdbcType="INTEGER"/>
+      <result column="goodsAttrId" property="goodsattrid" jdbcType="INTEGER"/>
       <result column="userName" property="username" jdbcType="VARCHAR"/>
       <result column="goodsImage" property="goodsimage" jdbcType="VARCHAR"/>
       <result column="goodsName" property="goodsname" jdbcType="VARCHAR"/>
@@ -362,7 +364,7 @@
   </update>
   <select id="queryForOrderList" resultMap="queryForOrderListMap" parameterType="java.lang.Integer">-- 通过用户id查询用户订单
   select t1.orderId,t1.orderNo,t1.orderStatus,t1.totalMoney,t1.deliverMoney,t1.isAppraises,t1.creatTime,t1.realTotalMoney,t1.expressCompany,t1.expressCode,
-          t1.invoiceClient,t1.orderRemarks,
+          t1.invoiceClient,t1.orderRemarks,t1.receiveTime,
          t2.godOrderId,t2.goodsAttrId,t2.goodsNums,
          t3.goodsId,t3.goodsName,t3.goodsTotalDesc,
          t4.goodsVersion,t4.goodsPrice,t4.goodsColor,t4.goodsPrice,t4.goodsImage,
@@ -377,7 +379,7 @@
 
   <select id="selectOrderById" parameterType="java.lang.Integer" resultMap="queryForOrderListMap">
   select t1.orderId,t1.orderNo,t1.orderStatus,t1.totalMoney,t1.deliverMoney,t1.isAppraises,t1.creatTime,t1.realTotalMoney,t1.expressCompany,t1.expressCode,
-         t1.invoiceClient,t1.orderRemarks,
+         t1.invoiceClient,t1.orderRemarks,t1.receiveTime,
          t2.godOrderId,t2.goodsAttrId,t2.goodsNums,
          t3.goodsId,t3.goodsName,t3.goodsTotalDesc,
          t4.goodsVersion,t4.goodsPrice,t4.goodsColor,t4.goodsPrice,t4.goodsImage,
