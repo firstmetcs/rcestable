@@ -146,7 +146,7 @@ function addCurrentRow() {
             async: false,
             url: "/rcestore/address/add",
             success: function (data) {
-                if (data == 1) {
+                if (data != 0) {
                     alert("添加成功");
                     getAddr();
                     var index = addrCount + 1;

@@ -35,7 +35,6 @@
 	height: 20%;
 }
 
-
 .goods-recommend{
 	color: #808080;
 	padding: 20px 0;
@@ -45,7 +44,7 @@
 }
 .goods-recommend img{
 	width: 100%;
-	height: 100%;
+	height: 570px;
 }
 .goods-recommend-title{
 	margin: 20px 0;
@@ -56,10 +55,10 @@
 }
 .recommend-right .layui-col-md3{
 	padding: 0 5px;
-	height: 263px;
+	height: 280px;
 }
 .recommend-right-item{
-	height: 263px;
+	height: 280px;
 	margin-left: 20px;
 	background: #FFFFFF;
 	text-align: center;
@@ -109,16 +108,16 @@
 	margin-left: 10px;
 }
 .pc-recommend div{
-	height: 265px;
+	height: 280px;
 	background-color: #ffffff;
-	width: 220px;
+	width: 230px;
 }
 .pc-recommend .pc-recommend-item{
 	margin-left: 30px;
 }
 .pc-item{
 	width: 100%;
-	height: 265px;
+	height: 280px;
 	text-align: center;
 }
 .pc-item img{

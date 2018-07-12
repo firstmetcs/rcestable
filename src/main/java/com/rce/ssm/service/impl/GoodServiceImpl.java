@@ -21,7 +21,7 @@ import java.util.*;
  * @veisiong 1.0
  * @date 2018/6/13
  */
-@Service
+@Service("goodsService")
 public class GoodServiceImpl implements GoodsService {
     @Autowired
     GoodsMapper goodsMapper;

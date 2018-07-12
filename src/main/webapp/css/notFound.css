@@ -1,0 +1,44 @@
+.notFound-wrapper {
+    width: 100%;
+}
+
+.notFound-wrapper a:link {
+    text-decoration: none;
+    color: #1E9FFF;
+}
+
+.account-wrapper a:visited {
+}
+
+.account-wrapper a:hover {
+    color: #1E9FFF;
+}
+
+.notFound-main {
+    width: 600px;
+    height: 300px;
+    margin: auto;
+    margin-top: 200px;
+}
+
+.notFound-logo{
+	float: left;
+}
+.notFound-logo img{
+    width:150px; 
+    height: 150px; 
+    margin-top: 20px;
+}
+
+.notFound-text{
+	margin-left: 200px;
+	position: absolute;
+}
+.notFound-text-title{
+	font-family: "微软雅黑"; 
+	font-size: 30px;
+	line-height: 3;
+}
+.notFound-text-button{
+	margin-top: 20px;
+}
