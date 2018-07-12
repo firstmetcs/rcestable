@@ -69,4 +69,17 @@ public class ShoppingCartController {
 
         return "redirect: showSC";
     }
+
+    @RequestMapping("/addinto")
+    public String addinto(HttpServletRequest request, Model model, ShoppingCart shoppingCart){
+        log.info("加入购物车");
+
+        shoppingCart.setUserid(((User)request.getSession().getAttribute(PublicStatic.USER)).getUserid());
+        shoppingCart.setIscheck(1);
+        shoppingCart.setGoodscount(1);
+
+        Integer flag = shoppingCartService.insertSelective(shoppingCart);
+
+        return "redirect: showSC";
+    }
 }
