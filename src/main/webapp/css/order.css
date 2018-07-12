@@ -1,0 +1,409 @@
+ .order-wrapper {
+     width: 1000px;
+     margin: 0 auto;
+ }
+
+ .order-wrapper a:link {
+    color: #3287D0;
+ }
+ .order-wrapper a:visited {
+     text-decoration: none;
+ }
+
+ .order-wrapper a:hover {
+     color: #B10000;
+ }
+
+ .order-div {
+     float: left;
+     display: inline-block;
+ }
+
+ .order-nav {
+     width: 300px;
+     height: 35px;
+ }
+
+ .order-nav a {
+     color: #7C7269;
+     font-size: 12px;
+     line-height: 50px;
+     text-align: left;
+ }
+
+ .order-nav span {
+     color: #780802;
+ }
+
+ .order-progressbar {
+     margin-top: 30px;
+     margin-left: 40px;
+ }
+
+ .order-progressbar ol {
+     list-style-type: none;
+ }
+
+ .order-box-completed {
+     border: 5px solid #DCDCDC;
+     background-color: #008A44;
+     border-radius: 50%;
+     width: 20px;
+     height: 20px;
+     float: left;
+     display: inline-block;
+     color: #FFFFFF;
+     font-size: 16px;
+     font-family: 黑体;
+ }
+ .order-box-uncompleted {
+     border: 5px solid #DCDCDC;
+    background-color: #DCDCDC;
+     border-radius: 50%;
+     width: 20px;
+     height: 20px;
+     float: left;
+     display: inline-block;
+     color: #FFFFFF;
+     font-size: 16px;
+     font-family: 黑体;
+ }
+
+ .order-schedule-in-completed {
+     background-color: #008A44;
+     border: 3px solid #DCDCDC;
+     width: 170px;
+     height: 5px;
+     margin-top: 10px;
+     float: left;
+     display: inline-block;
+ }
+ .order-schedule-in-uncompleted {
+     background-color: #DCDCDC;
+     border: 3px solid #DCDCDC;
+     width: 170px;
+     height: 5px;
+     margin-top: 10px;
+     float: left;
+     display: inline-block;
+ }
+
+ .order-firstmain {
+     margin-top: 150px
+ }
+
+ .order-firstmain table {
+     width: 950px;
+     border: 1px solid #DDDDDD;
+ }
+
+ .order-firstmain ul {
+     list-style-type: none;
+ }
+
+ .order-firstmain-address {
+     width: 220px;
+     height: 80px;
+     line-height: 1.5;
+     margin-left: 15px;
+ }
+
+ .order-firstmain-left {
+     font-family: "微软雅黑";
+     font-size: 12px;
+     line-height: 3;
+     color: #7C7269;
+     width: 300px;
+     height: 250px;
+     text-align: left;
+     vertical-align: middle;
+     display: table-cell;
+     width: 300px;
+     border-right: 1px solid #DDDDDD
+ }
+
+ .order-firstmain-left-top {
+     border: 1px solid #DDDDDD;
+     background: #F3F3F3;
+ }
+
+ .order-firstmain-left-top li {
+     font-family: "微软雅黑";
+     font-size: 12px;
+     color: #7C7269;
+     margin-left:30px;
+ }
+
+ .order-firstmain-left-bottom {
+     font-family: "微软雅黑";
+     font-size: 12px;
+     line-height: 3;
+     color: #7C7269;
+     width: 300px;
+     height: 250px;
+     text-align: left;
+     background: #FBFBFB;
+ }
+
+ .order-firstmain-left-bottom ul {
+     list-style-type: none;
+ }
+
+ .order-firstmain-left-bottom li {
+     width: 240px;
+     margin-left:30px;
+ }
+
+ .order-firstmain-hidden {
+     color: #7C7269;
+     font-size: 12px;
+     background: #FBFBFB;
+     position: absolute;
+     /*margin-left: 160px;*/
+ }
+
+ .order-firstmain-hidden table {
+     z-index: 1;
+     width: 300px;
+     line-height: 1.5;
+     border: 1px solid #DDDDDD;
+     background: #F5F5F5;
+ }
+
+ .order-firstmain-hidden td {
+     width: 90px;
+     text-align: center;
+ }
+
+ .order-firstmain-right {
+     width: 650px;
+     margin-left: 50px;
+ }
+
+ .order-firstmain-right-div {
+     font-family: "微软雅黑";
+     font-size: 12px;
+     line-height: 3;
+     color: #7C7269;
+     width: 550px;
+     height: 220px;
+     text-align: left;
+     position: absolute;
+     margin-left: 50px;
+     margin-top: -110px;
+ }
+
+ .order-firstmain-right a {
+     margin-left: 10px;
+     margin-right: 10px;
+ }
+
+ .order-firstmain-right-status {
+     color: #008B8B;
+ }
+
+ .order-secondmain {
+     color: #7C7269;
+     font-size: 12px;
+     text-align: left;
+     margin-top: 30px;
+     width: 950px;
+     border: 1px solid #DDDDDD;
+ }
+
+ .order-secondmain dl {
+     float: left;
+     height: 20px;
+ }
+
+ .order-secondmain dt {
+     float: left;
+     width: 370px;
+ }
+
+ .order-secondmain dd {
+     float: left;
+     width: 140px;
+ }
+
+ .order-secondmain table {
+     width: 950px;
+ }
+
+ .order-secondmain ul {
+     list-style-type: none
+ }
+
+ .order-secondmain img {
+     width: 50px;
+     height: 50px;
+ }
+
+ .order-secondmain-package {
+     float: left;
+     background: #E3EEFF;
+     line-height: 40px;
+     width: 943px;
+     height: 40px;
+     border-bottom: 1px solid #DDDDDD;
+ }
+
+ .order-secondmain-package-content {
+     margin-left: 20px;
+ }
+
+ .order-secondmain-package-content-address {
+     margin-left: 20px;
+     color: #008B8B;
+ }
+
+ .order-secondmain-package-content-more {
+     margin-left: 20px;
+     color: rgb(102, 102, 102);
+ }
+
+ .order-secondmain-hidden {
+     position: absolute;
+     margin-top: 30px;
+     margin-left: -435px;
+     z-index: 1;
+     text-align: left;
+     line-height: 1.5;
+ }
+
+ .order-secondmain-hidden ul {
+     list-style-type: none;
+     border: 1px solid #DDDDDD;
+     background: #F5F5F5;
+     width: 540px;
+ }
+ .order-secondmain-hidden span{
+    margin-left: 10px;
+ }
+
+ .order-secondmain-hidden-package-address {
+     color: #008B8B;
+ }
+
+ .order-secondmain-goods {
+     text-align: center;
+     vertical-align: middle;
+     display: table-cell;
+     width: 145px;
+ }
+
+ .order-secondmain-goods-commodity {
+     float: left;
+     width: 300px;
+     height: 100px;
+     margin-left: 30px;
+ }
+
+ .order-secondmain-goods-commodity img {
+     margin-top: 20px;
+     margin-right: 10px;
+ }
+
+ .order-secondmain-goods-commodity ul {
+    margin-top: 20px;
+     /*margin-left: 30px;*/
+ }
+
+ .order-thirdmain {
+     width: 950px;
+     height: 240px;
+     background: #F3F3F3;
+     margin-top: 30px;
+     font-size: 13px;
+     color: #7C7269;
+ }
+
+ .order-thirdmain ul {
+     list-style-type: none
+ }
+
+ .order-thirdmain td {
+     margin-top: 30px;
+ }
+
+ .order-thirdmain-integral {
+     position: absolute;
+     margin-top: 30px;
+     margin-left: 30px;
+ }
+
+ .order-thirdmain-detail {
+     position: absolute;
+     margin-left: 600px;
+     text-align: right;
+     line-height: 2;
+ }
+
+ .order-thirdmain-detail td {
+     width: 120px;
+ }
+
+ .order-thirdmain-detail-price {
+     font-size: 16px;
+ }
+
+ .order-thirdmain-detail-price td {
+     color: #272822;
+ }
+
+ .order-thirdmain-detail-price span {
+     color: #272822;
+ }
+
+ .order-thirdmain-detail-price-realpay {
+     font-size: 16px;
+     line-height: 3;
+ }
+
+ .order-thirdmain-detail-price-realpay td {
+
+     color: #272822;
+ }
+
+ .order-thirdmain-detail-price-realpay span {
+     font-family: "黑体";
+     font-size: 18px;
+     color: red;
+ }
+
+ .order-fourthmain {
+     margin-top: 30px;
+     border: 1px solid #DDDDDD;
+     width: 950px;
+     height: 500px;
+ }
+
+ .order-fourthmain-display {
+     height: 20px;
+     background: #F3F3F3;
+     font-size: 12px;
+ }
+
+ .order-fourthmain-Promotion-div {
+     float: left;
+     border: 1px solid #DDDDDD;
+     margin: 10px;
+ }
+
+ .order-fourthmain-Promotion-img {
+     width: 210px;
+     height: 210px;
+ }
+
+ .order-font-schedule-status {
+     font-size: 12px;
+     color: #888888;
+     margin-bottom: 10px;
+ }
+
+ .order-font-schedule-time {
+     font-size: 12px;
+     color: #A59999;
+     text-align: left;
+     margin-top: 50px;
+ }

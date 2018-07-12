@@ -28,6 +28,7 @@
     <result column="expressCompany" jdbcType="VARCHAR" property="expresscompany" />
     <result column="expressCode" jdbcType="VARCHAR" property="expresscode" />
   </resultMap>
+
   <resultMap id="queryForOrderListMap" type="com.rce.ssm.model.OrderList">
     <id column="orderId" property="orderid" jdbcType="INTEGER"/>
     <result column="orderNo" property="orderno" jdbcType="VARCHAR"/>
@@ -35,9 +36,14 @@
     <result column="totalMoney" property="totalmoney" jdbcType="DECIMAL"/>
     <result column="deliverMoney" property="delivermoney" jdbcType="DECIMAL"/>
     <result column="payType" property="paytype" jdbcType="INTEGER"/>
+    <result column="invoiceClient" property="invoiceclient" jdbcType="VARCHAR"/>
+    <result column="orderRemarks" property="orderremarks" jdbcType="VARCHAR"/>
     <result column="isDeliver" property="isdeliver" jdbcType="INTEGER"/>
     <result column="isAppraises" property="isappraises" jdbcType="INTEGER"/><!--0:未评价，1:已评价-->
+    <result column="realTotalMoney" property="realtotalmoney" jdbcType="DECIMAL"/>
     <result column="creatTime" property="creattime" jdbcType="TIMESTAMP"/>
+    <result column="expressCompany" property="expresscompany" jdbcType="VARCHAR"/>
+    <result column="expressCode" property="expresscode" jdbcType="VARCHAR"/>
     <collection property="orderGoodsList" javaType="java.util.List" ofType="com.rce.ssm.model.OrderGoodsList">
       <id column="godOrderId" property="godorderid" jdbcType="INTEGER"/>
       <result column="userId" property="userid" jdbcType="INTEGER"/>
@@ -355,7 +361,8 @@
     where orderId = #{orderid,jdbcType=INTEGER}
   </update>
   <select id="queryForOrderList" resultMap="queryForOrderListMap" parameterType="java.lang.Integer">-- 通过用户id查询用户订单
-  select t1.orderId,t1.orderNo,t1.orderStatus,t1.totalMoney,t1.deliverMoney,t1.isAppraises,t1.creatTime,
+  select t1.orderId,t1.orderNo,t1.orderStatus,t1.totalMoney,t1.deliverMoney,t1.isAppraises,t1.creatTime,t1.realTotalMoney,t1.expressCompany,t1.expressCode,
+          t1.invoiceClient,t1.orderRemarks,
          t2.godOrderId,t2.goodsAttrId,t2.goodsNums,
          t3.goodsId,t3.goodsName,t3.goodsTotalDesc,
          t4.goodsVersion,t4.goodsPrice,t4.goodsColor,t4.goodsPrice,t4.goodsImage,
@@ -369,7 +376,8 @@
 </select>
 
   <select id="selectOrderById" parameterType="java.lang.Integer" resultMap="queryForOrderListMap">
-  select t1.orderId,t1.orderNo,t1.orderStatus,t1.totalMoney,t1.deliverMoney,t1.isAppraises,t1.creatTime,
+  select t1.orderId,t1.orderNo,t1.orderStatus,t1.totalMoney,t1.deliverMoney,t1.isAppraises,t1.creatTime,t1.realTotalMoney,t1.expressCompany,t1.expressCode,
+         t1.invoiceClient,t1.orderRemarks,
          t2.godOrderId,t2.goodsAttrId,t2.goodsNums,
          t3.goodsId,t3.goodsName,t3.goodsTotalDesc,
          t4.goodsVersion,t4.goodsPrice,t4.goodsColor,t4.goodsPrice,t4.goodsImage,

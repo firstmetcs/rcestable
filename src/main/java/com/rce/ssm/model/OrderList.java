@@ -17,9 +17,19 @@ public class OrderList implements Serializable {
 
     private Integer paytype;//支付方式
 
+    private String invoiceclient;//发票抬头
+
+    private String orderremarks;//订单备注
+
     private Integer isdeliver;//是否发送快递
 
     private Integer isappraises;//是否评价
+
+    private Integer realtotalmoney;//真实付款
+
+    private String expresscompany;//快递公司
+
+    private String expresscode;//快递单号
 
     private Date creattime;//创建时间
 
@@ -103,19 +113,43 @@ public class OrderList implements Serializable {
         this.orderGoodsList = orderGoodsList;
     }
 
-    @Override
-    public String toString() {
-        return "OrderList{" +
-                "orderid=" + orderid +
-                ", orderno='" + orderno + '\'' +
-                ", orderstatus=" + orderstatus +
-                ", totalmoney=" + totalmoney +
-                ", delivermoney=" + delivermoney +
-                ", paytype=" + paytype +
-                ", isdeliver=" + isdeliver +
-                ", isappraises=" + isappraises +
-                ", creattime=" + creattime +
-                ", orderGoodsListList=" + orderGoodsList +
-                '}';
+    public String getInvoicelient() {
+        return invoiceclient;
+    }
+
+    public void setInvoicelient(String invoiceclient) {
+        this.invoiceclient = invoiceclient;
+    }
+
+    public String getOrderremarks() {
+        return orderremarks;
+    }
+
+    public void setOrderremarks(String orderremarks) {
+        this.orderremarks = orderremarks;
+    }
+
+    public Integer getRealtotalmoney() {
+        return realtotalmoney;
+    }
+
+    public void setRealtotalmoney(Integer realtotalmoney) {
+        this.realtotalmoney = realtotalmoney;
+    }
+
+    public String getExpresscompany() {
+        return expresscompany;
+    }
+
+    public void setExpresscompany(String expresscompany) {
+        this.expresscompany = expresscompany;
+    }
+
+    public String getExpresscode() {
+        return expresscode;
+    }
+
+    public void setExpresscode(String expresscode) {
+        this.expresscode = expresscode;
     }
 }

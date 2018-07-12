@@ -169,7 +169,7 @@
                                                             </div>
                                                             <div class="layui-col-md5">
                                                             <span class="bookid">
-                                                        <a href="#">订单号: ${orderLists.orderno}</a>
+                                                        <a href="${path}/order/showOrderInfo?orderid=${orderLists.orderid}">订单号: ${orderLists.orderno}</a>
                                                         </span>
                                                             </div>
                                                             <div class="layui-col-md2">

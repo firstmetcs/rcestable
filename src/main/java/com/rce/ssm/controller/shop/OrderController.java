@@ -1,10 +1,13 @@
 package com.rce.ssm.controller.shop;
 
+import com.alibaba.fastjson.JSON;
 import com.rce.ssm.model.*;
+import com.rce.ssm.model.goods.ExpressDatas;
 import com.rce.ssm.model.goods.GoodsEvaluate;
 import com.rce.ssm.service.*;
 import com.rce.ssm.tool.PublicStatic;
 import com.rce.ssm.tool.Tool;
+import com.rce.ssm.tool.kuaidi100;
 import net.sf.json.JSONArray;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -186,4 +189,27 @@ public class OrderController {
         modelMap.addAttribute("userid",userid);
         return "user/insurance";
     }
+
+    @RequestMapping(value = "showOrderInfo")
+    public String showOrderInfo(HttpServletRequest request,ModelMap modelMap){
+        log.info("订单详情");
+        int orderid=Integer.parseInt(request.getParameter("orderid"));
+        List<OrderList> orderGoods = orderService.SelectOrderById(orderid);
+        List<Address> addresses = addressService.selectByUserId(((User)request.getSession().getAttribute(PublicStatic.USER)).getUserid());
+        kuaidi100 kuaidi100 = new kuaidi100();
+        ExpressDatas expressDatas = (ExpressDatas) JSON.parseObject(
+                kuaidi100.getWuLiu(orderGoods.get(0).getExpresscompany(), orderGoods.get(0).getExpresscode()), ExpressDatas.class);
+        if(addresses==null)
+            modelMap.addAttribute("expressStatus",0);
+        if(addresses!=null)
+        {
+            modelMap.addAttribute("expressDatas",expressDatas);
+            modelMap.addAttribute("expressStatus",1);
+        }
+        modelMap.addAttribute("orderGoods",orderGoods);
+        modelMap.addAttribute("addresses",addresses);
+        return "user/orderInfo";
+    }
+
+
 }
