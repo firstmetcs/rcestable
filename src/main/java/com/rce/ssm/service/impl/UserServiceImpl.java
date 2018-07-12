@@ -39,9 +39,13 @@ public class UserServiceImpl implements UserService {
         return userDao.selectAllUser();
     }
 
-    public int insert(User record){return userDao.insert(record);}
+    public int insert(User record) {
+        return userDao.insert(record);
+    }
 
-    public int insertSelective(User record){return userDao.insertSelective(record);}
+    public int insertSelective(User record) {
+        return userDao.insertSelective(record);
+    }
 
     public void active(String code) {
         userDao.active(code);
@@ -93,6 +97,7 @@ public class UserServiceImpl implements UserService {
                         request.getSession().setAttribute(PublicStatic.USER, usersession);
                     } else {
                         request.getSession().setAttribute(PublicStatic.UNSAFEUSER, usersession);
+                        request.getSession().setAttribute(PublicStatic.LOGINADDRESS, add.getData().getRegion() + " " + add.getData().getCity());
                         flag = "66";
                     }
                 }
@@ -103,11 +108,11 @@ public class UserServiceImpl implements UserService {
         return flag;
     }
 
-    public int updateByPrimaryKeySelective(User record){
+    public int updateByPrimaryKeySelective(User record) {
         return userDao.updateByPrimaryKeySelective(record);
     }
 
-    public int updateByPrimaryKey(User record){
+    public int updateByPrimaryKey(User record) {
         return userDao.updateByPrimaryKey(record);
     }
 
@@ -122,7 +127,7 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    public User findbycode(User user){
+    public User findbycode(User user) {
         return userDao.findbycode(user);
     }
 

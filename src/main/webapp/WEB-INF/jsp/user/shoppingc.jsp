@@ -10,16 +10,19 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="${path}/css/shoppingCart.css">
 
-    <%--主页必要css--%>
     <link rel="stylesheet" type="text/css" href="${path}/layui/css/layui.css">
     <link rel="stylesheet" type="text/css" href="${path}/css/global.css">
     <link rel="stylesheet" type="text/css" href="${path}/css/headframe.css">
     <link rel="stylesheet" type="text/css" href="${path}/css/footframe.css">
     <link rel="stylesheet" type="text/css" href="${path}/css/index.css">
-
+    <link rel="stylesheet" type="text/css" href="${path}/css/shoppingCart.css">
     <script src="${path}/js/jquery-3.3.1.min.js"></script>
+
+    <script type="text/javascript" src="${path}/layui/layui.js"></script>
+    <script type="text/javascript" src="${path}/js/global.js"></script>
+    <script type="text/javascript" src="${path}/js/headframe.js"></script>
+    <script type="text/javascript" src="${path}/js/index.js"></script>
     <script>
         function change(id) {
             var param = {};
@@ -132,7 +135,7 @@
                             name="termprice">${shoppingCart.termprice}</span>
                     </td>
                     <td>
-                        <a href="" title="">删除</a>
+                        <a href="${path}/shoppingCart/delete?id=${shoppingCart.shoppingcartid}" title="">删除</a>
                     </td>
                 </tr>
 
@@ -150,7 +153,6 @@
         <div>
             <form class="layui-form" action="">
                 <input type="checkbox" name="selectAll" title="全选" lay-skin="primary" lay-filter="all-choose">
-                <a href="" title="">删除</a>
             </form>
         </div>
     </div>
@@ -164,7 +166,6 @@
                 </div>
             </div>
             <div class="clearing-btn">
-                <button type="" class="layui-btn" id="settleNow" disabled="disabled">立即结算</button>
                 <a  class="layui-btn" href="${path}/order/index">立即结算</a>
             </div>
         </div>
@@ -265,9 +266,5 @@
 
     });
 </script>
-<script type="text/javascript" src="${path}/layui/layui.js"></script>
-<script type="text/javascript" src="${path}/js/global.js"></script>
-<script type="text/javascript" src="${path}/js/headframe.js"></script>
-<script type="text/javascript" src="${path}/js/index.js"></script>
 </body>
 </html>

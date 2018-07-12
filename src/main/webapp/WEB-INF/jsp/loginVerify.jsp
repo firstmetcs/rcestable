@@ -59,7 +59,8 @@
     </script>
 </head>
 <body>
-<h5>系统检测到您不在常用地点登录，请进行验证</h5>
+<h5>系统检测到您的登陆地点为：${sessionScope.loginaddress}<br>
+    不在常用地点登录，请进行验证</h5>
 <h5>验证码已发送至您的邮箱</h5>
 <input type="text" id="verifyCode" onblur="isverifyCode();">
 <button onclick="">重新发送</button>

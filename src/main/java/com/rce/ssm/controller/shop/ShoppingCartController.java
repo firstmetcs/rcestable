@@ -36,7 +36,12 @@ public class ShoppingCartController {
     @RequestMapping("/showSC")
     public String showSC(HttpServletRequest request, Model model){
         log.info("查询购物车信息");
-//        User usersession = (User)request.getSession().getAttribute(PublicStatic.USER);
+        User usersession = (User)request.getSession().getAttribute(PublicStatic.USER);
+
+        List<ShoppingCart> shoppingCarts = shoppingCartService.selectByUserId(usersession.getUserid());
+        request.getSession().setAttribute(PublicStatic.SHOPPINGCARTS,shoppingCarts);
+        BigDecimal total = shoppingCartService.getTotalPrice(usersession.getUserid());
+        request.getSession().setAttribute("total",total==null?"0":String.valueOf(total));
 
         return "user/shoppingc";
     }
@@ -54,5 +59,14 @@ public class ShoppingCartController {
 //        map.put("total",total==null?"0":String.valueOf(total));
 
         return map;
+    }
+
+    @RequestMapping("/delete")
+    public String delete(HttpServletRequest request, Model model, Integer id){
+        log.info("删除购物车");
+
+        Integer flag = shoppingCartService.deleteByPrimaryKey(id);
+
+        return "redirect: showSC";
     }
 }

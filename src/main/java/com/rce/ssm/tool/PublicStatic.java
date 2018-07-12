@@ -5,6 +5,8 @@ public class PublicStatic {
     public static final String USER="indexuser";
     //登录检测不通过用户
     public static final String UNSAFEUSER = "unsafeuser";
+    //登陆地址
+    public static final String LOGINADDRESS = "loginaddress";
     //判断是否第一次访问登陆
     public static final String LOGIN_FLAG="LOGIN_FLAG";
     //后台用户
