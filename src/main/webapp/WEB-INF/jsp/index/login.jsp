@@ -174,7 +174,8 @@
 					</div>
 				</div>
 				<div class="login-body-content content-2" style="display: none; ;margin-top: 60px;font-size: 24px; text-align: center;">
-					安全检测中...请稍等...
+					<center></center><img src="${path}/img/loding.gif" width="200px" height="120px"></center>
+					<center>安全检测中...请稍等...</center>
 				</div>
 
 			</div>
