@@ -29,6 +29,8 @@ public class Goods {
   private String goodsSystemDesc;
   private String goodsType;
 
+  private double goodsPrice;
+
   public String getGoodsType() {
     return goodsType;
   }
@@ -227,4 +229,11 @@ public class Goods {
     this.goodsAttrDesc = goodsAttrDesc;
   }
 
+  public double getGoodsPrice() {
+    return goodsPrice;
+  }
+
+  public void setGoodsPrice(double goodsPrice) {
+    this.goodsPrice = goodsPrice;
+  }
 }

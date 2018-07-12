@@ -56,11 +56,13 @@ public class DBIndexer {
                 Goods goods = itr.next();
                 Document document = new Document();
 
+                document.add(new Field("img", goods.getGoodsImg(), TextField.TYPE_STORED));
                 document.add(new Field("goodsid", String.valueOf(goods.getGoodsId()), TextField.TYPE_STORED));
-                String name = goods.getGoodsName();
+                String name = goods.getGoodsName() + goods.getGoodsType();
                 document.add(new Field("name", name, TextField.TYPE_STORED));
-                String content = goods.getGoodsAttrDesc()+goods.getGoodsCPUDesc()+goods.getGoodsCameraDesc()+goods.getGoodsBatteryDesc();
+                String content = goods.getGoodsAttrDesc() + goods.getGoodsCPUDesc() + goods.getGoodsCameraDesc() + goods.getGoodsBatteryDesc();
                 document.add(new Field("content", content, TextField.TYPE_STORED));
+                document.add(new Field("price", String.valueOf(goods.getGoodsPrice()), TextField.TYPE_STORED));
 
                 indexWriter.addDocument(document);
             }
@@ -89,7 +91,7 @@ public class DBIndexer {
             directoryReader = DirectoryReader.open(directory);
             IndexSearcher indexSearcher = new IndexSearcher(directoryReader);
             SmartChineseAnalyzer analyzer = new SmartChineseAnalyzer();
-            QueryParser queryParser = new MultiFieldQueryParser(new String[]{"goodsid", "name", "content"}, analyzer);
+            QueryParser queryParser = new MultiFieldQueryParser(new String[]{"name", "content"}, analyzer);
             Query query = queryParser.parse(keyword);
             TopDocs topDocs = indexSearcher.search(query, 100);
 
@@ -128,6 +130,8 @@ public class DBIndexer {
                     }
                     bi.setGoodsAttrDesc(darkContent);
                 }
+                bi.setGoodsPrice(Double.parseDouble(document.get("price")));
+                bi.setGoodsImg(document.get("img"));
                 resultInfo.add(bi);
             }
 

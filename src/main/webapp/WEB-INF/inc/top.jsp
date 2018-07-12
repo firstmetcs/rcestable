@@ -112,11 +112,16 @@
         </div>
         <div class="logo-nav-search">
             <div class="layui-input-inline" style="width: 250px;">
-                <input type="text" name="" placeholder="请输入搜索内容..." class="layui-input" autocomplete="on">
+                <input type="text" name="" placeholder="请输入搜索内容..." class="layui-input" autocomplete="on" id="keyword" <c:if test="${! empty keyword}">value="${keyword}"></c:if>>
             </div>
-            <button class="layui-btn layui-btn-primary">
+            <button class="layui-btn layui-btn-primary" onclick="search();">
                 <i class="layui-icon layui-icon-search"></i>
             </button>
         </div>
     </div>
 </div>
+<script>
+    function search() {
+        window.location.href = "${path}/search/search?keyword=" + $("#keyword").val();
+    }
+</script>

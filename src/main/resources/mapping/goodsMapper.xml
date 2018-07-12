@@ -56,8 +56,8 @@
            where goodName=#{goodName}
     </select>
 
-    <select id="findAll" resultMap="goodsMap">
-        select * from goods
+    <select id="findAll" resultType="com.rce.ssm.model.goods.Goods">
+        select * from goods left join (select * from goods_attributes group by goodsid) T on goods.goodsid=T.goodsid
     </select>
 
     <select id="findDescById" resultMap="goodsMap" parameterType="int">

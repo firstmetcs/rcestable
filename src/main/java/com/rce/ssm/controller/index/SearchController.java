@@ -61,7 +61,7 @@ public class SearchController {
             islast = (Boolean) rst.get(4);
             model.addAttribute("keyword", keyword);
             model.addAttribute("pagenum", pageNum);
-            model.addAttribute("totalResult", "共查询到 " + total + " 条结果");
+            model.addAttribute("totalResult", "共查询到 " + total + " 条商品");
             model.addAttribute("totalpages", pages);
             model.addAttribute("isfirst", isfirst);
             model.addAttribute("islast", islast);
@@ -92,7 +92,7 @@ public class SearchController {
             islast = (Boolean) rst.get(4);
             model.addAttribute("keyword", keyWord);
             model.addAttribute("pagenum", pageNum);
-            model.addAttribute("totalResult", "共查询到 " + total + " 条结果");
+            model.addAttribute("totalResult", "共查询到 " + total + " 条商品");
             model.addAttribute("totalpages", pages);
             model.addAttribute("isfirst", isfirst);
             model.addAttribute("islast", islast);
