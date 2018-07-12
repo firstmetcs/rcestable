@@ -32,7 +32,7 @@ public class CommonFilter implements Filter {
 
         System.out.println("targetURL:" + targetURL + "\nctxPath:" + ctxPath + "\ncurrentURL:" + currentURL + "\nQuary" + path);
 
-        if (targetURL.indexOf("login") > 0 || targetURL.equals("/") || targetURL.indexOf("register") > 0 || targetURL.startsWith("/index/") || targetURL.indexOf("forget") > 0 || targetURL.indexOf("verify") > 0 || targetURL.indexOf("css") > 0 || targetURL.indexOf("js") > 0 || targetURL.indexOf("woff") > 0 || targetURL.indexOf("eot") > 0 || targetURL.indexOf("svg") > 0 || targetURL.indexOf("ttf") > 0 || targetURL.indexOf("png") > 0 || targetURL.indexOf("jpg") > 0 || targetURL.indexOf("gif") > 0 || targetURL.startsWith("/goods/") || targetURL.indexOf("search") > 0) {
+        if (targetURL.indexOf("login") > 0 || targetURL.equals("/") || targetURL.indexOf("register") > 0  || targetURL.indexOf("active") > 0 || targetURL.startsWith("/index/") || targetURL.indexOf("forget") > 0 || targetURL.indexOf("verify") > 0 || targetURL.indexOf("css") > 0 || targetURL.indexOf("js") > 0 || targetURL.indexOf("woff") > 0 || targetURL.indexOf("eot") > 0 || targetURL.indexOf("svg") > 0 || targetURL.indexOf("ttf") > 0 || targetURL.indexOf("png") > 0 || targetURL.indexOf("jpg") > 0 || targetURL.indexOf("gif") > 0 || targetURL.startsWith("/goods/") || targetURL.indexOf("search") > 0) {
             filterChain.doFilter(request, response);
         } else {
             User user = (User) request.getSession().getAttribute(PublicStatic.USER);
