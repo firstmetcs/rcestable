@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>RCE商城</title>
+    <link rel="stylesheet" type="text/css" href="${path}/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${path}/layui/css/layui.css">
     <link rel="stylesheet" type="text/css" href="${path}/css/global.css">
     <link rel="stylesheet" type="text/css" href="${path}/css/headframe.css">
@@ -16,8 +17,8 @@
     <script language="JavaScript">
         //付款计时器
         function x1() {
-            <c:if test="${orders.size()>0}">
-            <c:forEach items="${orders}" var="orderLists" varStatus="status">
+            <c:if test="${orderLists.size()>0}">
+            <c:forEach items="${orderLists}" var="orderLists" varStatus="status">
             <c:if test="${orderLists.orderstatus==0}">
             // var endtime = new Date("2018/7/5 17:30:00");//结束时间
             var endtime = new Date("${orderLists.creattime}");
@@ -42,8 +43,8 @@
 
         //自动收获计时器
         function x2() {
-            <c:if test="${orders.size()>0}">
-            <c:forEach items="${orders}" var="orderLists" varStatus="status">
+            <c:if test="${orderLists.size()>0}">
+            <c:forEach items="${orderLists}" var="orderLists" varStatus="status">
             <c:if test="${orderLists.orderstatus==1}">
             // var endtime = new Date("2018/7/5 17:30:00");//结束时间
             var endtime = new Date("${orderLists.creattime}");
@@ -67,16 +68,16 @@
         }
 
         // 取消订单计时器
-        <c:if test="${orders.size()>0}">
-        <c:forEach items="${orders}" var="orderLists" varStatus="status">
+        <c:if test="${orderLists.size()>0}">
+        <c:forEach items="${orderLists}" var="orderLists" varStatus="status">
         <c:if test="${orderLists.orderstatus==0}">
         var ch${orderLists.orderid} = setInterval("x1()", 1000); // 每秒钟执行一次
         </c:if>
         </c:forEach>
         </c:if>
         // 自动收货计时器
-        <c:if test="${orders.size()>0}">
-        <c:forEach items="${orders}" var="orderLists" varStatus="status">
+        <c:if test="${orderLists.size()>0}">
+        <c:forEach items="${orderLists}" var="orderLists" varStatus="status">
         <c:if test="${orderLists.orderstatus==1}">
         var sh${orderLists.orderid} = setInterval("x2()", 1000); // 每秒钟执行一次
         </c:if>
@@ -143,13 +144,15 @@
                         <div class="layui-tab-item layui-show">
                             <div class="booklist-detail">
                                 <br>
-                                <c:if test="${orders.size()==0}">
+                                <c:if test="${orderLists.size()==0}">
+                                    <c:set value="0" var="orderstatus"/>
                                     <div class="listdetail">当前没有交易订单</div>
                                 </c:if>
-                                <c:if test="${orders.size()>0}">
+                                <c:if test="${orderLists.size()>0}">
+                                    <c:set value="1" var="orderstatus"/>
                                     <div class="listdetail">
                                         <table class="layui-table">
-                                            <c:forEach items="${orders}" var="orderLists" varStatus="status">
+                                            <c:forEach items="${pageInfo.list}" var="orderLists" varStatus="status">
                                                 <c:set var="cyclesIndex" value="${status.index}"/>
                                                 <colgroup>
                                                     <col width="50%">
@@ -311,6 +314,67 @@
                                                 </tr>
                                             </c:forEach>
                                         </table>
+                                        <div class="col-sm-5 page-info"
+                                             style="float:left;margin-top: 20px;font-size: 14px;">
+                                            当前第 ${pageInfo.pageNum} 页.总共 ${pageInfo.pages} 页.一共 ${pageInfo.total} 条记录
+                                        </div>
+                                        <!--点击分页-->
+                                        <div class="col-sm-7 page-show" style="float:right;left:25%;">
+                                            <nav aria-label="Page navigation">
+                                                <ul class="pagination pagination-sm">
+                                                    <li>
+                                                        <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=1&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}" var="userid"/>
+                                                        <a href="${path}/order/OrList?pageCode=1&userid=${userid}"><span
+                                                                class="num" style="padding: 0;border: none">首页</span></a></li>
+                                                    <!--上一页-->
+                                                    <li>
+                                                        <c:if test="${pageInfo.hasPreviousPage}">
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pageNum-1}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                            <a href="${path}/order/OrList?pageCode=${pageInfo.pageNum-1}&userid=${userid}"
+                                                               aria-label="Previous">
+                                                    <span class="prev" aria-hidden="true"
+                                                          style="padding: 0;border: none">&lt;&lt;</span>
+                                                            </a>
+                                                        </c:if>
+                                                    </li>
+                                                    <c:forEach items="${pageInfo.navigatepageNums}" var="page_num">
+                                                        <c:if test="${page_num == pageInfo.pageNum}">
+                                                            <li class="active">
+                                                                <a href="#">
+                                                                    <span class="current">${page_num}</span>
+                                                                </a>
+                                                            </li>
+                                                        </c:if>
+                                                        <c:if test="${page_num != pageInfo.pageNum}">
+                                                            <li><a class="num"
+                                                                <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${page_num}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                                   href="${path}/order/OrList?pageCode=${page_num}&userid=${userid}"><span
+                                                                    class="num"
+                                                                    style="padding: 0;border: none">${page_num}</span></a>
+                                                            </li>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                    <!--下一页-->
+                                                    <li>
+                                                        <c:if test="${pageInfo.hasNextPage}">
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pageNum+1}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                            <a href="${path}/order/OrList?pageCode=${pageInfo.pageNum+1}&userid=${userid}"
+                                                               aria-label="Next">
+                                                    <span class="next" aria-hidden="true"
+                                                          style="padding: 0;border: none">&gt;&gt;</span>
+                                                            </a>
+                                                        </c:if>
+                                                    </li>
+                                                    <li>
+                                                        <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pages}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                        <a href="${path}/order/OrList?pageCode=${pageInfo.pages}&userid=${userid}"><span
+                                                                class="num" style="padding: 0;border: none">尾页</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
                                     </div>
                                 </c:if>
                             </div>
@@ -318,13 +382,13 @@
                         <div class="layui-tab-item">
                             <div class="booklist-detail">
                                 <br>
-                                <c:if test="${orders.size()==0}">
+                                <c:if test="${orderstatus}=0}">
                                     <div class="listdetail">当前没有交易订单</div>
                                 </c:if>
-                                <c:if test="${orders.size()>0}">
+                                <c:if test="${orderstatus==1}">
                                     <div class="listdetail">
                                         <table class="layui-table">
-                                            <c:forEach items="${orders}" var="orderLists">
+                                            <c:forEach items="${pageInfo.list}" var="orderLists">
                                                 <c:if test="${orderLists.orderstatus==0}"><%--待支付--%>
                                                     <colgroup>
                                                         <col width="50%">
@@ -395,6 +459,67 @@
                                                 </c:if>
                                             </c:forEach>
                                         </table>
+                                        <div class="col-sm-5 page-info"
+                                             style="float:left;margin-top: 20px;font-size: 14px;">
+                                            当前第 ${pageInfo.pageNum} 页.总共 ${pageInfo.pages} 页.一共 ${pageInfo.total} 条记录
+                                        </div>
+                                        <!--点击分页-->
+                                        <div class="col-sm-7 page-show" style="float:right;left:25%;">
+                                            <nav aria-label="Page navigation">
+                                                <ul class="pagination pagination-sm">
+                                                    <li>
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=1&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}" var="userid"/>
+                                                        <a href="${path}/order/OrList?pageCode=1&userid=${userid}"><span
+                                                                class="num" style="padding: 0;border: none">首页</span></a></li>
+                                                    <!--上一页-->
+                                                    <li>
+                                                        <c:if test="${pageInfo.hasPreviousPage}">
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pageNum-1}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                            <a href="${path}/order/OrList?pageCode=${pageInfo.pageNum-1}&userid=${userid}"
+                                                               aria-label="Previous">
+                                                    <span class="prev" aria-hidden="true"
+                                                          style="padding: 0;border: none">&lt;&lt;</span>
+                                                            </a>
+                                                        </c:if>
+                                                    </li>
+                                                    <c:forEach items="${pageInfo.navigatepageNums}" var="page_num">
+                                                        <c:if test="${page_num == pageInfo.pageNum}">
+                                                            <li class="active">
+                                                                <a href="#">
+                                                                    <span class="current">${page_num}</span>
+                                                                </a>
+                                                            </li>
+                                                        </c:if>
+                                                        <c:if test="${page_num != pageInfo.pageNum}">
+                                                            <li><a class="num"
+                                                                <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${page_num}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                                   href="${path}/order/OrList?pageCode=${page_num}&userid=${userid}"><span
+                                                                    class="num"
+                                                                    style="padding: 0;border: none">${page_num}</span></a>
+                                                            </li>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                    <!--下一页-->
+                                                    <li>
+                                                        <c:if test="${pageInfo.hasNextPage}">
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pageNum+1}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                            <a href="${path}/order/OrList?pageCode=${pageInfo.pageNum+1}&userid=${userid}"
+                                                               aria-label="Next">
+                                                    <span class="next" aria-hidden="true"
+                                                          style="padding: 0;border: none">&gt;&gt;</span>
+                                                            </a>
+                                                        </c:if>
+                                                    </li>
+                                                    <li>
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pages}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                        <a href="${path}/order/OrList?pageCode=${pageInfo.pages}&userid=${userid}"><span
+                                                                class="num" style="padding: 0;border: none">尾页</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
                                     </div>
                                 </c:if>
                             </div>
@@ -402,13 +527,13 @@
                         <div class="layui-tab-item">
                             <div class="booklist-detail">
                                 <br>
-                                <c:if test="${orders.size()==0}">
+                                <c:if test="${orderstatus==0}">
                                     <div class="listdetail">当前没有交易订单</div>
                                 </c:if>
-                                <c:if test="${orders.size()>0}">
+                                <c:if test="${orderstatus==1}">
                                     <div class="listdetail">
                                         <table class="layui-table">
-                                            <c:forEach items="${orders}" var="orderLists">
+                                            <c:forEach items="${pageInfo.list}" var="orderLists">
                                                 <c:if test="${orderLists.orderstatus==1}"><%--待收货--%>
                                                     <colgroup>
                                                         <col width="50%">
@@ -472,6 +597,67 @@
                                                 </c:if>
                                             </c:forEach>
                                         </table>
+                                        <div class="col-sm-5 page-info"
+                                             style="float:left;margin-top: 20px;font-size: 14px;">
+                                            当前第 ${pageInfo.pageNum} 页.总共 ${pageInfo.pages} 页.一共 ${pageInfo.total} 条记录
+                                        </div>
+                                        <!--点击分页-->
+                                        <div class="col-sm-7 page-show"  style="float:right;left:25%;">
+                                            <nav aria-label="Page navigation">
+                                                <ul class="pagination pagination-sm">
+                                                    <li>
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=1&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}" var="userid"/>
+                                                        <a href="${path}/order/OrList?pageCode=1&userid=${userid}"><span
+                                                                class="num" style="padding: 0;border: none">首页</span></a></li>
+                                                    <!--上一页-->
+                                                    <li>
+                                                        <c:if test="${pageInfo.hasPreviousPage}">
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pageNum-1}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                            <a href="${path}/order/OrList?pageCode=${pageInfo.pageNum-1}&userid=${userid}"
+                                                               aria-label="Previous">
+                                                    <span class="prev" aria-hidden="true"
+                                                          style="padding: 0;border: none">&lt;&lt;</span>
+                                                            </a>
+                                                        </c:if>
+                                                    </li>
+                                                    <c:forEach items="${pageInfo.navigatepageNums}" var="page_num">
+                                                        <c:if test="${page_num == pageInfo.pageNum}">
+                                                            <li class="active">
+                                                                <a href="#">
+                                                                    <span class="current">${page_num}</span>
+                                                                </a>
+                                                            </li>
+                                                        </c:if>
+                                                        <c:if test="${page_num != pageInfo.pageNum}">
+                                                            <li><a class="num"
+                                                                <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${page_num}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                                   href="${path}/order/OrList?pageCode=${page_num}&userid=${userid}"><span
+                                                                    class="num"
+                                                                    style="padding: 0;border: none">${page_num}</span></a>
+                                                            </li>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                    <!--下一页-->
+                                                    <li>
+                                                        <c:if test="${pageInfo.hasNextPage}">
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pageNum+1}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                            <a href="${path}/order/OrList?pageCode=${pageInfo.pageNum+1}&userid=${userid}"
+                                                               aria-label="Next">
+                                                    <span class="next" aria-hidden="true"
+                                                          style="padding: 0;border: none">&gt;&gt;</span>
+                                                            </a>
+                                                        </c:if>
+                                                    </li>
+                                                    <li>
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pages}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                        <a href="${path}/order/OrList?pageCode=${pageInfo.pages}&userid=${userid}"><span
+                                                                class="num" style="padding: 0;border: none">尾页</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
                                     </div>
                                 </c:if>
                             </div>
@@ -479,13 +665,13 @@
                         <div class="layui-tab-item">
                             <div class="booklist-detail">
                                 <br>
-                                <c:if test="${orders.size()==0}">
+                                <c:if test="${orderstatus==0}">
                                     <div class="listdetail">当前没有交易订单</div>
                                 </c:if>
-                                <c:if test="${orders.size()>0}">
+                                <c:if test="${orderstatus==1}">
                                     <div class="listdetail">
                                         <table class="layui-table">
-                                            <c:forEach items="${orders}" var="orderLists">
+                                            <c:forEach items="${pageInfo.list}" var="orderLists">
                                                 <c:if test="${orderLists.orderstatus==2}"><%--已完成--%>
                                                     <colgroup>
                                                         <col width="50%">
@@ -562,6 +748,67 @@
                                             </c:forEach>
                                             </tr>
                                         </table>
+                                        <div class="col-sm-5 page-info"
+                                             style="float:left;margin-top: 20px;font-size: 14px;">
+                                            当前第 ${pageInfo.pageNum} 页.总共 ${pageInfo.pages} 页.一共 ${pageInfo.total} 条记录
+                                        </div>
+                                        <!--点击分页-->
+                                        <div class="col-sm-7 page-show" style="float:right;left:25%;">
+                                            <nav aria-label="Page navigation">
+                                                <ul class="pagination pagination-sm">
+                                                    <li>
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=1&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}" var="userid"/>
+                                                        <a href="${path}/order/OrList?pageCode=1&userid=${userid}"><span
+                                                                class="num" style="padding: 0;border: none">首页</span></a></li>
+                                                    <!--上一页-->
+                                                    <li>
+                                                        <c:if test="${pageInfo.hasPreviousPage}">
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pageNum-1}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                            <a href="${path}/order/OrList?pageCode=${pageInfo.pageNum-1}&userid=${userid}"
+                                                               aria-label="Previous">
+                                                    <span class="prev" aria-hidden="true"
+                                                          style="padding: 0;border: none">&lt;&lt;</span>
+                                                            </a>
+                                                        </c:if>
+                                                    </li>
+                                                    <c:forEach items="${pageInfo.navigatepageNums}" var="page_num">
+                                                        <c:if test="${page_num == pageInfo.pageNum}">
+                                                            <li class="active">
+                                                                <a href="#">
+                                                                    <span class="current">${page_num}</span>
+                                                                </a>
+                                                            </li>
+                                                        </c:if>
+                                                        <c:if test="${page_num != pageInfo.pageNum}">
+                                                            <li><a class="num"
+                                                                <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${page_num}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                                   href="${path}/order/OrList?pageCode=${page_num}&userid=${userid}"><span
+                                                                    class="num"
+                                                                    style="padding: 0;border: none">${page_num}</span></a>
+                                                            </li>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                    <!--下一页-->
+                                                    <li>
+                                                        <c:if test="${pageInfo.hasNextPage}">
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pageNum+1}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                            <a href="${path}/order/OrList?pageCode=${pageInfo.pageNum+1}&userid=${userid}"
+                                                               aria-label="Next">
+                                                    <span class="next" aria-hidden="true"
+                                                          style="padding: 0;border: none">&gt;&gt;</span>
+                                                            </a>
+                                                        </c:if>
+                                                    </li>
+                                                    <li>
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pages}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                        <a href="${path}/order/OrList?pageCode=${pageInfo.pages}&userid=${userid}"><span
+                                                                class="num" style="padding: 0;border: none">尾页</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
                                     </div>
                                 </c:if>
                             </div>
@@ -569,13 +816,13 @@
                         <div class="layui-tab-item">
                             <div class="booklist-detail">
                                 <br>
-                                <c:if test="${orders.size()==0}">
+                                <c:if test="${orderstatus==0}">
                                     <div class="listdetail">当前没有交易订单</div>
                                 </c:if>
-                                <c:if test="${orders.size()>0}">
+                                <c:if test="${orderstatus==1}">
                                     <div class="listdetail">
                                         <table class="layui-table">
-                                            <c:forEach items="${orders}" var="orderLists">
+                                            <c:forEach items="${pageInfo.list}" var="orderLists">
                                                 <c:if test="${orderLists.orderstatus==3}"><%--已取消--%>
                                                     <colgroup>
                                                         <col width="50%">
@@ -639,6 +886,67 @@
                                             </c:forEach>
                                             </tr>
                                         </table>
+                                        <div class="col-sm-5 page-info"
+                                             style="float:left;margin-top: 20px;font-size: 14px;">
+                                            当前第 ${pageInfo.pageNum} 页.总共 ${pageInfo.pages} 页.一共 ${pageInfo.total} 条记录
+                                        </div>
+                                        <!--点击分页-->
+                                        <div class="col-sm-7 page-show"  style="float:right;left:25%;">
+                                            <nav aria-label="Page navigation">
+                                                <ul class="pagination pagination-sm">
+                                                    <li>
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=1&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}" var="userid"/>
+                                                        <a href="${path}/order/OrList?pageCode=1&userid=${userid}"><span
+                                                                class="num" style="padding: 0;border: none">首页</span></a></li>
+                                                    <!--上一页-->
+                                                    <li>
+                                                        <c:if test="${pageInfo.hasPreviousPage}">
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pageNum-1}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                            <a href="${path}/order/OrList?pageCode=${pageInfo.pageNum-1}&userid=${userid}"
+                                                               aria-label="Previous">
+                                                    <span class="prev" aria-hidden="true"
+                                                          style="padding: 0;border: none">&lt;&lt;</span>
+                                                            </a>
+                                                        </c:if>
+                                                    </li>
+                                                    <c:forEach items="${pageInfo.navigatepageNums}" var="page_num">
+                                                        <c:if test="${page_num == pageInfo.pageNum}">
+                                                            <li class="active">
+                                                                <a href="#">
+                                                                    <span class="current">${page_num}</span>
+                                                                </a>
+                                                            </li>
+                                                        </c:if>
+                                                        <c:if test="${page_num != pageInfo.pageNum}">
+                                                            <li><a class="num"
+                                                                <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${page_num}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                                   href="${path}/order/OrList?pageCode=${page_num}&userid=${userid}"><span
+                                                                    class="num"
+                                                                    style="padding: 0;border: none">${page_num}</span></a>
+                                                            </li>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                    <!--下一页-->
+                                                    <li>
+                                                        <c:if test="${pageInfo.hasNextPage}">
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pageNum+1}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                            <a href="${path}/order/OrList?pageCode=${pageInfo.pageNum+1}&userid=${userid}"
+                                                               aria-label="Next">
+                                                    <span class="next" aria-hidden="true"
+                                                          style="padding: 0;border: none">&gt;&gt;</span>
+                                                            </a>
+                                                        </c:if>
+                                                    </li>
+                                                    <li>
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pages}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                        <a href="${path}/order/OrList?pageCode=${pageInfo.pages}&userid=${userid}"><span
+                                                                class="num" style="padding: 0;border: none">尾页</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
                                     </div>
                                 </c:if>
                             </div>
@@ -767,6 +1075,7 @@
 </div>
 
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="${path}/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="${path}/layui/layui.js"></script>
 <script type="text/javascript" src="${path}/js/global.js"></script>
 <script type="text/javascript" src="${path}/js/headframe.js"></script>

@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>交易详情</title>
-    <link rel="stylesheet" href="${path}/css/order.css">
+    <link rel="stylesheet" href="${path}/css/orderInfo.css">
     <link rel="stylesheet" type="text/css" href="${path}/layui/css/layui.css">
-    <script type="text/javascript" src="${path}/js/order.js"></script>
+    <script type="text/javascript" src="${path}/js/orderInfo.js"></script>
 </head>
 
 <body>

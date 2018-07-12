@@ -1,6 +1,8 @@
 package com.rce.ssm.controller.shop;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.rce.ssm.model.*;
 import com.rce.ssm.model.goods.ExpressDatas;
 import com.rce.ssm.model.goods.GoodsEvaluate;
@@ -15,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -117,12 +120,24 @@ public class OrderController {
     }
 
     @RequestMapping("/OrList")
-    public String showOrderList(HttpServletRequest request, ModelMap modelMap) {
+    public String showOrderList(HttpServletRequest request, ModelMap modelMap,@RequestParam(required = false, defaultValue = "1", value = "pageCode") int pageCode) {
         log.info("订单显示");
         int userid = Integer.parseInt(request.getParameter("userid"));
+        PageHelper.startPage(pageCode,4);
         List<OrderList> orderLists = orderService.getOrderList(userid);
-        modelMap.addAttribute("orders", orderLists);
-        return "user/orderList";
+        if(orderLists.size()>0){
+            PageInfo<OrderList> pageInfo = new PageInfo<OrderList>(orderLists,4);
+            modelMap.addAttribute("orderLists",orderLists);
+            modelMap.addAttribute("pageInfo",pageInfo);
+            return "user/orderList";
+        }
+        if(orderLists.size()==0){
+            PageInfo pageInfo = new PageInfo();
+            modelMap.addAttribute("orderLists",orderLists);
+            modelMap.addAttribute("pageInfo",pageInfo);
+            return "user/orderList";
+        }
+        return null;
     }
 
     @ResponseBody
@@ -201,9 +216,9 @@ public class OrderController {
         kuaidi100 kuaidi100 = new kuaidi100();
         ExpressDatas expressDatas = (ExpressDatas) JSON.parseObject(
                 kuaidi100.getWuLiu(orderGoods.get(0).getExpresscompany(), orderGoods.get(0).getExpresscode()), ExpressDatas.class);
-        if (addresses == null)
+        if (Integer.parseInt(expressDatas.getStatus()) == 0)
             modelMap.addAttribute("expressStatus", 0);
-        if (addresses != null) {
+        if (Integer.parseInt(expressDatas.getStatus()) == 1) {
             modelMap.addAttribute("expressDatas", expressDatas);
             modelMap.addAttribute("expressStatus", 1);
         }
