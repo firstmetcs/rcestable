@@ -105,16 +105,23 @@
                         <h3>订单中心</h3>
                         <li><a href="${path}/order/OrList?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}"
                                style="color: #008b8b">我的订单</a></li>
-                        <li><a href="${path}/order/showEvaluate?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">评价晒单</a>
+                        <li>
+                            <a href="${path}/order/showEvaluate?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">评价晒单</a>
                         </li>
-                        <li><a href="${path}/order/showInsurance?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">意外保</a></li>
+                        <li>
+                            <a href="${path}/order/showInsurance?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">意外保</a>
+                        </li>
                     </ul>
                     <ul>
                         <h3>个人中心</h3>
                         <li><a href="${path}/user/index?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">我的个人中心</a>
                         </li>
-                        <li><a href="${path}/user/showMessage?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">消息通知</a></li>
-                        <li><a href="${path}/user/showCoupon?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">优惠券</a></li>
+                        <li>
+                            <a href="${path}/user/showMessage?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">消息通知</a>
+                        </li>
+                        <li>
+                            <a href="${path}/user/showCoupon?userid=${pageInfo.list.get(0).orderGoodsList.get(0).userid}">优惠券</a>
+                        </li>
                     </ul>
                     <ul>
                         <h3>售后服务</h3>
@@ -323,10 +330,12 @@
                                             <nav aria-label="Page navigation">
                                                 <ul class="pagination pagination-sm">
                                                     <li>
-                                                        <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=1&goodsid=${pageInfo.list.get(0).goodsid}--%>
-                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}" var="userid"/>
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=1&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}"
+                                                               var="userid"/>
                                                         <a href="${path}/order/OrList?pageCode=1&userid=${userid}"><span
-                                                                class="num" style="padding: 0;border: none">首页</span></a></li>
+                                                                class="num"
+                                                                style="padding: 0;border: none">首页</span></a></li>
                                                     <!--上一页-->
                                                     <li>
                                                         <c:if test="${pageInfo.hasPreviousPage}">
@@ -367,7 +376,7 @@
                                                         </c:if>
                                                     </li>
                                                     <li>
-                                                        <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pages}&goodsid=${pageInfo.list.get(0).goodsid}--%>
+                                                            <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=${pageInfo.pages}&goodsid=${pageInfo.list.get(0).goodsid}--%>
                                                         <a href="${path}/order/OrList?pageCode=${pageInfo.pages}&userid=${userid}"><span
                                                                 class="num" style="padding: 0;border: none">尾页</span>
                                                         </a>
@@ -402,7 +411,7 @@
                                                             <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
                                                                             value="${orderLists.creattime}"/>
                                                         </span>
-                                                            <span class="bookid">订单号: ${orderLists.orderno}</span>
+                                                            <span class="bookid"><a href="${path}/order/showOrderInfo?orderid=${orderLists.orderid}">订单号: ${orderLists.orderno}</a></span>
                                                             <c:if test="${orderLists.orderstatus==2}">
                                                                 <span class="bookid"><a href="">申请售后</a></span>
                                                             </c:if>
@@ -469,9 +478,11 @@
                                                 <ul class="pagination pagination-sm">
                                                     <li>
                                                             <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=1&goodsid=${pageInfo.list.get(0).goodsid}--%>
-                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}" var="userid"/>
+                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}"
+                                                               var="userid"/>
                                                         <a href="${path}/order/OrList?pageCode=1&userid=${userid}"><span
-                                                                class="num" style="padding: 0;border: none">首页</span></a></li>
+                                                                class="num"
+                                                                style="padding: 0;border: none">首页</span></a></li>
                                                     <!--上一页-->
                                                     <li>
                                                         <c:if test="${pageInfo.hasPreviousPage}">
@@ -548,7 +559,7 @@
                                                                             value="${orderLists.creattime}"/>
                                                         </span>
                                                             <span class="bookid"><a
-                                                                    href="">订单号: ${orderLists.orderno}</a></span>
+                                                                    href="${path}/order/showOrderInfo?orderid=${orderLists.orderid}">订单号: ${orderLists.orderno}</a></span>
                                                             <c:if test="${orderLists.orderstatus==2}">
                                                                 <%--申请售后的接口--%>
                                                                 <span class="bookid"><a href="#">申请售后</a></span>
@@ -602,14 +613,16 @@
                                             当前第 ${pageInfo.pageNum} 页.总共 ${pageInfo.pages} 页.一共 ${pageInfo.total} 条记录
                                         </div>
                                         <!--点击分页-->
-                                        <div class="col-sm-7 page-show"  style="float:right;left:25%;">
+                                        <div class="col-sm-7 page-show" style="float:right;left:25%;">
                                             <nav aria-label="Page navigation">
                                                 <ul class="pagination pagination-sm">
                                                     <li>
                                                             <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=1&goodsid=${pageInfo.list.get(0).goodsid}--%>
-                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}" var="userid"/>
+                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}"
+                                                               var="userid"/>
                                                         <a href="${path}/order/OrList?pageCode=1&userid=${userid}"><span
-                                                                class="num" style="padding: 0;border: none">首页</span></a></li>
+                                                                class="num"
+                                                                style="padding: 0;border: none">首页</span></a></li>
                                                     <!--上一页-->
                                                     <li>
                                                         <c:if test="${pageInfo.hasPreviousPage}">
@@ -686,7 +699,7 @@
                                                                             value="${orderLists.creattime}"/>
                                                         </span>
                                                             <span class="bookid"><a
-                                                                    href="#">订单号: ${orderLists.orderno}</a></span>
+                                                                    href="${path}/order/showOrderInfo?orderid=${orderLists.orderid}">订单号: ${orderLists.orderno}</a></span>
                                                             <c:if test="${orderLists.orderstatus==2}">
                                                                 <span class="bookid"><a href="">申请售后</a></span>
                                                             </c:if>
@@ -758,9 +771,11 @@
                                                 <ul class="pagination pagination-sm">
                                                     <li>
                                                             <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=1&goodsid=${pageInfo.list.get(0).goodsid}--%>
-                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}" var="userid"/>
+                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}"
+                                                               var="userid"/>
                                                         <a href="${path}/order/OrList?pageCode=1&userid=${userid}"><span
-                                                                class="num" style="padding: 0;border: none">首页</span></a></li>
+                                                                class="num"
+                                                                style="padding: 0;border: none">首页</span></a></li>
                                                     <!--上一页-->
                                                     <li>
                                                         <c:if test="${pageInfo.hasPreviousPage}">
@@ -837,7 +852,7 @@
                                                                             value="${orderLists.creattime}"/>
                                                         </span>
                                                             <span class="bookid"><a
-                                                                    href="">订单号: ${orderLists.orderno}</a></span>
+                                                                    href="${path}/order/showOrderInfo?orderid=${orderLists.orderid}">订单号: ${orderLists.orderno}</a></span>
                                                             <c:if test="${orderLists.orderstatus==2}">
                                                                 <%--申请售后接口--%>
                                                                 <span class="bookid"><a href="#">申请售后</a></span>
@@ -891,14 +906,16 @@
                                             当前第 ${pageInfo.pageNum} 页.总共 ${pageInfo.pages} 页.一共 ${pageInfo.total} 条记录
                                         </div>
                                         <!--点击分页-->
-                                        <div class="col-sm-7 page-show"  style="float:right;left:25%;">
+                                        <div class="col-sm-7 page-show" style="float:right;left:25%;">
                                             <nav aria-label="Page navigation">
                                                 <ul class="pagination pagination-sm">
                                                     <li>
                                                             <%--/rcestore/goodsevaluate/showEvaluateList?pageCode=1&goodsid=${pageInfo.list.get(0).goodsid}--%>
-                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}" var="userid"/>
+                                                        <c:set value="${pageInfo.list.get(0).orderGoodsList.get(0).userid}"
+                                                               var="userid"/>
                                                         <a href="${path}/order/OrList?pageCode=1&userid=${userid}"><span
-                                                                class="num" style="padding: 0;border: none">首页</span></a></li>
+                                                                class="num"
+                                                                style="padding: 0;border: none">首页</span></a></li>
                                                     <!--上一页-->
                                                     <li>
                                                         <c:if test="${pageInfo.hasPreviousPage}">
@@ -992,93 +1009,14 @@
     </div>
 </div>
 <!--尾部-->
-<div class="layui-main">
-    <div class="layui-row foot">
-        <div class="layui-col-md3 foot">
-            <i class="layui-icon layui-icon-util foot-icon"></i>
-            <a href="">预约维修服务</a>
-            <span class="layui-seperator">|</span>
-        </div>
-
-        <div class="layui-col-md3 foot">
-            <i class="layui-icon layui-icon-rmb foot-icon"></i>
-            <a href="">7天无理由退货</a>
-            <span class="layui-seperator">|</span>
-        </div>
-        <div class="layui-col-md3 foot">
-            <i class="layui-icon layui-icon-tips foot-icon"></i>
-            <a href="">15天免费换货</a>
-            <span class="layui-seperator">|</span>
-        </div>
-        <div class="layui-col-md3 foot">
-            <i class="layui-icon layui-icon-diamond foot-icon"></i>
-            <a href="">满200元包邮</a>
-        </div>
-    </div>
-    <div class="foot-hr">
-        <hr class="foot-hr">
-    </div>
-    <div class="foot-link">
-        <div class="layui-row">
-            <div class="layui-col-md9">
-                <div class="layui-row">
-                    <div class="layui-col-md2">
-                        <h2>帮助中心</h2>
-                        <li>账户管理</li>
-                        <li>购物指南</li>
-                    </div>
-                    <div class="layui-col-md2">
-                        <h2>服务支持</h2>
-                        <li>售后政策</li>
-                        <li>自助服务</li>
-                    </div>
-                    <div class="layui-col-md2">
-                        <h2>线下门店</h2>
-                        <li>服务网点</li>
-                        <li>授权体验店</li>
-                    </div>
-                    <div class="layui-col-md2">
-                        <h2>关于RCE</h2>
-                        <li>了解RCE</li>
-                        <li>加入RCE</li>
-                    </div>
-                    <div class="layui-col-md2">
-                        <h2>关注我们</h2>
-                        <li>新浪微博</li>
-                        <li>联系我们</li>
-                    </div>
-                    <div class="layui-col-md2">
-                        <h2>特色服务</h2>
-                        <li>优惠券</li>
-                        <li>防伪查询</li>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-md3">
-                <div class="foot-contact">
-                    <h2 class="foot-tel">400-100-8754</h2>
-                    <p>周一至周日8:00-18:00</p>
-                    <button class="layui-btn layui-btn-primary">
-                        <i class="layui-icon layui-icon-dialogue"></i>
-                        <span>联系客服</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="copyright">
-        <p>RCE版权所有-京ICP备10046444-京公网安备11010802020134号-京ICP证110507号</p>
-    </div>
-    <br>
-    <br>
-    <br>
-</div>
-
+<%@ include file="/WEB-INF/inc/footer.jsp" %>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="${path}/layui/layui.js"></script>
 <script type="text/javascript" src="${path}/js/global.js"></script>
 <script type="text/javascript" src="${path}/js/headframe.js"></script>
+<script type="text/javascript" src="${path}/js/index.js"></script>
+<%--首页必要js--%>
 <script type="text/javascript" src="${path}/js/index.js"></script>
 <script>
     layui.use('layer', function () { //独立版的layer无需执行这一句

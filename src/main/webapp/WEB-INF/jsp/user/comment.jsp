@@ -114,94 +114,15 @@
     </div>
 </div>
 <!--尾部-->
-<div class="layui-main layui-foot">
-    <div class="layui-row foot">
-        <div class="layui-col-md3 foot">
-            <i class="layui-icon layui-icon-util foot-icon"></i>
-            <a href="">预约维修服务</a>
-            <span class="layui-seperator">|</span>
-        </div>
-
-        <div class="layui-col-md3 foot">
-            <i class="layui-icon layui-icon-rmb foot-icon"></i>
-            <a href="">7天无理由退货</a>
-            <span class="layui-seperator">|</span>
-        </div>
-        <div class="layui-col-md3 foot">
-            <i class="layui-icon layui-icon-tips foot-icon"></i>
-            <a href="">15天免费换货</a>
-            <span class="layui-seperator">|</span>
-        </div>
-        <div class="layui-col-md3 foot">
-            <i class="layui-icon layui-icon-diamond foot-icon"></i>
-            <a href="">满200元包邮</a>
-        </div>
-    </div>
-    <div class="foot-hr">
-        <hr class="foot-hr">
-    </div>
-    <div class="foot-link">
-        <div class="layui-row">
-            <div class="layui-col-md9">
-                <div class="layui-row">
-                    <div class="layui-col-md2">
-                        <h2>帮助中心</h2>
-                        <li>账户管理</li>
-                        <li>购物指南</li>
-                    </div>
-                    <div class="layui-col-md2">
-                        <h2>服务支持</h2>
-                        <li>售后政策</li>
-                        <li>自助服务</li>
-                    </div>
-                    <div class="layui-col-md2">
-                        <h2>线下门店</h2>
-                        <li>服务网点</li>
-                        <li>授权体验店</li>
-                    </div>
-                    <div class="layui-col-md2">
-                        <h2>关于RCE</h2>
-                        <li>了解RCE</li>
-                        <li>加入RCE</li>
-                    </div>
-                    <div class="layui-col-md2">
-                        <h2>关注我们</h2>
-                        <li>新浪微博</li>
-                        <li>联系我们</li>
-                    </div>
-                    <div class="layui-col-md2">
-                        <h2>特色服务</h2>
-                        <li>优惠券</li>
-                        <li>防伪查询</li>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-md3">
-                <div class="foot-contact">
-                    <h2 class="foot-tel">400-100-8754</h2>
-                    <p>周一至周日8:00-18:00</p>
-                    <button class="layui-btn layui-btn-primary">
-                        <i class="layui-icon layui-icon-dialogue"></i>
-                        <span>联系客服</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="copyright">
-        <p>RCE版权所有-京ICP备10046444-京公网安备11010802020134号-京ICP证110507号</p>
-    </div>
-    <br>
-    <br>
-    <br>
-</div>
+<%@ include file="/WEB-INF/inc/footer.jsp" %>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/layui/layui.js"></script>
 <script type="text/javascript" src="${path}/js/global.js"></script>
 <script type="text/javascript" src="${path}/js/headframe.js"></script>
 <script type="text/javascript" src="${path}/js/index.js"></script>
 <script src="${path}/layui/layui.js" charset="utf-8"></script>
-
+<%--首页必要js--%>
+<script type="text/javascript" src="${path}/js/index.js"></script>
 <script>
     layui.use(['rate'], function () {
         var rate = layui.rate;
