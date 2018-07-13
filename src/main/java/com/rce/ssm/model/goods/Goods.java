@@ -28,6 +28,7 @@ public class Goods {
   private String goodsCPUDesc;
   private String goodsSystemDesc;
   private String goodsType;
+  private String goodsImage;
 
   private double goodsPrice;
 
@@ -235,5 +236,13 @@ public class Goods {
 
   public void setGoodsPrice(double goodsPrice) {
     this.goodsPrice = goodsPrice;
+  }
+
+  public String getGoodsImage() {
+    return goodsImage;
+  }
+
+  public void setGoodsImage(String goodsImage) {
+    this.goodsImage = goodsImage;
   }
 }

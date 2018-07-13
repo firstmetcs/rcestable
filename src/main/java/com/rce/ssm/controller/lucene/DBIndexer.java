@@ -56,7 +56,7 @@ public class DBIndexer {
                 Goods goods = itr.next();
                 Document document = new Document();
 
-                document.add(new Field("img", goods.getGoodsImg(), TextField.TYPE_STORED));
+                document.add(new Field("img", goods.getGoodsImage(), TextField.TYPE_STORED));
                 document.add(new Field("goodsid", String.valueOf(goods.getGoodsId()), TextField.TYPE_STORED));
                 String name = goods.getGoodsName() + goods.getGoodsType();
                 document.add(new Field("name", name, TextField.TYPE_STORED));
@@ -131,7 +131,7 @@ public class DBIndexer {
                     bi.setGoodsAttrDesc(darkContent);
                 }
                 bi.setGoodsPrice(Double.parseDouble(document.get("price")));
-                bi.setGoodsImg(document.get("img"));
+                bi.setGoodsImage(document.get("img"));
                 resultInfo.add(bi);
             }
 

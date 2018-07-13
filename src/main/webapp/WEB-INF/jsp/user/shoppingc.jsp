@@ -112,7 +112,7 @@
                             <!-- </form> -->
                         </div>
                         <div class="shopCart-thumbnail">
-                            <img src="img/华为p20.jpg" alt="">
+                            <img src="${path}/img/phone/huaweiP20.png" alt="">
                         </div>
                     </td>
                     <td>${shoppingCart.goodsname}&nbsp;&nbsp;${shoppingCart.goodsversion}&nbsp;&nbsp;${shoppingCart.goodscolor}&nbsp;&nbsp;</td>
