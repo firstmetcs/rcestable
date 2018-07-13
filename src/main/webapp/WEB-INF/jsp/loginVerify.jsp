@@ -50,8 +50,6 @@
         }
 
         function submit() {
-            alert("test");
-            alert(isverifyCode());
             if (isverifyCode()) {
                 window.location.href = "/rcestore/login/success?pathlocation=${pathlocation}";
             }

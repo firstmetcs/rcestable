@@ -14,8 +14,6 @@ function defaultAddr(obj) {
 
 function getInfo() {
     // addrFlag+1是radio的value值
-    alert($("input[name='optionsRadios']:checked").val() + " " + sendtimeFlag + " " + invoiceFlag + " " + $("#orderremarks").val() + "!");
-
     var param = {};
     param.addressid = $("input[name='optionsRadios']:checked").val();
     param.delivertype = 1;

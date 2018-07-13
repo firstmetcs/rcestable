@@ -92,13 +92,15 @@ public class OrderController {
 
         for (ShoppingCart shoppingCart :
                 shoppingCarts) {
-            OrderGoods orderGoods = new OrderGoods();
-            orderGoods.setOrderid(order.getOrderid());
-            orderGoods.setGoodsid(shoppingCart.getGoodsid());
-            orderGoods.setGoodsattrid(shoppingCart.getGoodsattrid());
-            orderGoods.setGoodsnums(shoppingCart.getGoodscount());
-            orderGoods.setGoodsprice(shoppingCart.getGoodsprice().longValue());
-            orderGoodsService.insertSelective(orderGoods);
+            if (shoppingCart.getIscheck()==1){
+                OrderGoods orderGoods = new OrderGoods();
+                orderGoods.setOrderid(order.getOrderid());
+                orderGoods.setGoodsid(shoppingCart.getGoodsid());
+                orderGoods.setGoodsattrid(shoppingCart.getGoodsattrid());
+                orderGoods.setGoodsnums(shoppingCart.getGoodscount());
+                orderGoods.setGoodsprice(shoppingCart.getGoodsprice().longValue());
+                orderGoodsService.insertSelective(orderGoods);
+            }
         }
 
 
@@ -108,7 +110,7 @@ public class OrderController {
 
         //30分钟自动取消订单
         try {
-            QuartzManager.addJob(order.getOrderid().toString(),new OrderJob(),30,DateBuilder.IntervalUnit.MINUTE);
+            QuartzManager.addJob(order.getOrderid().toString(), new OrderJob(), 30, DateBuilder.IntervalUnit.MINUTE);
             QuartzManager.seeTime(order.getOrderid().toString());
         } catch (SchedulerException e) {
             e.printStackTrace();
@@ -131,25 +133,25 @@ public class OrderController {
         request.getSession().setAttribute("total", total == null ? "0" : String.valueOf(total));
         request.getSession().setAttribute(PublicStatic.SHOPPINGCARTS, shoppingCartService.selectByUserId(usersession.getUserid()));
 
-        return "success";
+        return "redirect: /order/OrList?userid=" + usersession.getUserid();
     }
 
     @RequestMapping("/OrList")
-    public String showOrderList(HttpServletRequest request, ModelMap modelMap,@RequestParam(required = false, defaultValue = "1", value = "pageCode") int pageCode) {
+    public String showOrderList(HttpServletRequest request, ModelMap modelMap, @RequestParam(required = false, defaultValue = "1", value = "pageCode") int pageCode) {
         log.info("订单显示");
         int userid = Integer.parseInt(request.getParameter("userid"));
-        PageHelper.startPage(pageCode,4);
+        PageHelper.startPage(pageCode, 4);
         List<OrderList> orderLists = orderService.getOrderList(userid);
-        if(orderLists.size()>0){
-            PageInfo<OrderList> pageInfo = new PageInfo<OrderList>(orderLists,4);
-            modelMap.addAttribute("orderLists",orderLists);
-            modelMap.addAttribute("pageInfo",pageInfo);
+        if (orderLists.size() > 0) {
+            PageInfo<OrderList> pageInfo = new PageInfo<OrderList>(orderLists, 4);
+            modelMap.addAttribute("orderLists", orderLists);
+            modelMap.addAttribute("pageInfo", pageInfo);
             return "user/orderList";
         }
-        if(orderLists.size()==0){
+        if (orderLists.size() == 0) {
             PageInfo pageInfo = new PageInfo();
-            modelMap.addAttribute("orderLists",orderLists);
-            modelMap.addAttribute("pageInfo",pageInfo);
+            modelMap.addAttribute("orderLists", orderLists);
+            modelMap.addAttribute("pageInfo", pageInfo);
             return "user/orderList";
         }
         return null;

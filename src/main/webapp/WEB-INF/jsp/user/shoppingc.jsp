@@ -36,7 +36,6 @@
                     sum += $(this).text() * 1;
                 }
             });
-            alert(sum);
             $("#total").html("¥" + sum.toFixed(2));
             $.ajax({
                 type: "POST",
@@ -162,7 +161,7 @@
                 <!-- 这里不能有空格，因为jQuery的html方法会计算 -->
                 <div id="clearing-total">总计：<em id="total">¥${sessionScope.total}</em></div>
                 <div>
-                    已选择 <span>0</span> 件商品，已优惠 ￥0.00
+                    已优惠 ￥0.00
                 </div>
             </div>
             <div class="clearing-btn">
@@ -251,7 +250,6 @@
                     sum += $(this).text() * 1;
                 }
             });
-            alert(sum);
             $("#total").html("¥" + sum.toFixed(2));
             $.ajax({
                 type: "POST",
