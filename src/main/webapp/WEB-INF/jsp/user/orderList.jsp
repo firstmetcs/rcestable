@@ -274,9 +274,9 @@
                                                         </div>
                                                         <div id="but${orderLists.orderid}">
                                                             <a href="">
-                                                                <button id="pay${orderLists.orderid}" class="layui-btn">
+                                                                <a id="pay${orderLists.orderid}" class="layui-btn" href="${path}/order/pay?orderid=${orderLists.orderid}">
                                                                     付款
-                                                                </button>
+                                                                </a>
                                                             </a>
                                                             <div class="layui-demo site-demo-button"
                                                                  style="margin-bottom: 0; display: inline">

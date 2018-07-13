@@ -31,6 +31,8 @@ public interface OrderService {
 
     Integer InsertGoodsEvaluateList(List<GoodsEvaluate> goodsevaluatelist);
 
+    Integer changeOrderStatusTo1(Integer orderid);
+
     Integer changeOrderStatusTo2(Integer orderid);
 
     Integer changeOrderStatusTo3(Integer orderid);

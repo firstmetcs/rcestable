@@ -410,6 +410,10 @@
     update order_table set isAppraises = 1
     where orderId = #{orderId}
     </update>
+  <update id="changeorderstatusto1" parameterType="java.lang.Integer">
+        update  order_table set orderStatus = 1
+        where orderId=#{orderId}
+    </update>
   <update id="changeorderstatusto2" parameterType="java.lang.Integer">
         update  order_table set orderStatus = 2
         where orderId=#{orderId}

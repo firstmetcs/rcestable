@@ -27,6 +27,8 @@ public interface OrderDao {
 
     Integer changeEvaluateFlag(Integer orderid);
 
+    Integer changeorderstatusto1(Integer orderid);
+
     Integer changeorderstatusto2(Integer orderid);
 
     Integer changeorderstatusto3(Integer orderid);

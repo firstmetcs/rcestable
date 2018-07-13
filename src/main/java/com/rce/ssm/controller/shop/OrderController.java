@@ -133,7 +133,22 @@ public class OrderController {
         request.getSession().setAttribute("total", total == null ? "0" : String.valueOf(total));
         request.getSession().setAttribute(PublicStatic.SHOPPINGCARTS, shoppingCartService.selectByUserId(usersession.getUserid()));
 
-        return "redirect: /order/OrList?userid=" + usersession.getUserid();
+        return "redirect: /rcestore/order/OrList?userid=" + usersession.getUserid();
+    }
+
+    @RequestMapping("/pay")
+    public String pay(HttpServletRequest request, Model model, Integer orderid) {
+        log.info("查询所有用户信息");
+
+        User usersession = (User) request.getSession().getAttribute(PublicStatic.USER);
+        orderService.changeOrderStatusTo1(orderid);
+        try {
+            QuartzManager.removeJob(orderid.toString());
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+
+        return "redirect: /rcestore/order/OrList?userid=" + usersession.getUserid();
     }
 
     @RequestMapping("/OrList")

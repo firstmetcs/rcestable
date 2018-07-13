@@ -62,6 +62,10 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.insertGoodsEvaluate(goodsEvaluates);
     }
 
+    public Integer changeOrderStatusTo1(Integer orderid) {
+        return orderDao.changeorderstatusto1(orderid);
+    }
+
     public Integer changeOrderStatusTo2(Integer orderid) {
         return orderDao.changeorderstatusto2(orderid);
     }
