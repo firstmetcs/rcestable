@@ -100,7 +100,11 @@
     </select>
 
     <select id="findGoodsByType" resultType="Map" parameterType="String">
-         select goodsId,goodsName,goodsType,goodsSaleTime from goods where goodsType=#{goodsType} order by goodsSaleTime DESC
+         select goodsId,goodsName,goodsType,goodsSaleTime,goodsTotalDesc from goods where goodsType=#{goodsType} order by goodsSaleTime DESC
+    </select>
+
+    <select id="findGoodsWithoutType" resultType="Map">
+         select goodsId,goodsName,goodsType,goodsSaleTime from goods order by goodsSaleTime DESC
     </select>
 
     <select id="findGoodsByTime" resultType="Map">

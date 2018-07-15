@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rce.ssm.dao.GoodsAfterSaleMapper">
+    <resultMap type="com.rce.ssm.model.goods.GoodsAfterSale" id="goodsAfterSaleMap">
+        <result column="afterSaleId" property="afterSaleId"/>
+        <result column="userId" property="userId"/>
+        <result column="orderId" property="orderId"/>
+        <result column="goodsAttrId" property="goodsAttrId"/>
+        <result column="postscript" property="postscript"/>
+        <result column="status" property="status"/>
+        <result column="num" property="num"/>
+        <result column="reason" property="reason"/>
+        <result column="afterSaleType" property="afterSaleType"/>
+    </resultMap>
+
+
+    <insert id="addGoodsAfterSale" parameterType="com.rce.ssm.model.goods.GoodsAfterSale">
+
+       insert  into goods_afterSale (userId,goodsAttrId,orderId,postscript,status,num,reason,afterSaleType) values (#{userId},#{goodsAttrId},#{orderId},#{postscript},#{status},#{num},#{reason},#{afterSaleType})
+
+   </insert>
+
+    <select id="getGoodsAfterSale" resultMap="goodsAfterSaleMap">
+         select *  from goods_afterSale
+      </select>
+
+    <update id="updateStatus" >
+        update goods_afterSale  set status=#{1} where afterSaleId=#{0}
+    </update>
+
+    <select id="getGoodsAfterSaleByUserId" resultMap="goodsAfterSaleMap" parameterType="int">
+         select * from goods_afterSale where userId=#{userId}
+     </select>
+
+
+</mapper>

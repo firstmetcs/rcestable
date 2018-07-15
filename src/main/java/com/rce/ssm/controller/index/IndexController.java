@@ -43,4 +43,30 @@ public class IndexController {
         return "openPlatform";
     }
 
+    @RequestMapping("nobilk")
+    public String openNobilk(){
+        return "shoppingTip/nobilk";
+    }
+
+    @RequestMapping("orderpay")
+    public String openOrderpay(){
+        return "shoppingTip/orderpay";
+    }
+
+    @RequestMapping("postrule")
+    public String openPostrule(){
+        return "shoppingTip/postrule";
+    }
+
+    @RequestMapping("sendtime")
+    public String openSendtime(){
+        return "shoppingTip/sendtime";
+    }
+
+    @RequestMapping("admin")
+    public String admin(){
+        return "index";
+    }
+
+
 }

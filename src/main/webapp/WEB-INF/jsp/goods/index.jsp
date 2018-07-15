@@ -363,6 +363,7 @@
                         </div>
                     </div>
                 </a>
+
                 <a href="${pageContext.request.contextPath}/goods/findGood?goodsId=${goodsPriceList.get(1).get(26).get("goodsId")}">
                     <div class="layui-col-md2 pc-recommend-item" id="pc-recommend-5"
                          onmouseover="getComment(5),setShadow('pc',5)"
@@ -378,8 +379,8 @@
                             </p>
                         </div>
                     </div>
-
                 </a>
+
                 <a href="${pageContext.request.contextPath}/goods/findGood?goodsId=${goodsPriceList.get(1).get(33).get("goodsId")}">
                     <div class="layui-row pc-recommend pc-recommend-bottom">
                         <div class="layui-col-md2" id="pc-recommend-6" onmouseover="getComment(6),setShadow('pc',6)"

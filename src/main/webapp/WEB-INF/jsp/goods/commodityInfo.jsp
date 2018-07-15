@@ -132,7 +132,6 @@
 										<button class="layui-btn layui-btn-primary" id="<%=goodsVersion%>" onclick="
 												changeVersion(<%=goodsAttrNum%>)">${goodsRoamAttr.get("goodsRom")}+${goodsRoamAttr.get("goodsRam")} ${goodsRoamAttr.get("goodsPrice")}元
 										</button>
-
 									</c:forEach>
 								</div>
 							</div>
@@ -193,7 +192,7 @@
 							</div>
 							<!-- 购买按钮 -->
 							<button class="layui-btn layui-btn-primary" 
-							id="buy-btn" 
+							id="buy-btn" onclick="findGoodsAtt()"
 							onmouseover="this.style.backgroundColor='#008b8b'; this.style.color = 'white';" 
 							onmouseout="this.style.backgroundColor=''; 
 								this.style.color = '#008b8b';" >
@@ -594,80 +593,114 @@
 						</tr>
 					</table>
 				</div>
-				<div class="layui-tab-item">
-	                    <table width="800px">
-	                        <div class="evaluation">
-	                            评价晒单
-	                        </div>
-	                        <tbody>
-	                            <tr>
-	                                <td valign="top">
-	                                    <!-- 头像 -->
-	                                    <div class="user-img" style="">
-	                                        <img src="img/head/head.jpg" alt="" width="80px" height="80px">
-	                                    </div>
-	                                    <div class="user-name">
-	                                    	用户名1
-	                                    </div>
-	                                </td>
-	                                <td>
-	                                	<div class="null">
-	                        		
-	                        			</div>
-	                                	<div class="star-div">
-	                                		<i class="layui-icon">&#xe67a;</i> 
-	                                		<i class="layui-icon">&#xe67a;</i> 
-	                                		<i class="layui-icon">&#xe67a;</i> 
-	                                		<i class="layui-icon">&#xe67a;</i> 
-	                                		<i class="layui-icon">&#xe67a;</i> 
-	                                	</div>
-	                                    <!-- 消息 -->
-	                                    <div class="msg">
-	                                        <!-- 文字消息 -->
-	                                        刚收到就戴上了，感觉萌萌哒刚收到就戴上了，感觉萌萌哒刚收到就戴上了，感觉萌萌哒刚收到就戴上了，感觉萌萌哒刚收到就戴上了，感觉萌萌哒刚收到就戴上了，感觉萌萌哒刚收到就戴上了，感觉萌萌哒刚收到就戴上了，感觉萌萌哒刚收到就戴上了，感觉萌萌哒刚收到就戴上了，感觉萌萌哒刚收到就戴上了，感觉萌萌哒刚收到就戴上了，感觉萌萌哒
-	                                    </div>
-	                                    <div class="font16px">
-	                                    	商品名 &nbsp;&nbsp;
-	                                        2018-6-25 16:33
-	                                    </div>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                            	
-	                                <td valign="top">
-	                                    <!-- 头像 -->
-	                                    <div class="user-img">
-	                                        <img src="img/head/head.jpg" alt="" width="80px" height="80px">
-	                                    </div>
-	                                    <div class="user-name">
-	                                        用户名2
-	                                    </div>
-	                                </td>
-	                                <td>
-	                                	<div class="null">
-	                        		
-	                        			</div>
-	                                	<div class="star-div">
-	                                		<i class="layui-icon">&#xe67a;</i> 
-	                                		<i class="layui-icon">&#xe67a;</i> 
-	                                		<i class="layui-icon">&#xe67a;</i> 
-	                                		<i class="layui-icon">&#xe67a;</i> 
-	                                		<i class="layui-icon">&#xe67a;</i> 
-	                                	</div>
-	                                    <!-- 消息 -->
-	                                    <div class="msg">
-	                                        <!-- 文字消息 -->
-	                                        还可以，特别轻！就是好像和我不太搭配还可以，特别轻！就是好像和我不太搭配还可以，特别轻！就是好像和我不太搭配还可以，特别轻！就是好像和我不太搭配还可以，特别轻！就是好像和我不太搭配还可以，特别轻！就是好像和我不太搭配还可以，特别轻！就是好像和我不太搭配
-	                                    </div>
-	                                    <div class="font16px">
-	                                    	商品名 &nbsp;&nbsp;
-	                                        2018-6-25 16:35
-	                                    </div>
-	                                </td>
-	                            </tr>
-	                        </tbody>
-	                    </table>
-	            </div>
+                  <div class="layui-tab-item">
+                      <table width="800px">
+                          <div class="evaluation">
+                              评价晒单
+                          </div>
+                          <c:if test="${pageInfo.size==0}">
+                              <div>
+                                  <span>当前商品还没有任何评价</span>
+                              </div>
+                          </c:if>
+                          <c:if test="${pageInfo.size>0}">
+                              <c:forEach items="${pageInfo.list}" var="goodsEvaluateLists" varStatus="status">
+                                  <fmt:parseNumber var="starnum" integerOnly="true"
+                                                   value="${goodsEvaluateLists.goodsscore}"/>
+                                  <c:set var="count" value="${status.index}"/>
+                                  <tr>
+                                      <td valign="top">
+                                          <!-- 头像 -->
+                                          <div class="user-img" style="">
+                                              <img src="/rcestore/img/head/head.jpg" alt="" width="80px" height="80px">
+                                          </div>
+                                          <div class="user-name">
+                                                  ${goodsEvaluateLists.username}
+                                          </div>
+                                      </td>
+                                      <td>
+                                          <div class="null"></div>
+                                          <div class="star-div">
+                                              <c:forEach begin="1" end="${starnum}">
+                                                  <i class="layui-icon">&#xe67a;</i>
+                                              </c:forEach>
+                                              <c:forEach begin="1" end="${5-starnum}">
+                                                  <i class="layui-icon">&#xe67b;</i>
+                                              </c:forEach>
+                                          </div>
+                                          <div class="msg">
+                                              <!-- 评论消息 -->
+                                                  ${goodsEvaluateLists.content}
+                                          </div>
+                                          <div class="font16px">
+                                                  ${goodsEvaluateLists.goodsname} &nbsp;&nbsp;
+                                              <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
+                                                              value="${goodsEvaluateLists.createtime}"/>
+                                          </div>
+                                      </td>
+                                  </tr>
+                              </c:forEach>
+                          </c:if>
+                          <tbody>
+
+                          </tbody>
+                      </table>
+                      <div class="col-sm-5 page-info" id="page_info_area"
+                           style="float:left;margin-top: 20px;font-size: 17px;">
+                          当前第 ${pageInfo.pageNum} 页.总共 ${pageInfo.pages} 页.一共 ${pageInfo.total} 条记录
+                      </div>
+                      <!--点击分页-->
+                      <div class="col-sm-7 page-show" id="page_nav_area" style="float: right;">
+                          <nav aria-label="Page navigation">
+                              <ul class="pagination pagination-sm">
+                                  <li>
+                                      <a href="${path}/goods/findGood?pageCode=1&goodsId=${pageInfo.list.get(0).goodsid}"><span
+                                              class="num" style="padding: 0;border: none">首页</span></a></li>
+                                  <!--上一页-->
+                                  <li>
+                                      <c:if test="${pageInfo.hasPreviousPage}">
+                                          <a href="${path}/goods/findGood?pageCode=${pageInfo.pageNum-1}&goodsId=${pageInfo.list.get(0).goodsid}"
+                                             aria-label="Previous">
+                                                    <span class="prev" aria-hidden="true"
+                                                          style="padding: 0;border: none">&lt;&lt;</span>
+                                          </a>
+                                      </c:if>
+                                  </li>
+                                  <c:forEach items="${pageInfo.navigatepageNums}" var="page_num">
+                                      <c:if test="${page_num == pageInfo.pageNum}">
+                                          <li class="active">
+                                              <a href="#">
+                                                  <span class="current">${page_num}</span>
+                                              </a>
+                                          </li>
+                                      </c:if>
+                                      <c:if test="${page_num != pageInfo.pageNum}">
+                                          <li><a class="num"
+                                                 href="${path}/goods/findGood?pageCode=${page_num}&goodsId=${pageInfo.list.get(0).goodsid}"><span
+                                                  class="num"
+                                                  style="padding: 0;border: none">${page_num}</span></a>
+                                          </li>
+                                      </c:if>
+                                  </c:forEach>
+                                  <!--下一页-->
+                                  <li>
+                                      <c:if test="${pageInfo.hasNextPage}">
+                                          <a href="${path}/goods/findGood?pageCode=${pageInfo.pageNum+1}&goodsId=${pageInfo.list.get(0).goodsid}"
+                                             aria-label="Next">
+                                                    <span class="next" aria-hidden="true"
+                                                          style="padding: 0;border: none">&gt;&gt;</span>
+                                          </a>
+                                      </c:if>
+                                  </li>
+                                  <li>
+                                      <a href="${path}/goods/findGood?pageCode=${pageInfo.pages}&goodsId=${pageInfo.list.get(0).goodsid}"><span
+                                              class="num" style="padding: 0;border: none">尾页</span>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </nav>
+                      </div>
+                  </div>
 			  </div>
 			</div> 
 		</div>
@@ -681,8 +714,8 @@
 		class="displayNone">
 	</form> 
 	
-	<script type="text/javascript" src="js/commodityInfo.js"></script>
-	<script type="text/javascript" src="./layui/layui.js"></script>
+	<script type="text/javascript" src="${path}/js/commodityInfo.js"></script>
+	<script type="text/javascript" src="${path}/layui/layui.js"></script>
 	<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
@@ -711,16 +744,30 @@
 			}else{
 				$(".div-img img").attr("style","position:fixed;");
 			}
-			// console.log(st);
-			if(st <= 560){
-				// $("#cart_content").attr("style","position:absolute;");
-				// $("#cart_content").attr("style","padding-top:350%;");
-			}else{
-				// $("#reco").attr("style","display:block;position:fixed");
-				// $("#reco").attr("style","position:none;");
-			}
-			//1308时出现推荐
 		});
 	</script>
+
+	<script type="text/javascript">
+
+		function findGoodsAtt() {
+            var versionInfo=$("#version-li").html();
+
+            $.ajax({
+                type: "post",
+                url: "${path}/goods/findGoodsAttrIdByVersion",
+                dataType: "json",
+                data: {"goodsVersion": versionInfo},
+
+                success: function (data) {
+                    window.location.href = "${path}/shoppingCart/addinto?goodsid=${goods.goodsId}&goodsattrid="+data;
+                },
+                error: function (data) {
+                  //  alert("失败");
+                }
+            });
+        }
+
+	</script>
+
 </body>
 </html>

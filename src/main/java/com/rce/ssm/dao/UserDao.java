@@ -21,7 +21,7 @@ public interface UserDao {
 
     int insertSelective(User record);
 
-    void active(@Param("code")String code);
+    void active(@Param("code") String code);
 
     int updateByPrimaryKeySelective(User record);
 

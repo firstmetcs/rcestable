@@ -33,7 +33,7 @@ h1{
 }
 .listdetail img{
 	width: 100%;
-	height: 100%;
+	/*height: 100%;*/
 }
 .small-pic{
 	border-style: outset;

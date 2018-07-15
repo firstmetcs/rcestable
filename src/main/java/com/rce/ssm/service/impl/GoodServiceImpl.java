@@ -1,6 +1,7 @@
 package com.rce.ssm.service.impl;
 
 import com.rce.ssm.dao.*;
+import com.rce.ssm.model.Address;
 import com.rce.ssm.model.goods.*;
 import com.rce.ssm.service.GoodsService;
 
@@ -12,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.security.Key;
 import java.util.*;
 
 
@@ -21,7 +23,7 @@ import java.util.*;
  * @veisiong 1.0
  * @date 2018/6/13
  */
-@Service("goodsService")
+@Service
 public class GoodServiceImpl implements GoodsService {
     @Autowired
     GoodsMapper goodsMapper;
@@ -33,18 +35,15 @@ public class GoodServiceImpl implements GoodsService {
     @Autowired
     GoodsRecMapper goodsRecMapper;
     @Autowired
-    GoodsReturnMapper goodsReturnMapper;
-    @Autowired
-    GoodsChangeMapper goodsChangeMapper;
-    @Autowired
-    GoodsRepairMapper goodsRepairMapper;
+    GoodsAfterSaleMapper goodsAfterSaleMapper;
     @Autowired
     GoodsStockMapper goodsStockMapper;
     @Autowired
     GoodsSettleMapper goodsSettleMapper;
-
     @Autowired
     UserDao userDao;
+    @Autowired
+    AddressDao addressDao;
 
     public Goods findById(int goodsId) {
 
@@ -482,45 +481,19 @@ public class GoodServiceImpl implements GoodsService {
          return goodsList;
      }
 
-    public void addGoodsReturn(GoodsReturn goodsReturn){
-         goodsReturn.setStatus(0);
-
-         goodsReturnMapper.addGoodsReturn(goodsReturn);
-
+    public void addGoodsAfterSale(GoodsAfterSale goodsAfterSale){
+        goodsAfterSale.setStatus(0);
+        goodsAfterSaleMapper.addGoodsAfterSale(goodsAfterSale);
      }
 
-     public List<GoodsReturn> getGoodsReturn(){
-        return goodsReturnMapper.getGoodsReturn();
+     public List<GoodsAfterSale> getGoodsAfterSale(){
+        return goodsAfterSaleMapper.getGoodsAfterSale();
      }
 
-     public void updateReturnStatus(int id,int status){
-        goodsReturnMapper.updateStatus(id,status);
+    public void updateAfterSaleStatus(int id,int status){
+       goodsAfterSaleMapper.updateStatus(id,status);
      }
 
-     public void addGoodsChange(GoodsChange goodsChange){
-        goodsChange.setStatus(0);
-        goodsChangeMapper.addGoodsChange(goodsChange);
-     }
-
-    public List<GoodsChange> getGoodsChange(){
-        return  goodsChangeMapper.getGoodsChange();
-    }
-    public void updateChangeStatus(int id,int status){
-        goodsChangeMapper.updateStatus(id,status);
-    }
-
-    public void addGoodsRepair(GoodsRepair goodsRepair){
-        goodsRepair.setStatus(0);
-        goodsRepairMapper.addGoodsRepair(goodsRepair);
-    }
-
-    public List<GoodsRepair> getGoodsRepair(){
-        return  goodsRepairMapper.getGoodsRepair();
-    }
-
-    public void updateRepairStatus(int id,int status){
-       goodsRepairMapper.updateStatus(id,status);
-    }
 
     public void addGoodsStock(GoodsStock goodsStock){
         goodsStock.setStockTime(new Date());
@@ -562,10 +535,193 @@ public class GoodServiceImpl implements GoodsService {
     public List<Double> findGoodsPrice(String rom,String ram){
          return  goodsAttrMapper.findGoodsPrice(rom,ram);
     }
+   public int findGoodsAttrIdByVerson(String rom,String ram,String color){
+       return goodsAttrMapper.findGoodsAttrIdByVerison(rom,ram,color);
+   }
 
-    public List<GoodsEvaluateList> GetAllgoodsEvaluate(Integer goodsid) {
-        return goodsEvaluateMapper.selectAllGoodsEvaluate(goodsid);
+    public Address findUserInfo(int userId){
+
+        Address userInfo=addressDao.selectByUserId(userId).get(0);
+        return userInfo;
     }
 
+    public List<Map<String,Object>> findAfterSaleByUserId(int userId){
 
+        List<GoodsAfterSale> goodsAfterSaleList=goodsAfterSaleMapper.getGoodsAfterSaleByUserId(userId);
+        List<Map<String,Object>> goodsAfterSaleListMap=new ArrayList<Map<String, Object>>();
+        for(int i=0;i<goodsAfterSaleList.size();i++){
+            long goodsAttrId=goodsAfterSaleList.get(i).getGoodsAttrId();
+            GoodsAttributes goodsAttributes=goodsAttrMapper.findGoodsAttrByAttrId(new Long(goodsAttrId).intValue());
+            Goods goods=goodsMapper.findById(new Long(goodsAttributes.getGoodsId()).intValue());
+            long goodsId=goods.getGoodsId();
+            String goodsName=goods.getGoodsName();
+            String status="";
+            if(goodsAfterSaleList.get(i).getStatus()==0){
+                status="未处理";
+            }else if(goodsAfterSaleList.get(i).getStatus()==1){
+                status="已处理";
+            }
+            Map<String,Object> map=new HashMap<String,Object>();
+
+            map.put("goodsId",goodsId);
+            map.put("goodsName",goodsName);
+            map.put("status",status);
+            map.put("goodsAfterSale",goodsAfterSaleList.get(i));
+            goodsAfterSaleListMap.add(map);
+
+        }
+        return goodsAfterSaleListMap;
+    }
+     public List<Map<String,Object>> searchGoodsByInfo(String goodsType,String goodsRom,String goodsRam,double lowgoodsPrice,double highgoodsPrice) {
+
+         List<Map<String, Object>> goodsList =new ArrayList<Map<String, Object>>() ;
+         System.out.println(goodsType);
+         if (! goodsType.equals("！")) {
+             goodsList = goodsMapper.findGoodsByType(goodsType.trim());
+
+         } else {
+             goodsList = goodsMapper.findGoodsWithoutType();
+         }
+         System.out.println("-----------------------------");
+         System.out.println(goodsList);
+         List<Map<String, Object>> goodsIdName = new ArrayList<Map<String, Object>>();
+         for (int i = 0; i < goodsList.size(); i++) {
+             Map<String, Object> map = new HashMap<String, Object>();
+             map.put("goodsId", goodsList.get(i).get("goodsId"));
+             map.put("goodsTotalDesc",goodsList.get(i).get("goodsTotalDesc"));
+             map.put("goodsName", goodsList.get(i).get("goodsName"));
+             goodsIdName.add(map);
+         }
+         System.out.println("-----------------------------");
+         System.out.println(goodsIdName);
+         List<Map<String, Object>> goodsRomList = new ArrayList<Map<String, Object>>();
+         System.out.println(goodsRom);
+         if (!goodsRom.equals("！")) {
+             for (int i = 0; i < goodsIdName.size(); i++) {
+                 List<GoodsAttributes> goodsAttributesList = goodsAttrMapper.findByGoodsId(Integer.parseInt(goodsIdName.get(i).get("goodsId").toString()));
+                 System.out.println(goodsAttributesList.size());
+                 for (int j = 0; j < goodsAttributesList.size(); j++) {
+                     System.out.println(goodsAttributesList.get(j).getGoodsRom());
+                     if (goodsAttributesList.get(j).getGoodsRom().trim().equals(goodsRom) ) {
+                         System.out.println("-------------9909777777777777");
+                         Map<String, Object> map = new HashMap<String, Object>();
+                         map.put("goodsId", goodsIdName.get(i).get("goodsId"));
+                         map.put("goodsTotalDesc", goodsIdName.get(i).get("goodsTotalDesc"));
+                         map.put("goodsName", goodsIdName.get(i).get("goodsName"));
+                         map.put("goodsAttr", goodsAttributesList.get(j));
+                         goodsRomList.add(map);
+                     }
+                 }
+             }
+         } else {
+             for (int i = 0; i < goodsIdName.size(); i++) {
+                 List<GoodsAttributes> goodsAttributesList = goodsAttrMapper.findByGoodsId(Integer.parseInt(goodsIdName.get(i).get("goodsId").toString()));
+                 for (int j = 0; j < goodsAttributesList.size(); j++) {
+                     Map<String, Object> map = new HashMap<String, Object>();
+                     map.put("goodsId", goodsIdName.get(i).get("goodsId"));
+                     map.put("goodsName", goodsIdName.get(i).get("goodsName"));
+                     map.put("goodsTotalDesc", goodsIdName.get(i).get("goodsTotalDesc"));
+                     map.put("goodsAttr", goodsAttributesList.get(j));
+                     goodsRomList.add(map);
+                 }
+             }
+         }
+         System.out.println("-----------------------------");
+         System.out.println(goodsRomList);
+         List<Map<String, Object>> goodsRamList = new ArrayList<Map<String, Object>>();
+         if (!goodsRam.equals("！")) {
+             for (int i = 0; i < goodsRomList.size(); i++) {
+                 GoodsAttributes goodsAttributes = (GoodsAttributes) goodsRomList.get(i).get("goodsAttr");
+
+                 if (goodsAttributes.getGoodsRam().equals(goodsRam)) {
+                     Map<String, Object> map = new HashMap<String, Object>();
+                     map.put("goodsId", goodsRomList.get(i).get("goodsId"));
+                     map.put("goodsTotalDesc", goodsRomList.get(i).get("goodsTotalDesc"));
+                     map.put("goodsName", goodsRomList.get(i).get("goodsName"));
+                     map.put("goodsAttr", goodsAttributes);
+                     goodsRamList.add(map);
+
+                 }
+             }
+         } else {
+             for (int i = 0; i < goodsRomList.size(); i++) {
+
+                 Map<String, Object> map = new HashMap<String, Object>();
+                 map.put("goodsId", goodsRomList.get(i).get("goodsId"));
+                 map.put("goodsName", goodsRomList.get(i).get("goodsName"));
+                 map.put("goodsTotalDesc", goodsRomList.get(i).get("goodsTotalDesc"));
+                 map.put("goodsAttr", goodsRomList.get(i).get("goodsAttr"));
+                 goodsRamList.add(map);
+             }
+
+         }
+         System.out.println("-----------------------------");
+         System.out.println(goodsRamList);
+         List<Map<String, Object>> goodsPriceList = new ArrayList<Map<String, Object>>();
+         if(lowgoodsPrice!= -1){
+             for (int i = 0; i < goodsRamList.size(); i++) {
+                 GoodsAttributes goodsAttributes = (GoodsAttributes) goodsRamList.get(i).get("goodsAttr");
+
+                 if (goodsAttributes.getGoodsPrice() >= lowgoodsPrice &&  goodsAttributes.getGoodsPrice() <= highgoodsPrice  ) {
+                     Map<String, Object> map = new HashMap<String, Object>();
+                     map.put("goodsId", goodsRamList.get(i).get("goodsId"));
+                     map.put("goodsName", goodsRamList.get(i).get("goodsName"));
+                     map.put("goodsTotalDesc", goodsRamList.get(i).get("goodsTotalDesc"));
+                     map.put("goodsAttr", goodsRamList.get(i).get("goodsAttr"));
+                     goodsPriceList.add(map);
+
+                 }
+             }
+         }else if(highgoodsPrice != -1){
+             for (int i = 0; i < goodsRamList.size(); i++) {
+                 GoodsAttributes goodsAttributes = (GoodsAttributes) goodsRamList.get(i).get("goodsAttr");
+
+                 if (goodsAttributes.getGoodsPrice() >=  highgoodsPrice  ) {
+                     Map<String, Object> map = new HashMap<String, Object>();
+                     map.put("goodsId", goodsRamList.get(i).get("goodsId"));
+                     map.put("goodsName", goodsRamList.get(i).get("goodsName"));
+                     map.put("goodsTotalDesc", goodsRamList.get(i).get("goodsTotalDesc"));
+                     map.put("goodsAttr", goodsRamList.get(i).get("goodsAttr"));
+                     goodsPriceList.add(map);
+
+                 }
+             }
+         } else {
+             for (int i = 0; i < goodsRamList.size(); i++) {
+
+                 Map<String, Object> map = new HashMap<String, Object>();
+                 map.put("goodsId", goodsRamList.get(i).get("goodsId"));
+                 map.put("goodsName", goodsRamList.get(i).get("goodsName"));
+                 map.put("goodsTotalDesc", goodsRamList.get(i).get("goodsTotalDesc"));
+                 map.put("goodsAttr", goodsRamList.get(i).get("goodsAttr"));
+                 goodsPriceList.add(map);
+             }
+
+         }
+         System.out.println("-----------------------------");
+         System.out.println(goodsPriceList);
+         return goodsPriceList;
+
+     }
+     public List<Map<String,Object>> findAllSearch(){
+         List<Map<String,Object>> all=new ArrayList<Map<String, Object>>();
+        List<Goods> goodsList=goodsMapper.findAll();
+        for(int i=0;i<goodsList.size();i++){
+            List<GoodsAttributes> GL=goodsAttrMapper.findByGoodsId(new Long(goodsList.get(i).getGoodsId()).intValue());
+            for(int j=0;j<GL.size();j++){
+                Map<String, Object> map = new HashMap<String, Object>();
+                map.put("goodsId", goodsList.get(i).getGoodsId());
+                map.put("goodsName", goodsList.get(i).getGoodsName());
+                map.put("goodsTotalDesc", goodsList.get(i).getGoodsTotalDesc());
+                map.put("goodsAttr",  GL.get(j));
+                all.add(map);
+            }
+        }
+        return all;
+     }
+
+     public List<GoodsEvaluateList> selectAllGoodsEvaluate(int goodsid){
+
+         return  goodsEvaluateMapper.selectAllGoodsEvaluate( goodsid);
+     }
 }

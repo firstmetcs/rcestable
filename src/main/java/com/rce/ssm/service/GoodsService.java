@@ -1,7 +1,7 @@
 package com.rce.ssm.service;
 
+import com.rce.ssm.model.Address;
 import com.rce.ssm.model.goods.*;
-import javafx.beans.binding.ObjectBinding;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -54,23 +54,11 @@ public interface GoodsService {
 
     public void getGoodsRec() throws IOException;
 
-    public void addGoodsReturn(GoodsReturn goodsReturn);
+    public void addGoodsAfterSale(GoodsAfterSale goodsAfterSale);
 
-    public List<GoodsReturn> getGoodsReturn();
+    public List<GoodsAfterSale> getGoodsAfterSale();
 
-    public void updateReturnStatus(int id, int status);
-
-    public void addGoodsChange(GoodsChange goodsChange);
-
-    public List<GoodsChange> getGoodsChange();
-
-    public void updateChangeStatus(int id, int status);
-
-    public void addGoodsRepair(GoodsRepair goodsRepair);
-
-    public List<GoodsRepair> getGoodsRepair();
-
-    public void updateRepairStatus(int id, int status);
+    public void updateAfterSaleStatus(int id, int status);
 
     public void addGoodsStock(GoodsStock goodsStock);
 
@@ -90,5 +78,15 @@ public interface GoodsService {
 
     public List<Map<String,Object>> findGoodsRecWithOutUser();
 
-    List<GoodsEvaluateList> GetAllgoodsEvaluate(Integer goodsid);
+    public int findGoodsAttrIdByVerson(String rom, String ram, String color);
+
+    public Address findUserInfo(int userId);
+
+    public List<Map<String,Object>> findAfterSaleByUserId(int userId);
+
+    public List<Map<String,Object>> searchGoodsByInfo(String goodsType, String goodsRom, String goodsRam, double lowgoodsPrice, double highgoodsPrice);
+
+    public List<Map<String,Object>> findAllSearch();
+
+    public List<GoodsEvaluateList> selectAllGoodsEvaluate(int goodsid);
 }

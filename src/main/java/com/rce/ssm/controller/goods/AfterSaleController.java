@@ -2,12 +2,17 @@ package com.rce.ssm.controller.goods;
 
 
 import com.alibaba.fastjson.JSON;
+import com.rce.ssm.model.Address;
+import com.rce.ssm.model.User;
 import com.rce.ssm.model.goods.*;
 import com.rce.ssm.service.GoodsService;
+import com.rce.ssm.tool.PublicStatic;
 import com.rce.ssm.tool.kuaidi100;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -30,15 +35,13 @@ import java.util.*;
 public class AfterSaleController {
     @Resource
     GoodsService goodsService;
-    @RequestMapping("/returnGoods")
 
-    //note
+    @RequestMapping("/returnGoods")
     public  ModelAndView returnGoods (HttpServletRequest req, HttpSession session, HttpServletResponse res) throws IOException,ServletException {
-        int userId=Integer.parseInt(req.getParameter("userId")) ;
+       /* int userId=Integer.parseInt(req.getParameter("userId")) ;
         int goodsId=Integer.parseInt(req.getParameter("goodsAttrId"));
         int orderId=Integer.parseInt(req.getParameter("orderId"));
-
-
+        */
        // req.getRequestDispatcher("returngoodsInfo").forward(req, res);
 
         /*JSONObject json=JSONObject.fromObject(data);
@@ -46,88 +49,89 @@ public class AfterSaleController {
         System.out.println(edit);
         res.getWriter().print(edit);*/
 
-        ModelMap model=new ModelMap();
+      /*  ModelMap model=new ModelMap();
         model.addAttribute("userId",userId);
         model.addAttribute("goodsAttrId",goodsId);
-        model.addAttribute("orderId",orderId);
+        model.addAttribute("orderId",orderId);*/
 
-       return new ModelAndView("user/returnInfo",model);
+       return new ModelAndView("user/returnInfo");
 
     }
 
     @RequestMapping("/doAfterSale")
-    public String doReturnGoods(HttpServletRequest req, HttpServletResponse res)throws IOException,ServletException{
-            return "admin/afterSale/afterSale";
-    }
+    public ModelAndView doReturnGoods(HttpServletRequest req, HttpServletResponse res)throws IOException,ServletException{
 
-    @RequestMapping("/addGoodsReturn")
-    public ModelAndView addGoodsReturn(HttpServletRequest req) {
+        int userId=((User)req.getSession().getAttribute(PublicStatic.USER)).getUserid();
+        Address address=goodsService.findUserInfo(userId);
 
-        GoodsReturn goodsR=new GoodsReturn();
+        int goodsAttrId=Integer.parseInt(req.getParameter("goodsAttrId"));
+        int orderId=Integer.parseInt(req.getParameter("orderId"));
+        int goodsNum=1;
 
-       // System.out.println((req.getParameter("orderId")));
-        /*goodsR.setUserId(Integer.parseInt(req.getParameter("userId")));
-        goodsR.setGoodsAttrId(Integer.parseInt(req.getParameter("goodsAttrId")));
-        goodsR.setOrderId(Integer.parseInt(req.getParameter("orderId")));
-        goodsR.setPostscript(req.getParameter("info"));*/
-
-        goodsR.setUserId(1);
-        goodsR.setGoodsAttrId(2);
-        goodsR.setOrderId(3);
-        goodsR.setPostscript("info");
-
-        goodsService.addGoodsReturn(goodsR);
+        GoodsAttributes goodsAttributes=goodsService.findGoodsAttrByAttrId(goodsAttrId);
+        double goodsPrice=goodsAttributes.getGoodsPrice();
+        String goodsImg="/rcestore/img/goodsAttr/"+goodsAttributes.getGoodsImage();
+        long goodsId=goodsAttributes.getGoodsId();
+        Goods goods=goodsService.findById(new Long(goodsId).intValue());
+        String goodsName=goods.getGoodsName();
 
         ModelMap model=new ModelMap();
-        model.addAttribute("goodsReturn",goodsR);
+        model.addAttribute("address",address);
+        model.addAttribute("goodsPrice",goodsPrice);
+        model.addAttribute("orderId",orderId);
+        model.addAttribute("goodsId",goodsId);
+        model.addAttribute("goodsName",goodsName);
+        model.addAttribute("goodsNum",goodsNum);
+        model.addAttribute("goodsAttrId",goodsAttrId);
+        model.addAttribute("goodsImg",goodsImg);
 
-        return new ModelAndView("user/returnApplyResult",model);
-
-
-    }
-    @RequestMapping("/showReturnManage")
-    public ModelAndView showReturnManage(){
-
-        List<GoodsReturn> goodsReturnList=goodsService.getGoodsReturn();
-        List<Map<String,Object>> list= new ArrayList<Map<String, Object>>();
-        for(int i=0;i<goodsReturnList.size();i++){
-            Map<String,Object> map=new HashMap<String, Object>();
-            if(goodsReturnList.get(i).getStatus()== 0){
-                String str="未处理";
-                map.put("status",str);
-
-            }
-            else if(goodsReturnList.get(i).getStatus()== 1){
-                String str="已处理";
-                map.put("status",str);
-            }
-            else {
-                String str="已完成";
-                map.put("status",str);
-            }
-            map.put("goodsReturn",goodsReturnList.get(i));
-            list.add(map);
-        }
-        ModelMap model=new ModelMap();
-        model.addAttribute("goodsReturnList",list);
-        return new ModelAndView("admin/afterSale/returnGoodsManage",model);
+        return new ModelAndView("admin/afterSale/applyservice",model);
     }
 
-    @RequestMapping("/updateReturnStatus")
-    public void updateReturnStatus(HttpServletRequest req){
+
+   @RequestMapping("/addGoodsAfter")
+   @ResponseBody
+    public String addGoodsAfter(HttpServletRequest req) {
+
+        GoodsAfterSale goodsA=new GoodsAfterSale();
+
+        goodsA.setOrderId(Integer.parseInt(req.getParameter("orderId")));
+        goodsA.setGoodsAttrId(Integer.parseInt(req.getParameter("goodsAttrId")));
+        goodsA.setUserId(Integer.parseInt(req.getParameter("userId")));
+       goodsA.setAfterSaleType(req.getParameter("type"));
+       goodsA.setNum(Integer.parseInt(req.getParameter("num")));
+       goodsA.setPostscript(req.getParameter("postscript"));
+       goodsA.setReason(req.getParameter("reason"));
+
+
+        goodsService.addGoodsAfterSale(goodsA);
+
+        return req.getParameter("userId");
+
+    }
+
+   @RequestMapping("/updateAfterStatus")
+   @ResponseBody
+    public String updateReturnStatus(HttpServletRequest req){
         System.out.println("更改return状态");
-        int status=Integer.parseInt(req.getParameter("data"));
-        int id=Integer.parseInt(req.getParameter("step"))+1;
+        int status=Integer.parseInt(req.getParameter("status"));
+        int id=Integer.parseInt(req.getParameter("afterSaleId"));
         System.out.println(id+" "+status);
-         goodsService.updateReturnStatus(id,status);
-
+        goodsService.updateAfterSaleStatus(id,status);
+        return "修改成功";
     }
 
-    @RequestMapping("/userCenter")
-    public String userCenter(){
-        return "user/userCenter";
-    }
+    @RequestMapping("/userAfterCenter")
+    public ModelAndView useruserAfterCenter(HttpServletRequest req){
 
+        int userId=Integer.parseInt(req.getParameter("userId"));
+        List<Map<String,Object>> goodsAfterSaleList=goodsService.findAfterSaleByUserId(userId);
+
+        ModelMap model=new ModelMap();
+        model.addAttribute("goodsAfterSaleList",goodsAfterSaleList);
+
+        return new ModelAndView("user/servicerecord",model);
+    }
 
     @RequestMapping("/showWuliuInfo")
     public void showWuliuInfo(HttpServletRequest req){
@@ -156,166 +160,42 @@ public class AfterSaleController {
 
     }
 
-    @RequestMapping("/changeGoods")
-    public ModelAndView changeGoods(HttpServletRequest req) {
 
-        int userId=Integer.parseInt(req.getParameter("userId")) ;
-        int goodsId=Integer.parseInt(req.getParameter("goodsAttrId"));
-        int orderId=Integer.parseInt(req.getParameter("orderId"));
+    @RequestMapping("/showGoodsAfterManage")
+    public ModelAndView showGoodsAfterManage(HttpServletRequest req){
 
-        ModelMap model=new ModelMap();
-        model.addAttribute("userId",userId);
-        model.addAttribute("goodsAttrId",goodsId);
-        model.addAttribute("orderId",orderId);
+        List<GoodsAfterSale> goodsAfterSalesList=goodsService.getGoodsAfterSale();
+        List<Map<String,Object>> goodsAfterSaleList2=new ArrayList<Map<String, Object>>();
 
-        return new ModelAndView("user/changeInfo",model);
+        for(int i=0;i<goodsAfterSalesList.size();i++){
+            String status="";
+            String op="";
+            String disable="";
+            if(goodsAfterSalesList.get(i).getStatus()==0){
 
-    }
-    @RequestMapping("/addGoodsChange")
-    public ModelAndView addGoodsChange(HttpServletRequest req){
-        GoodsChange goodsR=new GoodsChange();
-
-        // System.out.println((req.getParameter("orderId")));
-        goodsR.setUserId(Integer.parseInt(req.getParameter("userId")));
-        goodsR.setGoodsAttrId(Integer.parseInt(req.getParameter("goodsAttrId")));
-        goodsR.setOrderId(Integer.parseInt(req.getParameter("orderId")));
-        goodsR.setPostscript(req.getParameter("info"));
-
-
-        goodsService.addGoodsChange(goodsR);
-
-        ModelMap model=new ModelMap();
-        model.addAttribute("goodsChange",goodsR);
-
-
-        return new ModelAndView("user/returnApplyResult",model);
-    }
-
-    @RequestMapping("/showChangeManage")
-    public ModelAndView showChangeManage(){
-
-        List<GoodsChange> goodsChangeList=goodsService.getGoodsChange();
-        List<Map<String,Object>> list= new ArrayList<Map<String, Object>>();
-        for(int i=0;i<goodsChangeList.size();i++){
-            Map<String,Object> map=new HashMap<String, Object>();
-            if(goodsChangeList.get(i).getStatus()== 0){
-                String str="未处理";
-                map.put("status",str);
-
+                status="未处理";
+                op="待审核";
             }
-            else if(goodsChangeList.get(i).getStatus()== 1){
-                String str="已处理";
-                map.put("status",str);
+            if(goodsAfterSalesList.get(i).getStatus()==1){
+
+                status="已处理";
+                op="已审核";
+                disable="disabled";
             }
-            else if(goodsChangeList.get(i).getStatus()== 2){
-                String str="已发货";
-                map.put("status",str);
-            }
-            else {
-                String str="已完成";
-                map.put("status",str);
-            }
-            map.put("goodsChange",goodsChangeList.get(i));
-            list.add(map);
+            Map<String,Object> map=new HashMap<String,Object>();
+
+            map.put("status",status);
+            map.put("op",op);
+            map.put("disable",disable);
+            map.put("goodsAfterSale",goodsAfterSalesList.get(i));
+
+            goodsAfterSaleList2.add(map);
         }
         ModelMap model=new ModelMap();
-        model.addAttribute("goodsChangeList",list);
-        return new ModelAndView("admin/afterSale/changeGoodsManage",model);
+        model.addAttribute("goodsAfterSaleList",goodsAfterSaleList2);
+
+        return new ModelAndView("admin/afterSale/aftersales-application",model);
     }
 
-    @RequestMapping("/updateChangeStatus")
-    public void updateChangeStatus(HttpServletRequest req){
-        System.out.println("更改Change状态");
-        int status=Integer.parseInt(req.getParameter("data"));
-        int id=Integer.parseInt(req.getParameter("step"))+1;
-        System.out.println(id+" "+status);
-        goodsService.updateChangeStatus(id,status);
-
-    }
-
-    @RequestMapping("/repairGoods")
-    public ModelAndView  repairGoods (HttpServletRequest req, HttpSession session, HttpServletResponse res) throws IOException,ServletException {
-        int userId=Integer.parseInt(req.getParameter("userId")) ;
-        int goodsId=Integer.parseInt(req.getParameter("goodsAttrId"));
-        int orderId=Integer.parseInt(req.getParameter("orderId"));
-
-        ModelMap model=new ModelMap();
-        model.addAttribute("userId",userId);
-        model.addAttribute("goodsAttrId",goodsId);
-        model.addAttribute("orderId",orderId);
-
-        return new ModelAndView("user/repairInfo",model);
-
-    }
-
-    @RequestMapping("/addGoodsRepair")
-    public ModelAndView addGoodsRepair(HttpServletRequest req){
-        GoodsRepair goodsR=new GoodsRepair();
-
-        // System.out.println((req.getParameter("orderId")));
-        goodsR.setUserId(Integer.parseInt(req.getParameter("userId")));
-        goodsR.setGoodsAttrId(Integer.parseInt(req.getParameter("goodsAttrId")));
-        goodsR.setOrderId(Integer.parseInt(req.getParameter("orderId")));
-        goodsR.setPostscript(req.getParameter("info"));
-
-
-        goodsService.addGoodsRepair(goodsR);
-
-        ModelMap model=new ModelMap();
-        model.addAttribute("goodsRepair",goodsR);
-
-
-        return new ModelAndView("user/returnApplyResult",model);
-    }
-
-    @RequestMapping("/showRepairManage")
-    public ModelAndView showRepairManage(){
-
-        List<GoodsRepair> goodsRepairsList=goodsService.getGoodsRepair();
-        List<Map<String,Object>> list= new ArrayList<Map<String, Object>>();
-
-        for(int i=0;i<goodsRepairsList.size();i++){
-            Map<String,Object> map=new HashMap<String, Object>();
-
-            if(goodsRepairsList.get(i).getStatus()== 0){
-                String str="未处理";
-                map.put("status",str);
-
-            }
-            else if(goodsRepairsList.get(i).getStatus()== 1){
-                String str="已处理";
-                map.put("status",str);
-            }
-            else if(goodsRepairsList.get(i).getStatus()== 2){
-                String str="修理完成";
-                map.put("status",str);
-            }
-            else if(goodsRepairsList.get(i).getStatus()== 3){
-                String str="已发货";
-                map.put("status",str);
-            }
-            else {
-                String str="已完成";
-                map.put("status",str);
-            }
-            map.put("goodsRepair",goodsRepairsList.get(i));
-            list.add(map);
-        }
-
-        ModelMap model=new ModelMap();
-        model.addAttribute("goodsRepairList",list);
-        return new ModelAndView("admin/afterSale/repairGoodsManage",model);
-    }
-
-    @RequestMapping("/updateRepairStatus")
-    public void updateRepairStatus(HttpServletRequest req){
-        System.out.println("更改Repair状态");
-        int status=Integer.parseInt(req.getParameter("data"));
-        int id=Integer.parseInt(req.getParameter("step"))+1;
-        System.out.println(id+" "+status);
-
-        goodsService.updateRepairStatus(id,status);
-
-    }
 
 }

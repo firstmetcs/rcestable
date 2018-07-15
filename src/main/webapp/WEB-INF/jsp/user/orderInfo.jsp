@@ -103,6 +103,13 @@
                         </div>
                     </c:if>
                 </c:if>
+                <c:if test="${orderGoods.get(0).orderstatus==2}">
+                <c:if test="${orderGoods.get(0).isappraises==0}">
+                    <div>
+                        <div class="order-box-uncompleted"><span>√</span></div>
+                    </div>
+                </c:if>
+            </c:if>
             </li>
         </ol>
     </div>
@@ -309,8 +316,7 @@
                                     <td class="order-secondmain-goods">
                                         <c:if test="${orderGoods.get(0).orderstatus==2}">
                                             <div>
-                                                    <%--${path}/afterSale/doAfterSale?goodsAttrId=${goodsList.goodsattrId}&orderId=${orderGoods.get(0).orderid}--%>
-                                                <span><a href="#">申请售后</a></span>
+                                                <span><a href="${path}/afterSale/doAfterSale?goodsAttrId=${goodsList.goodsattrid}&orderId=${orderGoods.get(0).orderid}">申请售后</a></span>
                                             </div>
                                         </c:if>
                                     </td>

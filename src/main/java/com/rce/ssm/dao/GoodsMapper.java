@@ -25,8 +25,8 @@ public interface GoodsMapper {
     public List<Map<String,Object>> findByType();
     public List<String> findType();
     public  List<Map<String,Object>>findGoodsByType(String goodsType);
+    public  List<Map<String,Object>> findGoodsWithoutType();
     public List<Map<String,Object>>findGoodsByTime();
     public List<Integer> getGoodsId();
-
 }
 

@@ -1,0 +1,159 @@
+.purchase-wrapper {
+    margin: 0 auto;
+    /*width: 1230px;*/
+    width: 100%;
+    background: #F5F5F5;
+}
+
+.purchase-wrapper a:link {
+    text-decoration: none;
+    color: #757575;
+}
+
+.purchase-wrapper a:visited {
+    text-decoration: none;
+    color: #757575;
+}
+
+.purchase-wrapper a:hover {
+    color: #008B8B;
+}
+
+.purchase-div {
+    float: left;
+}
+
+.purchase-nav {
+    color: #757575;
+    font-size: 12px;
+    font-family: "微软雅黑";
+    margin-top: 30px;
+}
+
+.purchase-leftsidebar {
+    width: 250px;
+    height: 400px;
+    background: #FFFFFF;
+    position: absolute;
+    margin-top: 20px;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    line-height: 1.5;
+}
+
+.purchase-font-right-top {
+    width: 850px;
+    height: 80px;
+    margin: auto;
+    text-align: left;
+    margin-top: 50px;
+    border-bottom: 1px solid #DDDDDD;
+    color: #757575;
+    font-family: "幼圆";
+}
+
+.purchase-font-right-bottom {
+    width: 850px;
+    margin: auto;
+    margin-top: 40px;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    line-height: 2;
+    color: #333333;
+}
+
+.purchase-div-right-bottom table {
+    text-align: center;
+}
+
+.purchase-leftsidebar-toptable {
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+.purchase-leftsidebar-toptable th {
+    text-align: left;
+    width: 80px;
+    height: 60px;
+    font-size: 16px;
+    font-family: "微软雅黑";
+    color: #272822;
+}
+
+.purchase-leftsidebar-toptable td {
+    height: 30px;
+}
+
+.purchase-key {
+    color: #008B8B;
+}
+
+.purchase-leftsidebar-bottomtable {
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+.purchase-leftsidebar-bottomtable td {
+    width: 80px;
+    height: 50px;
+    border-top: 1px solid #DDDDDD;
+}
+
+.purchase-img-large {
+    width: 800px;
+    height: 400px;
+}
+
+.purchase-img-small {
+    width: 300px;
+    height: 400px;
+}
+
+.purchase-img-middle {
+    width: 600px;
+}
+
+.purchase-nobilk-div-right {
+    width: 950px;
+    height: 700px;
+    background: #FFFFFF;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 265px;
+}
+
+.purchase-orderpay-div-right {
+    width: 950px;
+    height: 450px;
+    background: #FFFFFF;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 265px;
+}
+
+.purchase-postrule-div-right {
+    width: 950px;
+    height: 800px;
+    background: #FFFFFF;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 265px;
+}
+
+.purchase-purchasetime-div-right {
+    width: 950px;
+    height: 1000px;
+    background: #FFFFFF;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 265px;
+}
+
+.purchase-sendtime-div-right {
+    width: 950px;
+    height: 400px;
+    background: #FFFFFF;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 265px;
+}

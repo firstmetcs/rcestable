@@ -42,7 +42,7 @@
                     <div class="layui-col-md2">
                         <h2>帮助中心</h2>
                         <li><a href="">账户管理</a></li>
-                        <li><a href="">购物指南</a></li>
+                        <li><a href="${pageContext.request.contextPath}/index/shoppingTip">购物指南</a></li>
                     </div>
                     <div class="layui-col-md2">
                         <h2>服务支持</h2>

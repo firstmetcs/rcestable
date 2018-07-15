@@ -171,7 +171,7 @@
                                 <div class="searchresult-gl-i-wrap">
                                     <div class="searchresult-p-img">
                                         <a target="_blank" title="返回图片对应商品名称" href=""><img width="220" height="220"
-                                                                                           src="${path}/img/goodsAttr${item.goodsImage}"></a>
+                                                                                           src="${path}/img/goodsAttr/${item.goodsImage}"></a>
                                     </div>
                                     <div class="searchresult-p-price">
                                         <strong>

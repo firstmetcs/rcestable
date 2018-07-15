@@ -64,7 +64,7 @@
 <div class="register-box">
     <div class="register-container">
         <img src="${path}/img/logo.png">
-        <h1>RCE 找回密码</h1>
+        <h1>RCE 登录检验</h1>
         <br><br><br>
         <center>
             <h5>系统检测到您的登陆地点为：${sessionScope.loginaddress}<br>

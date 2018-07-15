@@ -206,7 +206,7 @@
                     </ul>
                     <ul>
                         <h3>售后服务</h3>
-                        <li><a href="servicerecord.html">服务记录</a></li>
+                        <li><a href="servicerecord.jsp">服务记录</a></li>
                         <li><a href="applyservice.html">申请服务</a></li>
                     </ul>
                 </div>

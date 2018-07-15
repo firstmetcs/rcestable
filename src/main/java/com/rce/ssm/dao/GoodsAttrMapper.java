@@ -32,6 +32,7 @@ public interface GoodsAttrMapper {
     public List<String> findDistRam(int goodsId);
     public List<String> findDistColor(int goodsId);
     public List<String> findDistSize(int goodsId);
-    public List<Double> findGoodsPrice(String goodsRom,String goodsRam);
+    public List<Double> findGoodsPrice(String goodsRom, String goodsRam);
+    public int findGoodsAttrIdByVerison(String rom, String ram, String color);
 
 }

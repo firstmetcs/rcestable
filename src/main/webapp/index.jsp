@@ -7,19 +7,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
+<head>
+    <meta http-equiv="Refresh" content="0; URL=goods/showIndex">
+</head>
 <body>
 <h2>Hello World!</h2>
 <!-- note from wq -->
 <%--note from cxh--%>
 <%--note from cxh--%>
-${indexuser.getCookieid()}<br>
-${indexuser.cookieid}<br>
-<br>
-<a href="/rcestore/goods/showIndex">商城主页</a><br>
-<a href="/rcestore/user/index">个人信息</a><br>
-<a href="/rcestore/shoppingCart/showSC">购物车</a><br>
-<a href="/rcestore/login/index">登陆</a><br>
-<a href="/rcestore/register/index">注册</a>
-<a href="/rcestore/user/logout">退出</a>
+努力加载中。。。
 </body>
 </html>

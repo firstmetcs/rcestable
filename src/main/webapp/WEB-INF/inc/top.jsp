@@ -122,6 +122,10 @@
 </div>
 <script>
     function search() {
-        window.location.href = "${path}/search/search?keyword=" + $("#keyword").val();
+        if ($("#keyword").val()==""){
+            window.location.href = "${path}/goods/searchInfoGoods"
+        }else {
+            window.location.href = "${path}/search/search?keyword=" + $("#keyword").val();
+        }
     }
 </script>

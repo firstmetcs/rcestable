@@ -108,13 +108,13 @@
                                                                 <div class="layui-row">
                                                                     <div class="layui-col-md2 small-pic">
                                                                             <%--#商品详情连接--%>
-                                                                        <a href="${path}/goodsevaluate/showEvaluateList?goodsid=${orderGoodsList.goodsid}&?pageCode=1">
+                                                                        <a href="${path}/goods/findGood?goodsId=${orderGoodsList.goodsid}&?pageCode=1">
                                                                             <img
                                                                                     src="${path}/img/goodsAttr/${orderGoodsList.goodsimage}"></a>
                                                                     </div>
                                                                     <div class="layui-col-md7 good-des">
 															<span class="description">
-															<a href="${path}/goodsevaluate/showEvaluateList?goodsid=${orderGoodsList.goodsid}&?pageCode=1">
+															<a href="${path}/goods/findGood?goodsId=${orderGoodsList.goodsid}&?pageCode=1">
                                                                 ${orderGoodsList.goodsname},${orderGoodsList.goodsversion},${orderGoodsList.goodscolor},${orderGoodsList.goodstotaldesc}
                                                             </a>
                                                             </span>
@@ -130,7 +130,7 @@
                                                                     <i class="layui-icon layui-icon-rmb">${orderGoodsList.goodsprice}</i>
                                                                 </td>
                                                                 <td>
-                                                                    <a href="${path}/goodsevaluate/showEvaluateList?goodsid=${orderGoodsList.goodsid}&?pageCode=1">
+                                                                    <a href="${path}/goods/findGood?goodsId=${orderGoodsList.goodsid}&?pageCode=1">
                                                                         <button class="layui-btn">再次购买</button>
                                                                     </a>
                                                                 </td>
@@ -200,14 +200,14 @@
                                                                     <div class="layui-row">
                                                                         <div class="layui-col-md2 small-pic">
                                                                                 <%--#商品详情连接--%>
-                                                                            <a href="${path}/goodsevaluate/showEvaluateList?goodsid=${orderGoodsList.goodsid}&?pageCode=1">
+                                                                            <a href="${path}/goods/findGood?goodsId=${orderGoodsList.goodsid}&?pageCode=1">
                                                                                 <img
                                                                                         src="${path}/img/goodsAttr/${orderGoodsList.goodsimage}"></a>
                                                                         </div>
                                                                         <div class="layui-col-md7 good-des">
 															<span class="description">
                                                                 <%--#商品详情连接--%>
-															<a href="${path}/goodsevaluate/showEvaluateList?goodsid=${orderGoodsList.goodsid}&?pageCode=1">
+															<a href="${path}/goods/findGood?goodsId=${orderGoodsList.goodsid}&?pageCode=1">
                                                                 ${orderGoodsList.goodsname},${orderGoodsList.goodsversion},${orderGoodsList.goodscolor},${orderGoodsList.goodstotaldesc}
                                                             </a>
 																</span>
@@ -222,7 +222,7 @@
                                                                     <i class="layui-icon layui-icon-rmb">${orderGoodsList.goodsprice}</i>
                                                                 </td>
                                                                 <td>
-                                                                    <a href="${path}/goodsevaluate/showEvaluateList?goodsid=${orderGoodsList.goodsid}&?pageCode=1">
+                                                                    <a href="${path}/goods/findGood?goodsId=${orderGoodsList.goodsid}&?pageCode=1">
                                                                         <button class="layui-btn">再次购买</button>
                                                                     </a></td>
                                                             </tr>

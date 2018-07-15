@@ -3,7 +3,7 @@ body {
 }
 
 .minwidth {
-    min-width: 1680px;
+    min-width: 1300px;
 }
 
 .div-img {
@@ -355,6 +355,3 @@ div {
     text-align: center;
 }
 
-.page{
-    margin-top: 20px;
-}

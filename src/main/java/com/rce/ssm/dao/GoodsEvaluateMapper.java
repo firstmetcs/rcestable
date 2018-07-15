@@ -16,5 +16,5 @@ import java.util.List;
 public interface GoodsEvaluateMapper {
    public void addGoodsEvaluate(GoodsEvaluate goodsEvaluate);
    public List<GoodsEvaluate> getGoodsEvaluate();
-   List<GoodsEvaluateList> selectAllGoodsEvaluate(Integer goodsid);
+   List<GoodsEvaluateList> selectAllGoodsEvaluate(int goodsid);
 }

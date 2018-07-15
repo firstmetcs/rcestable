@@ -1,0 +1,39 @@
+.recommend-position {
+    margin-right: 10%;
+    width: 13%;
+    height: 100%;
+    position: absolute;
+    top: 1310px;
+    margin-top: 0%;
+    margin-left: 10px;
+    z-index: 100;
+    border: 1px solid #DAD9D9;
+}
+
+.recommend-title {
+    text-align: center;
+    background-color: #C6C6C6;
+    height: 40px;
+    font-size: 20px;
+    line-height: 37px;
+}
+
+.commo-describe{
+	text-align: center;
+}
+
+.align-center{
+	text-align: center;
+}
+
+.recommend-position img {
+    width: 100%;
+}
+
+.recommend-position a {
+    text-decoration: none;
+}
+
+.recommend-position span {
+    color: #FD0A0A;
+}

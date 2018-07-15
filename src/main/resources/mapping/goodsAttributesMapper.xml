@@ -30,7 +30,7 @@
 
     <select id="findGoodsAttrByAttrId" resultMap="goodsAttrMap" parameterType="int">
         select goodsId,goodsAttrId,goodsVersion,goodsNetType,goodsRom,goodsRam,goodsSize,goodsColor,
-        goodsPrice,goodsResRatio from goods_attributes
+        goodsPrice,goodsResRatio,goodsImage from goods_attributes
            where goodsAttrId=#{goodsAttrId}
     </select>
 
@@ -106,6 +106,10 @@
 
     <select id="findGoodsPrice"  resultType="double">
         select goodsPrice from goods_attributes where goodsRom=#{0} and  goodsRam=#{1}
+    </select>
+
+    <select id="findGoodsAttrIdByVerison"  resultType="int">
+        select goodsAttrId from goods_attributes where goodsRom=#{0} and  goodsRam=#{1} and goodsColor=#{2}
     </select>
 
 
